@@ -58,6 +58,27 @@ const issueData: IssueItem[] = [
     },
   },
   {
+    id: 'rearview-camera-glitch',
+    category: 'software',
+    issue: {
+      en: 'Rearview Camera Display Glitch',
+      sv: 'Backkamera skärmfel',
+    },
+    affectedYearsList: ['MY21', 'MY22', 'MY23', 'MY24', 'MY25'],
+    symptoms: {
+      en: 'Rearview backup camera image fails to render or remains blank when shifting into reverse.',
+      sv: 'Backkamerabilden visas inte eller förblir svart när backväxeln läggs i.',
+    },
+    diy: {
+      en: 'Verify camera lens is clean. If screen is black, perform IHU soft reset (hold Home button below screen for 20 seconds).',
+      sv: 'Kontrollera att kameralinsen är ren. Om skärmen är svart, utför en mjuk återställning av IHU (håll hemknappen intryckt i 20 sekunder).',
+    },
+    dealer: {
+      en: 'Applies safety-critical software update (Recall RP1069 / NHTSA 25V615000) to stabilize camera module communication.',
+      sv: 'Applicerar säkerhetskritisk mjukvaruuppdatering (Återkallelse RP1069) för att stabilisera kameramodulens kommunikation.',
+    },
+  },
+  {
     id: 'rear-axle-click',
     category: 'drivetrain',
     issue: {
@@ -160,6 +181,27 @@ const issueData: IssueItem[] = [
     dealer: {
       en: 'Replaces the high-voltage coolant heating assembly and replaces the blown inverter fuse.',
       sv: 'Byter ut högspänningsvärmeaggregatet för kylvätska och byter den trasiga säkringen.',
+    },
+  },
+  {
+    id: 'power-inverter-failure',
+    category: 'electrical',
+    issue: {
+      en: 'Power Inverter Assembly Failure',
+      sv: 'Växelriktare (Inverter) modulhaveri',
+    },
+    affectedYearsList: ['MY21'],
+    symptoms: {
+      en: 'Sudden loss of propulsion while driving, "Propulsion system urgent service required" dashboard warning, or failure to start.',
+      sv: 'Plötslig förlust av drivkraft under körning, varningsmeddelande "Drivsystem brådskande service krävs", eller startsvårigheter.',
+    },
+    diy: {
+      en: 'No DIY action: High-voltage system hazard. Pull over safely and arrange towing to a service point.',
+      sv: 'Ingen DIY-åtgärd: Fara relaterad till högspänningssystemet. Kör åt sidan på ett säkert sätt och ordna bärgning till verkstad.',
+    },
+    dealer: {
+      en: 'Replaces the power inverter assembly under the safety recall campaign free of charge.',
+      sv: 'Byter ut växelriktarmodulen (invertern) under säkerhetsåterkallelsen kostnadsfritt.',
     },
   },
   {
