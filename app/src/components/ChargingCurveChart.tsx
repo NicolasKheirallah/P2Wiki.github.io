@@ -59,7 +59,7 @@ function CustomTooltip({ active, payload, label }: {
 
   return (
     <div
-      className="rounded-lg px-3 py-2 text-[12px] shadow-lg"
+      className="rounded-none px-3 py-2 text-[12px]"
       style={{
         backgroundColor: 'var(--ps-bg-elevated)',
         border: '1px solid var(--ps-border)',
@@ -71,7 +71,7 @@ function CustomTooltip({ active, payload, label }: {
       {payload.map((entry, i) => (
         <div key={i} className="flex items-center gap-2">
           <span
-            className="inline-block w-2 h-2 rounded-full"
+            className="inline-block w-2 h-2 shrink-0"
             style={{ backgroundColor: entry.color }}
           />
           <span style={{ color: 'var(--ps-text-secondary)' }}>
@@ -104,21 +104,28 @@ export default function ChargingCurveChart() {
           <button
             key={v.key}
             onClick={() => setActiveVariant(v.key)}
-            className="px-3 py-1.5 rounded-full text-[12px] font-normal transition-all duration-150"
+            className="px-3 py-1.5 rounded-none text-[12px] font-normal transition-all duration-150 border"
             style={{
+              borderColor: activeVariant === v.key ? 'var(--ps-text)' : 'var(--ps-border)',
               backgroundColor: activeVariant === v.key ? 'var(--ps-pill-active-bg)' : 'var(--ps-pill-bg)',
               color: activeVariant === v.key ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
             }}
             onMouseEnter={(e) => {
-              if (activeVariant !== v.key) e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg-hover)';
+              if (activeVariant !== v.key) {
+                e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg-hover)';
+                e.currentTarget.style.borderColor = 'var(--ps-text-secondary)';
+              }
             }}
             onMouseLeave={(e) => {
-              if (activeVariant !== v.key) e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+              if (activeVariant !== v.key) {
+                e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+                e.currentTarget.style.borderColor = 'var(--ps-border)';
+              }
             }}
           >
             {v.key !== 'all' && (
               <span
-                className="inline-block w-2 h-2 rounded-full mr-1.5"
+                className="inline-block w-2 h-2 shrink-0 mr-1.5"
                 style={{ backgroundColor: v.color }}
               />
             )}
@@ -181,11 +188,11 @@ export default function ChargingCurveChart() {
       {/* Legend for reference areas */}
       <div className="flex flex-wrap gap-x-6 gap-y-2 text-[11px]" style={{ color: 'var(--ps-text-tertiary)' }}>
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm" style={{ backgroundColor: 'var(--ps-gold)', opacity: 0.15 }} />
+          <span className="inline-block w-3 h-3 rounded-none" style={{ backgroundColor: 'var(--ps-gold)', opacity: 0.15 }} />
           Peak window (10–30% SoC)
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm" style={{ backgroundColor: 'var(--ps-text-secondary)', opacity: 0.1 }} />
+          <span className="inline-block w-3 h-3 rounded-none" style={{ backgroundColor: 'var(--ps-text-secondary)', opacity: 0.1 }} />
           Taper window (30–70% SoC)
         </span>
       </div>

@@ -12,7 +12,7 @@ export default function SymbolCell({ value, isHovered }: SymbolCellProps) {
     return (
       <span className="inline-flex items-center justify-center" title="Standard">
         <span
-          className="inline-block w-1.5 h-1.5 rounded-full"
+          className="inline-block w-1.5 h-1.5 rounded-none"
           style={{ backgroundColor: 'var(--ps-standard)' }}
         />
       </span>
@@ -23,7 +23,7 @@ export default function SymbolCell({ value, isHovered }: SymbolCellProps) {
     return (
       <span className="inline-flex items-center justify-center" title="Optional Extra">
         <span
-          className="inline-block w-1.5 h-1.5 rounded-full"
+          className="inline-block w-1.5 h-1.5 rounded-none"
           style={{ border: '1.5px solid var(--ps-optional)' }}
         />
       </span>
@@ -43,7 +43,7 @@ export default function SymbolCell({ value, isHovered }: SymbolCellProps) {
   if (isTextBadge) {
     return (
       <span
-        className="text-[12px] font-medium tracking-wide px-1.5 py-0.5 rounded transition-colors duration-150"
+        className="text-[12px] font-medium tracking-wide px-1.5 py-0.5 rounded-none transition-colors duration-150 border border-[var(--ps-border-light)]"
         style={{
           backgroundColor: isHovered ? 'var(--ps-pill-active-bg)' : 'var(--ps-pill-bg)',
           color: isHovered ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',

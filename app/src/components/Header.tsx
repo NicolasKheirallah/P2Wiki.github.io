@@ -76,21 +76,24 @@ export default function Header() {
                   <Link
                     key={tab.path}
                     to={tab.path}
-                    className="relative px-3 py-1.5 text-[13px] font-normal transition-colors duration-150 rounded-full"
+                    className="relative px-3 py-1.5 text-[13px] font-normal transition-all duration-150 rounded-none border"
                     style={{
                       color: isActive ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
                       backgroundColor: isActive ? 'var(--ps-pill-active-bg)' : 'transparent',
+                      borderColor: isActive ? 'var(--ps-text)' : 'transparent',
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
                         e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
                         e.currentTarget.style.color = 'var(--ps-text)';
+                        e.currentTarget.style.borderColor = 'var(--ps-border)';
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (!isActive) {
                         e.currentTarget.style.backgroundColor = 'transparent';
                         e.currentTarget.style.color = 'var(--ps-text-secondary)';
+                        e.currentTarget.style.borderColor = 'transparent';
                       }
                     }}
                   >
@@ -107,18 +110,25 @@ export default function Header() {
             <div ref={marketRef} className="relative">
               <button
                 onClick={() => setMarketOpen((o) => !o)}
-                className="flex items-center gap-1 px-2.5 py-1.5 text-[13px] rounded-full transition-colors duration-150"
+                className="flex items-center gap-1 px-2.5 py-1.5 text-[13px] rounded-none border transition-colors duration-150"
                 style={{
                   color: 'var(--ps-text-secondary)',
                   backgroundColor: marketOpen ? 'var(--ps-pill-bg)' : 'transparent',
+                  borderColor: marketOpen ? 'var(--ps-text)' : 'var(--ps-border)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = 'var(--ps-text)';
-                  if (!marketOpen) e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+                  if (!marketOpen) {
+                    e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+                    e.currentTarget.style.borderColor = 'var(--ps-text-secondary)';
+                  }
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = 'var(--ps-text-secondary)';
-                  if (!marketOpen) e.currentTarget.style.backgroundColor = 'transparent';
+                  if (!marketOpen) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = 'var(--ps-border)';
+                  }
                 }}
               >
                 <span className="text-[16px] leading-none">{currentMarket.flag}</span>
@@ -128,7 +138,7 @@ export default function Header() {
 
               {marketOpen && (
                 <div
-                  className="absolute right-0 top-full mt-2 rounded-lg shadow-lg z-[100] min-w-[180px] py-1.5"
+                  className="absolute right-0 top-full mt-2 rounded-none z-[100] min-w-[180px] py-1.5"
                   style={{
                     backgroundColor: 'var(--ps-bg-elevated)',
                     border: '1px solid var(--ps-border)',
@@ -168,18 +178,25 @@ export default function Header() {
             <div ref={langRef} className="relative">
               <button
                 onClick={() => setLangOpen((o) => !o)}
-                className="flex items-center gap-1 px-2.5 py-1.5 text-[13px] rounded-full transition-colors duration-150"
+                className="flex items-center gap-1 px-2.5 py-1.5 text-[13px] rounded-none border transition-colors duration-150"
                 style={{
                   color: 'var(--ps-text-secondary)',
                   backgroundColor: langOpen ? 'var(--ps-pill-bg)' : 'transparent',
+                  borderColor: langOpen ? 'var(--ps-text)' : 'var(--ps-border)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = 'var(--ps-text)';
-                  if (!langOpen) e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+                  if (!langOpen) {
+                    e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+                    e.currentTarget.style.borderColor = 'var(--ps-text-secondary)';
+                  }
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = 'var(--ps-text-secondary)';
-                  if (!langOpen) e.currentTarget.style.backgroundColor = 'transparent';
+                  if (!langOpen) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = 'var(--ps-border)';
+                  }
                 }}
               >
                 <span className="text-[11px] font-medium uppercase">{locale}</span>
@@ -188,7 +205,7 @@ export default function Header() {
 
               {langOpen && (
                 <div
-                  className="absolute right-0 top-full mt-2 rounded-lg shadow-lg z-[100] min-w-[120px] py-1.5"
+                  className="absolute right-0 top-full mt-2 rounded-none z-[100] min-w-[120px] py-1.5"
                   style={{
                     backgroundColor: 'var(--ps-bg-elevated)',
                     border: '1px solid var(--ps-border)',
@@ -230,18 +247,21 @@ export default function Header() {
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-150"
+              className="flex items-center justify-center w-8 h-8 rounded-none border transition-colors duration-150"
               style={{
                 color: 'var(--ps-text-secondary)',
                 backgroundColor: 'var(--ps-pill-bg)',
+                borderColor: 'var(--ps-border)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = 'var(--ps-text)';
                 e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg-hover)';
+                e.currentTarget.style.borderColor = 'var(--ps-text-secondary)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.color = 'var(--ps-text-secondary)';
                 e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+                e.currentTarget.style.borderColor = 'var(--ps-border)';
               }}
               title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >

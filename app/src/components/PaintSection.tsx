@@ -70,12 +70,9 @@ export default function PaintSection({
             >
               <td className="sticky left-0 bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 z-10 transition-colors duration-150">
                 <span
-                  className="inline-block w-6 h-6 rounded-full shadow-sm"
+                  className="inline-block w-6 h-6 rounded-none border border-[var(--ps-border)]"
                   style={{
                     backgroundColor: color.hex,
-                    border: color.hex.toLowerCase() === '#ffffff' || color.hex.toLowerCase() === '#f5f5f5'
-                      ? '1px solid var(--ps-border)'
-                      : 'none',
                   }}
                   title={`${color.name} (${color.polestarCode})`}
                 />
@@ -97,7 +94,7 @@ export default function PaintSection({
                 {color.volvoName}
               </td>
               <td className="py-4 pr-4 transition-colors duration-150">
-                <span className="text-[12px] font-mono px-2 py-0.5 rounded" style={{ backgroundColor: 'var(--ps-pill-bg)', color: 'var(--ps-text-secondary)' }}>
+                <span className="text-[12px] font-mono px-2 py-0.5 rounded-none border border-[var(--ps-border-light)]" style={{ backgroundColor: 'var(--ps-pill-bg)', color: 'var(--ps-text-secondary)' }}>
                   {color.polestarCode}
                 </span>
                 <span className="text-[11px] ml-2" style={{ color: 'var(--ps-text-tertiary)' }}>
@@ -128,7 +125,7 @@ export default function PaintSection({
         </tbody>
       </table>
 
-      <div className="mt-6 rounded-lg p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+      <div className="mt-6 rounded-none p-4 border border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
         <h4 className="text-[13px] font-medium mb-2" style={{ color: 'var(--ps-text)' }}>
           {t('aboutPaint')}
         </h4>
