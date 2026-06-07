@@ -280,6 +280,28 @@ const issueData: IssueItem[] = [
       sv: 'Byter ut strålkastarhusen om vattendroppar samlas eller om interna LED-drivrutiner går sönder.',
     },
   },
+  {
+    id: 'tailgate-spindle-failure',
+    category: 'body',
+    severity: 'moderate',
+    issue: {
+      en: 'Power Tailgate Spindle Drive Failure',
+      sv: 'Elektrisk baklucka spindelmotor (strut) haveri',
+    },
+    affectedYearsList: ['MY21', 'MY22', 'MY23', 'MY24'],
+    symptoms: {
+      en: 'Tailgate makes a loud grinding, squeaking, or groaning noise during operation. It may open halfway and reverse, or fail to open/close under power.',
+      sv: 'Bakluckan låter mycket (gnisslande, malande eller gnällande) under drift. Den kan öppnas halvvägs och sedan vända, eller helt sluta fungera elektriskt.',
+    },
+    diy: {
+      en: '1. Calibration: Manually open tailgate fully, press and hold the close button for 5 seconds until it beeps twice to reset.\n2. Inspection: Pull back the rubber boot at the top of the struts and check for pinched or broken wires (solder any breaks).\n3. Squeaks: Apply silicone-based lubricant to rubber weather seals.',
+      sv: '1. Kalibrering: Öppna bakluckan helt manuellt, tryck och håll stängningsknappen i 5 sekunder tills det piper två gånger för att återställa.\n2. Inspektera: Dra tillbaka gummibälgen vid toppen av dämparna och leta efter klämda eller trasiga kablar (löd eventuella brott).\n3. Gnissel: Applicera silikonbaserat smörjmedel på tätningslisterna.',
+    },
+    dealer: {
+      en: 'Replaces the left and/or right power spindle drive struts as a pair. Diagnoses and repairs the rear wiring harness under a service bulletin if damaged.',
+      sv: 'Byter ut vänster och/eller höger elektrisk spindelmotor (dämpare) parvis. Diagnostiserar och reparerar det bakre kablaget vid skada.',
+    },
+  },
 ];
 
 function CopyButton({ text }: { text: string }) {
