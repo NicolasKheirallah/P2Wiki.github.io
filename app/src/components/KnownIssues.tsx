@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 interface IssueItem {
   id: string;
   category: 'software' | 'drivetrain' | 'electrical' | 'body';
+  severity: 'critical' | 'moderate' | 'minor';
   issue: Record<'en' | 'sv', string>;
   affectedYearsList: string[]; // e.g. ['MY21', 'MY22', 'MY23'] or ['All']
   symptoms: Record<'en' | 'sv', string>;
@@ -18,6 +19,7 @@ const issueData: IssueItem[] = [
   {
     id: 'ihu-instability',
     category: 'software',
+    severity: 'minor',
     issue: {
       en: 'Infotainment (IHU) Instability',
       sv: 'Infotainmentsystem (IHU) instabilitet',
@@ -39,6 +41,7 @@ const issueData: IssueItem[] = [
   {
     id: 'tcam-failure',
     category: 'software',
+    severity: 'critical',
     issue: {
       en: 'TCAM Module Failure',
       sv: 'TCAM-modul haveri',
@@ -60,6 +63,7 @@ const issueData: IssueItem[] = [
   {
     id: 'rearview-camera-glitch',
     category: 'software',
+    severity: 'critical',
     issue: {
       en: 'Rearview Camera Display Glitch',
       sv: 'Backkamera skärmfel',
@@ -81,6 +85,7 @@ const issueData: IssueItem[] = [
   {
     id: 'rear-axle-click',
     category: 'drivetrain',
+    severity: 'moderate',
     issue: {
       en: 'Rear Axle "Clicking" (Dual Motor)',
       sv: 'Bakaxel "klickande" (Dual Motor)',
@@ -102,6 +107,7 @@ const issueData: IssueItem[] = [
   {
     id: 'front-suspension-knocking',
     category: 'drivetrain',
+    severity: 'moderate',
     issue: {
       en: 'Front Suspension Knocking',
       sv: 'Knackande framhjulsupphängning',
@@ -123,6 +129,7 @@ const issueData: IssueItem[] = [
   {
     id: 'propeller-shaft-vibration',
     category: 'drivetrain',
+    severity: 'moderate',
     issue: {
       en: 'AWD Propeller Shaft Vibration',
       sv: 'AWD Kardanaxel vibration',
@@ -144,6 +151,7 @@ const issueData: IssueItem[] = [
   {
     id: '12v-battery-drain',
     category: 'electrical',
+    severity: 'critical',
     issue: {
       en: '12V Auxiliary Battery Drain',
       sv: '12V-hjälpbatteri urladdning',
@@ -165,6 +173,7 @@ const issueData: IssueItem[] = [
   {
     id: 'hvch-failure',
     category: 'electrical',
+    severity: 'critical',
     issue: {
       en: 'HVCH (High Voltage Coolant Heater) Failure',
       sv: 'HVCH (högspänningsvärmare) haveri',
@@ -186,6 +195,7 @@ const issueData: IssueItem[] = [
   {
     id: 'power-inverter-failure',
     category: 'electrical',
+    severity: 'critical',
     issue: {
       en: 'Power Inverter Assembly Failure',
       sv: 'Växelriktare (Inverter) modulhaveri',
@@ -207,6 +217,7 @@ const issueData: IssueItem[] = [
   {
     id: 'blend-door-actuator',
     category: 'body',
+    severity: 'minor',
     issue: {
       en: 'HVAC Blend Door Actuator Failure',
       sv: 'HVAC Spjällmotor ställdon haveri',
@@ -228,6 +239,7 @@ const issueData: IssueItem[] = [
   {
     id: 'door-latch-freezing',
     category: 'body',
+    severity: 'moderate',
     issue: {
       en: 'Frozen Rear Door Latches',
       sv: 'Frysta bakdörrslås',
@@ -249,6 +261,7 @@ const issueData: IssueItem[] = [
   {
     id: 'lamp-condensation',
     category: 'body',
+    severity: 'minor',
     issue: {
       en: 'Headlamp & Taillight Condensation',
       sv: 'Strålkastare & Bakljus kondens',
@@ -513,9 +526,36 @@ export default function KnownIssues() {
                   className="w-full text-left px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-[var(--ps-bg-secondary)]/20 transition-colors duration-150 rounded-none cursor-pointer"
                 >
                   <div className="space-y-2">
-                    <h4 className="text-[15px] font-medium leading-snug" style={{ color: 'var(--ps-text)' }}>
-                      {title}
-                    </h4>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 border rounded-none`}
+                        style={{
+                          backgroundColor:
+                            item.severity === 'critical'
+                              ? 'rgba(239, 68, 68, 0.08)'
+                              : item.severity === 'moderate'
+                              ? 'rgba(245, 158, 11, 0.08)'
+                              : 'rgba(59, 130, 246, 0.08)',
+                          borderColor:
+                            item.severity === 'critical'
+                              ? 'var(--ps-error)'
+                              : item.severity === 'moderate'
+                              ? 'var(--ps-gold)'
+                              : 'var(--ps-text-tertiary)',
+                          color:
+                            item.severity === 'critical'
+                              ? 'var(--ps-error)'
+                              : item.severity === 'moderate'
+                              ? 'var(--ps-gold)'
+                              : 'var(--ps-text-secondary)',
+                        }}
+                      >
+                        {t(`severity${item.severity.charAt(0).toUpperCase() + item.severity.slice(1)}`)}
+                      </span>
+                      <h4 className="text-[15px] font-medium leading-snug" style={{ color: 'var(--ps-text)' }}>
+                        {title}
+                      </h4>
+                    </div>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px]" style={{ color: 'var(--ps-text-secondary)' }}>
                       <span className="font-light">{categoryLabel}</span>
                     </div>

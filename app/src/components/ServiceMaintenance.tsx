@@ -173,7 +173,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex items-center justify-center w-6 h-6 border border-[var(--ps-border)] hover:border-[var(--ps-text)] bg-[var(--ps-bg-secondary)] hover:bg-[var(--ps-bg-elevated)] transition-all duration-200 rounded-none ml-2 text-[var(--ps-text-secondary)] hover:text-[var(--ps-text)]"
+      className="inline-flex items-center justify-center w-6 h-6 border border-[var(--ps-border)] hover:border-[var(--ps-text)] bg-[var(--ps-bg-secondary)] hover:bg-[var(--ps-bg-elevated)] transition-all duration-200 rounded-none ml-2 text-[var(--ps-text-secondary)] hover:text-[var(--ps-text)] opacity-0 group-hover:opacity-100 focus:opacity-100"
       style={{
         transform: copied ? 'scale(1.1)' : 'scale(1)',
       }}

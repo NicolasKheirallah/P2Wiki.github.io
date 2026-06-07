@@ -70,7 +70,7 @@ export default function PaintSection({
             >
               <td className="sticky left-0 bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 z-10 transition-colors duration-150">
                 <span
-                  className="inline-block w-6 h-6 rounded-full shadow-sm"
+                  className="inline-block w-6 h-6 rounded-none shadow-sm"
                   style={{
                     backgroundColor: color.hex,
                     border: color.hex.toLowerCase() === '#ffffff' || color.hex.toLowerCase() === '#f5f5f5'
