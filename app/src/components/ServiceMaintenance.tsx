@@ -616,6 +616,23 @@ export default function ServiceMaintenance() {
             ))}
           </ul>
         </div>
+
+        {/* Bottom Disclaimer Box */}
+        <div
+          className="mt-6 rounded-none p-5 border border-[var(--ps-border)] relative overflow-hidden"
+          style={{ backgroundColor: 'var(--ps-bg-info)' }}
+        >
+          {/* Subtle corner design detail */}
+          <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-[var(--ps-border)] opacity-35" />
+          <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-[var(--ps-border)] opacity-35" />
+
+          <h4 className="text-[13px] font-semibold mb-2" style={{ color: 'var(--ps-text)' }}>
+            {t('disclaimerTitle')}
+          </h4>
+          <p className="text-[12px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
+            {t('serviceMaintenanceDisclaimer')}
+          </p>
+        </div>
       </div>
     </div>
   );
