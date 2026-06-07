@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
-import { Zap, Cpu, ChevronDown, ChevronUp } from 'lucide-react';
+import { Zap, Cpu, ChevronDown, ChevronUp, ShieldAlert } from 'lucide-react';
 
 interface RetrofitItem {
   id: string;
@@ -8,6 +8,7 @@ interface RetrofitItem {
   title: Record<'en' | 'sv', string>;
   feasibility: 'easy' | 'medium' | 'hard' | 'expert';
   description: Record<'en' | 'sv', string>;
+  warning?: Record<'en' | 'sv', string>;
   steps?: Record<'en' | 'sv', string[]>;
   link?: string;
   linkLabel?: Record<'en' | 'sv', string>;
@@ -18,13 +19,17 @@ const retrofitsData: RetrofitItem[] = [
     id: 'pixel-led',
     category: 'oem',
     title: {
-      en: 'Pixel Active High Beam Software Enable',
-      sv: 'Pixel Aktivt Helljus Mjukvaruaktivering',
+      en: 'Pixel Active High Beam Software Enable (US/Canada)',
+      sv: 'Pixel Aktivt Helljus Mjukvaruaktivering (USA/Kanada)',
     },
     feasibility: 'hard',
     description: {
-      en: 'Enable steering-responsive adaptive headlights that dynamically dim individual pixel sections to prevent glare for oncoming drivers. Hardware must be physically present on Launch Edition or Pilot package cars (MY21-MY23). Note that MY22-MY23 cars with Pilot Lite packages lack the pixel LED light source assemblies.',
-      sv: 'Aktivera styrresponsiva adaptiva strålkastare som dynamiskt dämpar enskilda pixeldelar för att förhindra bländning av mötande förare. Hårdvaran måste finnas fysiskt på Launch Edition eller bilar med Pilot-paket (MY21-MY23). Observera att MY22-MY23-bilar med Pilot Lite-paket saknar pixelljuskällorna.',
+      en: 'Enable steering-responsive adaptive headlights that dynamically dim individual pixel sections to prevent glare for oncoming drivers. This software deactivation was specific to North American (US/Canada) vehicles due to old FMVSS 108 regulatory bans. Note that the physical Pixel LED hardware must be present (MY21 Launch Edition or MY22-MY23 Pilot pack). Cars with Pilot Lite packages lack the hardware arrays.',
+      sv: 'Aktivera styrresponsiva adaptiva strålkastare som dynamiskt dämpar enskilda pixeldelar. Denna mjukvarudeaktivering var specifik för nordamerikanska (USA/Kanada) fordon på grund av äldre FMVSS 108-regler. Fysisk Pixel LED-hårdvara måste finnas (MY21 Launch Edition eller MY22-MY23 Pilot-paket). Bilar med Pilot Lite saknar hårdvaran.',
+    },
+    warning: {
+      en: 'Adaptive beam functions were disabled by default on US/Canadian cars. Enabling this feature via CCF modification will be overwritten whenever the vehicle receives an official OTA software update from Polestar, requiring you to re-apply the coding change.',
+      sv: 'Adaptiva helljusfunktioner var inaktiverade som standard på bilar i USA/Kanada. Aktivering via CCF-kodning kommer att skrivas över vid officiella OTA-mjukvaruuppdateringar från Polestar, vilket kräver att kodningen görs om.',
     },
     steps: {
       en: [
@@ -51,7 +56,7 @@ const retrofitsData: RetrofitItem[] = [
     feasibility: 'medium',
     description: {
       en: 'Add the hands-free tailgate kick sensor module that was deleted from select late MY22 vehicles due to global semiconductor shortages. Most cars still have the wiring connector pre-installed in the bumper harness.',
-      sv: 'Lägg till den handsfree-styrda kick-sensorn för bakluckan som togs bort från vissa sena MY22-fordon på grund av den globala halvledarbristen. De flesta bilar har fortfarande kablageförbindelsen förinstallerad bakom stötfångaren.',
+      sv: 'Lägg till den handsfree-styrda kick-sensorn för bakluckan som togs bort från vissa sena MY22-fordon på grund av den globala halvledarbrist. De flesta bilar har fortfarande kablageförbindelsen förinstallerad bakom stötfångaren.',
     },
     steps: {
       en: [
@@ -231,6 +236,7 @@ export default function RetrofitsImprovements() {
           const isExpanded = expandedId === item.id;
           const titleText = isSv ? item.title.sv : item.title.en;
           const descText = isSv ? item.description.sv : item.description.en;
+          const warningText = item.warning ? (isSv ? item.warning.sv : item.warning.en) : null;
           const stepsList = item.steps ? (isSv ? item.steps.sv : item.steps.en) : null;
 
           return (
@@ -273,6 +279,16 @@ export default function RetrofitsImprovements() {
                 <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
                   {descText}
                 </p>
+
+                {/* Specific Warning Box */}
+                {warningText && (
+                  <div className="p-3 bg-[var(--ps-bg-secondary)]/30 border border-[var(--ps-border)] flex gap-2.5 rounded-none">
+                    <ShieldAlert size={14} className="text-[var(--ps-gold)] shrink-0 mt-0.5" />
+                    <p className="text-[11px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
+                      {warningText}
+                    </p>
+                  </div>
+                )}
 
                 {/* Expanded content / steps */}
                 {isExpanded && stepsList && (
