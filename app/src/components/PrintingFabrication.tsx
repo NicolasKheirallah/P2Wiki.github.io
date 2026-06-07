@@ -118,7 +118,7 @@ export default function PrintingFabrication() {
           {materialGuidelines.map((mat) => (
             <div
               key={mat.name}
-              className="rounded-lg p-4"
+              className="rounded-none p-4 border border-[var(--ps-border)]"
               style={{ backgroundColor: 'var(--ps-bg-info)' }}
             >
               <h4 className="text-[13px] font-medium mb-1" style={{ color: 'var(--ps-text)' }}>
@@ -144,7 +144,7 @@ export default function PrintingFabrication() {
           {reverseEngineeringTips.map((tip) => (
             <div
               key={tip.title}
-              className="rounded-lg p-4"
+              className="rounded-none p-4 border border-[var(--ps-border)]"
               style={{ backgroundColor: 'var(--ps-bg-info)' }}
             >
               <h4 className="text-[13px] font-medium mb-1" style={{ color: 'var(--ps-text)' }}>

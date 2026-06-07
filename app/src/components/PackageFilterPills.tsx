@@ -14,21 +14,28 @@ export default function PackageFilterPills({ activePackage, onPackageChange }: P
           <button
             key={pkg.id}
             onClick={() => onPackageChange(pkg.id)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-normal transition-all duration-150"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-none text-[13px] font-normal transition-all duration-150 border"
             style={{
+              borderColor: isActive ? 'var(--ps-text)' : 'var(--ps-border)',
               backgroundColor: isActive ? 'var(--ps-pill-active-bg)' : 'var(--ps-pill-bg)',
               color: isActive ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
             }}
             onMouseEnter={(e) => {
-              if (!isActive) e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg-hover)';
+              if (!isActive) {
+                e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg-hover)';
+                e.currentTarget.style.borderColor = 'var(--ps-text-secondary)';
+              }
             }}
             onMouseLeave={(e) => {
-              if (!isActive) e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+              if (!isActive) {
+                e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
+                e.currentTarget.style.borderColor = 'var(--ps-border)';
+              }
             }}
           >
             {pkg.color && (
               <span
-                className="inline-block w-2 h-2 rounded-full"
+                className="inline-block w-2 h-2 shrink-0"
                 style={{
                   backgroundColor: isActive ? 'var(--ps-gold)' : pkg.color,
                 }}

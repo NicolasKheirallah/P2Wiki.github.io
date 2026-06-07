@@ -1,73 +1,112 @@
-# React + TypeScript + Vite
+# Polestar 2 Buying Guide & Owner Resource
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, community-built reference guide for the Polestar 2 electric vehicle. Covers specifications, known issues, 3D printing, service & maintenance, and charging & thermal management — with market-aware data for UK, Sweden, and US buyers.
 
-Currently, two official plugins are available:
+**Live site:** [https://polestar-buying-guide.netlify.app](https://polestar-buying-guide.netlify.app) *(update with your actual URL)*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** + **TypeScript**
+- **Vite 7** for fast builds and HMR
+- **Tailwind CSS 3** for styling
+- **React Router 7** for client-side routing
+- **Recharts** for interactive charging curve charts
+- **shadcn/ui** components
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 📊 Specifications Comparison
+- Market-aware model year comparison (MY21–MY26) for UK, Sweden, and US
+- Category and package filters
+- Paint colour matrix with Volvo-equivalent codes
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### ⚠️ Known Issues
+- 4-category issue table: Software, Drivetrain, HV Electrical, Climate
+- Symptoms + DIY remediation columns
+- Compiled from owner reports and service bulletins
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🖨️ 3D Printing & Custom Fabrication
+- Material guidelines (ASA/PC/TPU — why PLA/PETG won't survive)
+- Reverse engineering tips
+- Printable component repository with external links
+
+### 🔧 Service & Maintenance
+- Torque specifications
+- Fluid capacities
+- 12V battery fitment guide
+- Market-aware service interval matrix (km vs miles)
+
+### ⚡ Charging & Thermal
+- Interactive DC charging curves (3 battery variants)
+- AC charging specs
+- Thermal preconditioning protocols
+- Heat pump vs resistive heating comparison
+- **NMC battery health recommendations** — official Polestar guidance on SoC thresholds, charging habits, storage guidelines, and temperature precautions
+
+### 🌍 Market & Language Support
+- **Markets:** UK (km, £), Sweden (km, kr), US (miles, $)
+- **Languages:** English + Swedish
+- **Theme:** Light / Dark mode
+- All settings auto-detect from browser with localStorage persistence
+
+---
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+
+# Run linter
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Known Build Notes
+- Node.js 18.x triggers a Vite engine warning but builds successfully
+- Main JS bundle ~904KB / 265KB gzipped — exceeds 500KB warning threshold but is non-blocking
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
+
 ```
+src/
+  components/       # Reusable UI components (Header, charts, tables)
+  contexts/         # React contexts: Theme, Market, Locale (i18n)
+  data/             # Static datasets (specs, paint colours, issues, etc.)
+  hooks/            # Custom React hooks
+  lib/              # Utility functions
+  pages/            # Route-level page components
+  types/            # TypeScript type definitions
+  App.tsx           # Root router configuration
+  index.css         # Global styles + Polestar CSS custom properties
+```
+
+---
+
+## Data Sources
+
+- Polestar official owner's manuals and service documentation
+- Owner community reports (Polestar Forum, Reddit r/Polestar, Facebook groups)
+- EV charging data from independent testing (Bjørn Nyland, Fastned, etc.)
+- 3D printing community repositories (Thingiverse, Printables)
+
+---
+
+## License
+
+This is an independent community resource and is **not affiliated with Polestar Automotive**.
+
+Polestar and all related marks are trademarks of Polestar Automotive.
+
+Data is compiled for educational purposes. Always consult an authorised Polestar service centre for diagnosis and repair.

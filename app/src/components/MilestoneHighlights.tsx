@@ -170,14 +170,14 @@ export default function MilestoneHighlights() {
   return (
     <div className="space-y-6">
       {/* Tab Switcher */}
-      <div className="border border-[var(--ps-border)] grid grid-cols-6 divide-x divide-[var(--ps-border-light)] bg-[var(--ps-bg)]">
+      <div className="border border-[var(--ps-border)] flex overflow-x-auto scrollbar-hide divide-x divide-[var(--ps-border-light)] bg-[var(--ps-bg)]">
         {milestoneData.map((m) => {
           const isActive = m.year === activeYear;
           return (
             <button
               key={m.year}
               onClick={() => setActiveYear(m.year)}
-              className="py-3 text-[12px] uppercase tracking-[0.15em] font-normal transition-colors duration-150 rounded-none"
+              className="flex-1 min-w-[70px] py-3 text-[12px] uppercase tracking-[0.15em] font-normal transition-colors duration-150 rounded-none text-center"
               style={{
                 backgroundColor: isActive ? 'var(--ps-pill-active-bg)' : 'transparent',
                 color: isActive ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
@@ -220,7 +220,7 @@ export default function MilestoneHighlights() {
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 pt-2">
           {bullets.map((bullet, idx) => (
             <li key={idx} className="flex items-start gap-2.5 text-[12px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
-              <span className="mt-2 inline-block w-1.5 h-1.5 rounded-full shrink-0 bg-[var(--ps-gold)]" />
+              <span className="mt-2 inline-block w-1.5 h-1.5 rounded-none shrink-0 bg-[var(--ps-gold)]" />
               <span>{bullet}</span>
             </li>
           ))}
