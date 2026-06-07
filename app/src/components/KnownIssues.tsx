@@ -9,7 +9,6 @@ interface IssueItem {
   category: 'software' | 'drivetrain' | 'electrical' | 'body';
   issue: Record<'en' | 'sv', string>;
   affectedYearsList: string[]; // e.g. ['MY21', 'MY22', 'MY23'] or ['All']
-  resolution: Record<'en' | 'sv', string>; // e.g. 'MY24+ (upgraded hardware)'
   symptoms: Record<'en' | 'sv', string>;
   diy: Record<'en' | 'sv', string>;
   dealer: Record<'en' | 'sv', string>;
@@ -24,10 +23,6 @@ const issueData: IssueItem[] = [
       sv: 'Infotainmentsystem (IHU) instabilitet',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23', 'MY24', 'MY25'],
-    resolution: {
-      en: 'MY26 (Qualcomm Snapdragon processor)',
-      sv: 'MY26 (Qualcomm Snapdragon-processor)',
-    },
     symptoms: {
       en: 'UI lag, boot loops, system crashes due to Android Automotive OS memory leaks.',
       sv: 'Fördröjning i gränssnittet, loopande omstarter, systemkrascher på grund av minnesläckor i Android Automotive OS.',
@@ -49,10 +44,6 @@ const issueData: IssueItem[] = [
       sv: 'TCAM-modul haveri',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
-    resolution: {
-      en: 'MY24+ (Upgraded hardware/software integration)',
-      sv: 'MY24+ (Uppgraderad hårdvara/mjukvaruintegration)',
-    },
     symptoms: {
       en: 'Total loss of LTE, GPS, eCall, and Phone-as-Key (PAK) connection.',
       sv: 'Total förlust av LTE, GPS, eCall och Mobil som nyckel (PAK)-anslutning.',
@@ -74,10 +65,6 @@ const issueData: IssueItem[] = [
       sv: 'Bakaxel "klickande" (Dual Motor)',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
-    resolution: {
-      en: 'MY24+ (Updated rear drive units/splines/axles)',
-      sv: 'MY24+ (Uppdaterade bakre drivenheter/splines/axlar)',
-    },
     symptoms: {
       en: 'Low-speed clicking/ticking from rear. Often misdiagnosed as CV joints; root cause is often ERAD internal wear.',
       sv: 'Klickande/tickande ljud från bakaxeln vid låga hastigheter. Feldiagnostiseras ofta som drivknutar; den bakomliggande orsaken är ofta internt slitage i ERAD.',
@@ -99,10 +86,6 @@ const issueData: IssueItem[] = [
       sv: 'Knackande framhjulsupphängning',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
-    resolution: {
-      en: 'MY24+ (Updated strut top mounts/bearings)',
-      sv: 'MY24+ (Uppdaterade fjäderbensfästen/lager)',
-    },
     symptoms: {
       en: 'Popping/grinding during low-speed steering over uneven surfaces. Premature strut top bearing wear.',
       sv: 'Knackande/knarrande ljud vid styrning i låg fart över ojämna underlag. Förtida slitage på övre fjäderbenslager.',
@@ -124,10 +107,6 @@ const issueData: IssueItem[] = [
       sv: 'AWD Kardanaxel vibration',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
-    resolution: {
-      en: 'MY24+ (Re-indexed shaft & updated motor mounts)',
-      sv: 'MY24+ (Omindexerad axel & uppdaterade motorfästen)',
-    },
     symptoms: {
       en: 'Vibration/shudder felt through the cabin or steering wheel during moderate acceleration between 50 and 70 km/h.',
       sv: 'Vibrationer/skakningar som känns i kupén eller ratten vid måttlig acceleration mellan 50 och 70 km/h.',
@@ -149,10 +128,6 @@ const issueData: IssueItem[] = [
       sv: '12V-hjälpbatteri urladdning',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
-    resolution: {
-      en: 'MY24+ (Updated battery sensor & power management)',
-      sv: 'MY24+ (Uppdaterad batterigivare & strömhantering)',
-    },
     symptoms: {
       en: 'Total vehicle immobilization. Contactor fails to close regardless of high-voltage pack state of charge.',
       sv: 'Total fordonstillstånd. Kontaktorn stängs inte oavsett högspänningsbatteriets laddningstillstånd.',
@@ -174,10 +149,6 @@ const issueData: IssueItem[] = [
       sv: 'HVCH (högspänningsvärmare) haveri',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
-    resolution: {
-      en: 'MY24+ (Next-generation Webasto heater units)',
-      sv: 'MY24+ (Nästa generations Webasto-värmare)',
-    },
     symptoms: {
       en: 'Loss of cabin heat, "Parking Climate Temporarily Unavailable" error. Blown 15A inverter fuse.',
       sv: 'Förlust av kupévärme, felmeddelande "Parkeringsklimat tillfälligt otillgängligt". Säkring för växelriktare (15A) har gått.',
@@ -199,10 +170,6 @@ const issueData: IssueItem[] = [
       sv: 'HVAC Spjällmotor ställdon haveri',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
-    resolution: {
-      en: 'MY24+ (Updated blend door actuator design)',
-      sv: 'MY24+ (Uppdaterad ställdonsdesign)',
-    },
     symptoms: {
       en: 'Extreme temperature delta across zones (e.g., hot driver, cold passenger), rapid dashboard clicking.',
       sv: 'Extrema temperaturskillnader mellan zoner (t.ex. varmt för föraren, kallt för passageraren), snabbt klickande ljud från instrumentpanelen.',
@@ -224,10 +191,6 @@ const issueData: IssueItem[] = [
       sv: 'Frysta bakdörrslås',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
-    resolution: {
-      en: 'MY24+ (Updated latch design with improved seals)',
-      sv: 'MY24+ (Uppdaterad låsdesign och förbättrade tätningar)',
-    },
     symptoms: {
       en: 'Rear exterior/interior handles freeze shut or fail to latch below -10 °C. Factory grease inadequacy.',
       sv: 'Bakre yttre/inre handtag fryser fast eller låser inte vid temperaturer under -10 °C. Otillräckligt fabriksfett.',
@@ -249,10 +212,6 @@ const issueData: IssueItem[] = [
       sv: 'Strålkastare & Bakljus kondens',
     },
     affectedYearsList: ['All'],
-    resolution: {
-      en: 'MY21–MY26 (Normal characteristic across all model years)',
-      sv: 'MY21–MY26 (Normal egenskap för alla modellår)',
-    },
     symptoms: {
       en: 'Visible moisture build-up, misting, or water droplets inside the front headlamps or rear light bar.',
       sv: 'Synlig fuktansamling, imma eller vattendroppar inuti främre strålkastare eller bakre ljusramp.',
@@ -317,6 +276,7 @@ export default function KnownIssues() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('all');
+  const [activeYearFilter, setActiveYearFilter] = useState('all');
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -330,28 +290,34 @@ export default function KnownIssues() {
     { id: 'body', labelKey: 'catBody' },
   ];
 
+  // Model Years list for filtering
+  const modelYearsList = ['all', 'MY21', 'MY22', 'MY23', 'MY24', 'MY25', 'MY26'];
+
   // Filter issues
   const filteredIssues = issueData.filter((item) => {
     const matchesTab = activeTab === 'all' || item.category === activeTab;
 
+    const matchesYear =
+      activeYearFilter === 'all' ||
+      item.affectedYearsList.includes(activeYearFilter) ||
+      item.affectedYearsList.includes('All');
+
     const query = searchQuery.toLowerCase().trim();
-    if (!query) return matchesTab;
+    if (!query) return matchesTab && matchesYear;
 
     const title = (isSv ? item.issue.sv : item.issue.en).toLowerCase();
-    const resolutionText = (isSv ? item.resolution.sv : item.resolution.en).toLowerCase();
     const symptoms = (isSv ? item.symptoms.sv : item.symptoms.en).toLowerCase();
     const diyText = (isSv ? item.diy.sv : item.diy.en).toLowerCase();
     const dealerText = (isSv ? item.dealer.sv : item.dealer.en).toLowerCase();
 
     const matchesSearch =
       title.includes(query) ||
-      resolutionText.includes(query) ||
       symptoms.includes(query) ||
       diyText.includes(query) ||
       dealerText.includes(query) ||
       item.affectedYearsList.some((y) => y.toLowerCase().includes(query));
 
-    return matchesTab && matchesSearch;
+    return matchesTab && matchesYear && matchesSearch;
   });
 
   // Stagger reveal animations on filter/search change
@@ -364,7 +330,7 @@ export default function KnownIssues() {
       { opacity: 0, y: 15 },
       { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, ease: 'power2.out', overwrite: true }
     );
-  }, { scope: containerRef, dependencies: [activeTab, searchQuery] });
+  }, { scope: containerRef, dependencies: [activeTab, activeYearFilter, searchQuery] });
 
   const toggleExpand = (id: string) => {
     setExpandedIds((prev) => {
@@ -407,7 +373,7 @@ export default function KnownIssues() {
         </div>
 
         {/* Category Filter tabs */}
-        <div className="flex flex-wrap gap-2 border-b border-[var(--ps-border-light)] pb-4">
+        <div className="flex flex-wrap gap-2">
           {categories.map((cat) => {
             const isActive = activeTab === cat.id;
             return (
@@ -438,6 +404,43 @@ export default function KnownIssues() {
             );
           })}
         </div>
+
+        {/* Model Year Filter tabs */}
+        <div className="flex flex-wrap items-center gap-2 border-b border-[var(--ps-border-light)] pb-4 pt-1">
+          <span className="text-[11px] text-[var(--ps-text-tertiary)] uppercase tracking-wider font-semibold mr-1">
+            {isSv ? 'Modellår:' : 'Model Year:'}
+          </span>
+          {modelYearsList.map((yr) => {
+            const isActive = activeYearFilter === yr;
+            const label = yr === 'all' ? (isSv ? 'Alla år' : 'All Years') : yr;
+            return (
+              <button
+                key={yr}
+                onClick={() => setActiveYearFilter(yr)}
+                className="px-3 py-1 rounded-none text-[11px] font-normal transition-all duration-150 border"
+                style={{
+                  borderColor: isActive ? 'var(--ps-text)' : 'var(--ps-border)',
+                  backgroundColor: isActive ? 'var(--ps-pill-active-bg)' : 'transparent',
+                  color: isActive ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.backgroundColor = 'var(--ps-bg-secondary)';
+                    e.currentTarget.style.borderColor = 'var(--ps-text-secondary)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = 'var(--ps-border)';
+                  }
+                }}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Accordion Issues List */}
@@ -450,7 +453,6 @@ export default function KnownIssues() {
           filteredIssues.map((item) => {
             const isExpanded = expandedIds.has(item.id);
             const title = isSv ? item.issue.sv : item.issue.en;
-            const resolution = isSv ? item.resolution.sv : item.resolution.en;
             const symptoms = isSv ? item.symptoms.sv : item.symptoms.en;
             const diyText = isSv ? item.diy.sv : item.diy.en;
             const dealerText = isSv ? item.dealer.sv : item.dealer.en;
@@ -477,7 +479,7 @@ export default function KnownIssues() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-2 shrink-0 self-start sm:self-center">
+                  <div className="flex flex-wrap items-center gap-3 shrink-0 self-start sm:self-center">
                     {/* Model Year Badges */}
                     <div className="flex items-center gap-1">
                       <span className="text-[10px] text-[var(--ps-text-tertiary)] uppercase tracking-wider font-normal mr-1">
@@ -500,11 +502,6 @@ export default function KnownIssues() {
                         );
                       })}
                     </div>
-
-                    {/* Resolution status badge */}
-                    <span className="border border-[var(--ps-gold)]/40 text-[var(--ps-gold)] bg-[var(--ps-gold)]/5 text-[10px] tracking-wider uppercase font-medium px-2 py-0.5 inline-flex items-center rounded-none">
-                      {resolution}
-                    </span>
 
                     <ChevronDown
                       size={16}
