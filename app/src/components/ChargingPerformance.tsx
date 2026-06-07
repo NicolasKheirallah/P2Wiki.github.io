@@ -173,9 +173,16 @@ export default function ChargingPerformance() {
   const [chargerPowerLimit, setChargerPowerLimit] = useState<number>(350);
   const [startSoc, setStartSoc] = useState<number>(10);
   const [targetSoc, setTargetSoc] = useState<number>(80);
+  const [isCalculating, setIsCalculating] = useState(false);
+
+  const triggerCalculateAnimation = () => {
+    setIsCalculating(true);
+    setTimeout(() => setIsCalculating(false), 150);
+  };
 
   const handleStartSocChange = (val: number) => {
     setStartSoc(val);
+    triggerCalculateAnimation();
     if (val >= targetSoc) {
       setTargetSoc(Math.min(100, val + 5));
     }
@@ -183,9 +190,20 @@ export default function ChargingPerformance() {
 
   const handleTargetSocChange = (val: number) => {
     setTargetSoc(val);
+    triggerCalculateAnimation();
     if (val <= startSoc) {
       setStartSoc(Math.max(0, val - 5));
     }
+  };
+
+  const handleBatteryVariantChange = (val: 'standard' | 'lrPre2024' | 'lrSiC') => {
+    setBatteryVariant(val);
+    triggerCalculateAnimation();
+  };
+
+  const handleChargerPowerChange = (val: number) => {
+    setChargerPowerLimit(val);
+    triggerCalculateAnimation();
   };
 
   // Estimator math
@@ -366,7 +384,7 @@ export default function ChargingPerformance() {
                 </label>
                 <select
                   value={batteryVariant}
-                  onChange={(e) => setBatteryVariant(e.target.value as 'standard' | 'lrPre2024' | 'lrSiC')}
+                  onChange={(e) => handleBatteryVariantChange(e.target.value as 'standard' | 'lrPre2024' | 'lrSiC')}
                   className="w-full bg-[var(--ps-bg-secondary)] border border-[var(--ps-border)] hover:border-[var(--ps-text-secondary)] focus:border-[var(--ps-text)] p-2 text-[12px] text-[var(--ps-text)] outline-none rounded-none cursor-pointer"
                 >
                   <option value="standard">Standard Range (69 kWh)</option>
@@ -382,7 +400,7 @@ export default function ChargingPerformance() {
                 </label>
                 <select
                   value={chargerPowerLimit}
-                  onChange={(e) => setChargerPowerLimit(Number(e.target.value))}
+                  onChange={(e) => handleChargerPowerChange(Number(e.target.value))}
                   className="w-full bg-[var(--ps-bg-secondary)] border border-[var(--ps-border)] hover:border-[var(--ps-text-secondary)] focus:border-[var(--ps-text)] p-2 text-[12px] text-[var(--ps-text)] outline-none rounded-none cursor-pointer"
                 >
                   <option value="50">50 kW (Standard DC Charger)</option>
@@ -404,7 +422,11 @@ export default function ChargingPerformance() {
                   step="5"
                   value={startSoc}
                   onChange={(e) => handleStartSocChange(Number(e.target.value))}
-                  className="w-full h-1 bg-[var(--ps-border)] accent-[var(--ps-gold)] outline-none appearance-none cursor-pointer rounded-none"
+                  className="w-full h-4 bg-transparent appearance-none cursor-pointer focus:outline-none
+                    [&::-webkit-slider-runnable-track]:bg-[var(--ps-border)] [&::-webkit-slider-runnable-track]:h-[2px]
+                    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-[var(--ps-gold)] [&::-webkit-slider-thumb]:rounded-none [&::-webkit-slider-thumb]:-mt-[5px]
+                    [&::-moz-range-track]:bg-[var(--ps-border)] [&::-moz-range-track]:h-[2px]
+                    [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-[var(--ps-gold)] [&::-moz-range-thumb]:rounded-none [&::-moz-range-thumb]:border-0"
                 />
               </div>
 
@@ -421,39 +443,73 @@ export default function ChargingPerformance() {
                   step="5"
                   value={targetSoc}
                   onChange={(e) => handleTargetSocChange(Number(e.target.value))}
-                  className="w-full h-1 bg-[var(--ps-border)] accent-[var(--ps-gold)] outline-none appearance-none cursor-pointer rounded-none"
+                  className="w-full h-4 bg-transparent appearance-none cursor-pointer focus:outline-none
+                    [&::-webkit-slider-runnable-track]:bg-[var(--ps-border)] [&::-webkit-slider-runnable-track]:h-[2px]
+                    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-[var(--ps-gold)] [&::-webkit-slider-thumb]:rounded-none [&::-webkit-slider-thumb]:-mt-[5px]
+                    [&::-moz-range-track]:bg-[var(--ps-border)] [&::-moz-range-track]:h-[2px]
+                    [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:bg-[var(--ps-gold)] [&::-moz-range-thumb]:rounded-none [&::-moz-range-thumb]:border-0"
                 />
+              </div>
+
+              {/* Visual charging window bar */}
+              <div className="space-y-1.5 pt-2">
+                <div className="flex justify-between text-[9px] text-[var(--ps-text-tertiary)] uppercase tracking-wider font-semibold">
+                  <span>0% SoC</span>
+                  <span>50%</span>
+                  <span>100% SoC</span>
+                </div>
+                <div className="flex gap-[2px] h-[6px] w-full bg-[var(--ps-border-light)]/20">
+                  {Array.from({ length: 20 }).map((_, i) => {
+                    const blockSoc = i * 5;
+                    const isSelected = blockSoc >= startSoc && blockSoc < targetSoc;
+                    return (
+                      <div
+                        key={i}
+                        className="h-full flex-1 transition-all duration-300"
+                        style={{
+                          backgroundColor: isSelected ? 'var(--ps-gold)' : 'var(--ps-border-light)',
+                          opacity: isSelected ? 1 : 0.25,
+                        }}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
             {/* Right Column: Output Metrics */}
-            <div className="grid grid-cols-2 gap-4 border border-[var(--ps-border)] bg-[var(--ps-bg-secondary)]/10 p-4 rounded-none relative">
-              <div className="space-y-1">
+            <div 
+              className={`grid grid-cols-2 gap-px border border-[var(--ps-border)] bg-[var(--ps-border)] rounded-none transition-opacity duration-200 ${isCalculating ? 'opacity-60' : 'opacity-100'}`}
+            >
+              {/* Box 1: Time */}
+              <div className="bg-[var(--ps-bg-secondary)]/30 p-4 space-y-1">
                 <div className="flex items-center gap-1.5 text-[var(--ps-text-tertiary)]">
-                  <Clock size={12} />
+                  <Clock size={12} className="text-[var(--ps-text-tertiary)]" />
                   <span className="text-[10px] uppercase tracking-wider font-semibold">{t('timeToCharge')}</span>
                 </div>
-                <p className="text-[18px] font-medium" style={{ color: 'var(--ps-text)' }}>
+                <p className="text-[20px] font-medium" style={{ color: 'var(--ps-text)' }}>
                   {Math.round(totalMinutes)} <span className="text-[11px] font-normal text-[var(--ps-text-secondary)]">{t('minutes')}</span>
                 </p>
               </div>
 
-              <div className="space-y-1">
+              {/* Box 2: Energy */}
+              <div className="bg-[var(--ps-bg-secondary)]/30 p-4 space-y-1">
                 <div className="flex items-center gap-1.5 text-[var(--ps-text-tertiary)]">
-                  <BatteryCharging size={12} />
+                  <BatteryCharging size={12} className="text-[var(--ps-text-tertiary)]" />
                   <span className="text-[10px] uppercase tracking-wider font-semibold">{t('energyAdded')}</span>
                 </div>
-                <p className="text-[18px] font-medium" style={{ color: 'var(--ps-text)' }}>
+                <p className="text-[20px] font-medium" style={{ color: 'var(--ps-text)' }}>
                   {totalEnergyAdded.toFixed(1)} <span className="text-[11px] font-normal text-[var(--ps-text-secondary)]">kWh</span>
                 </p>
               </div>
 
-              <div className="space-y-1">
+              {/* Box 3: Range */}
+              <div className="bg-[var(--ps-bg-secondary)]/30 p-4 space-y-1">
                 <div className="flex items-center gap-1.5 text-[var(--ps-text-tertiary)]">
-                  <Gauge size={12} />
+                  <Gauge size={12} className="text-[var(--ps-text-tertiary)]" />
                   <span className="text-[10px] uppercase tracking-wider font-semibold">{t('rangeAdded')}</span>
                 </div>
-                <p className="text-[18px] font-medium" style={{ color: 'var(--ps-text)' }}>
+                <p className="text-[20px] font-medium" style={{ color: 'var(--ps-text)' }}>
                   {useKm ? Math.round(rangeAddedKm) : Math.round(rangeAddedMiles)}{' '}
                   <span className="text-[11px] font-normal text-[var(--ps-text-secondary)]">
                     {useKm ? t('rangeKm') : t('rangeMiles')}
@@ -461,12 +517,13 @@ export default function ChargingPerformance() {
                 </p>
               </div>
 
-              <div className="space-y-1">
+              {/* Box 4: Avg Power */}
+              <div className="bg-[var(--ps-bg-secondary)]/30 p-4 space-y-1">
                 <div className="flex items-center gap-1.5 text-[var(--ps-text-tertiary)]">
-                  <Zap size={12} />
+                  <Zap size={12} className="text-[var(--ps-text-tertiary)]" />
                   <span className="text-[10px] uppercase tracking-wider font-semibold">{t('avgChargingPower')}</span>
                 </div>
-                <p className="text-[18px] font-medium" style={{ color: 'var(--ps-text)' }}>
+                <p className="text-[20px] font-medium" style={{ color: 'var(--ps-text)' }}>
                   {Math.round(avgPower)} <span className="text-[11px] font-normal text-[var(--ps-text-secondary)]">kW</span>
                 </p>
               </div>
