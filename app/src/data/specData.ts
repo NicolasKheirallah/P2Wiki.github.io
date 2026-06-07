@@ -104,19 +104,23 @@ export const categories: Category[] = [
       },
       {
         name: '20" Pro (5-V Spoke Black Silver)',
-        values: ['\u2014', '\u2014', '\u2014', '\u25CB', '\u25CB', 'Pro', '\u2014'],
+        values: ['\u2014', '\u2014', '\u2014', '\u25CB', '\u25CB', '\u2014', '\u2014'],
       },
       {
         name: '20" Pro Graphite (5-V Spoke Black Graphite)',
-        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u25CB', 'Pro'],
+        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', 'Pro', 'Pro'],
       },
       {
         name: '20" 4-Y Spoke Polished Forged Alloy',
         values: ['Perf', 'Perf', 'Perf', 'Perf', '\u2014', '\u2014', '\u2014'],
       },
       {
-        name: '20" Perf. (4-Multi Spoke Black Polished Forged)',
-        values: ['\u2014', '\u2014', '\u2014', '\u2014', 'Perf', 'Perf', 'Perf'],
+        name: '20" 4-Multi Spoke Black Polished Forged Alloy (Performance)',
+        values: ['\u2014', '\u2014', '\u2014', '\u2014', 'Perf', 'Perf', '\u2014'],
+      },
+      {
+        name: '20" 5-Spoke Black Polished Forged Alloy (Performance)',
+        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014', 'Perf'],
         notes: 'MY26: New 5-spoke forged design, lightest Performance wheel to date.',
       },
     ],
