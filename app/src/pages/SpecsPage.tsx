@@ -10,7 +10,7 @@ import PackageFilterPills from '@/components/PackageFilterPills';
 import SpecTable from '@/components/SpecTable';
 import PaintSection from '@/components/PaintSection';
 import MilestoneHighlights from '@/components/MilestoneHighlights';
-import { Globe, Search } from 'lucide-react';
+import { Globe, Search, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -260,10 +260,11 @@ export default function SpecsPage() {
                 {searchTerm && (
                   <button
                     onClick={() => setSearchTerm('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[16px] font-mono leading-none"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 transition-colors duration-150 hover:text-[var(--ps-text)] flex items-center justify-center cursor-pointer"
                     style={{ color: 'var(--ps-text-tertiary)' }}
+                    title="Clear search"
                   >
-                    ×
+                    <X size={13} />
                   </button>
                 )}
               </div>

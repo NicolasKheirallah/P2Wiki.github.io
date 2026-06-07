@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
-import { Search, ChevronDown, Check, Copy, Package } from 'lucide-react';
+import { Search, ChevronDown, Check, Copy, Package, X } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -491,9 +491,10 @@ export default function KnownIssues() {
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="text-[11px] uppercase tracking-wider text-[var(--ps-text-secondary)] hover:text-[var(--ps-text)] ml-2 transition-colors"
+              className="text-[var(--ps-text-tertiary)] hover:text-[var(--ps-text)] transition-colors ml-2 cursor-pointer flex items-center justify-center shrink-0"
+              title="Clear search"
             >
-              {t('resetCompare')}
+              <X size={14} />
             </button>
           )}
         </div>

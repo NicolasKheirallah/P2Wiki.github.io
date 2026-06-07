@@ -19,7 +19,7 @@ export default function SymbolCell({ value, isHovered }: SymbolCellProps) {
     );
   }
 
-  if (trimmed === '\u25CB' || trimmed === '\u25CB') {
+  if (trimmed === '\u25CB') {
     return (
       <span className="inline-flex items-center justify-center" title="Optional Extra">
         <span
