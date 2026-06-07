@@ -155,6 +155,39 @@ const retrofitsData: RetrofitItem[] = [
       ],
     },
   },
+  {
+    id: 'smartzone-grille',
+    category: 'oem',
+    title: {
+      en: 'Official SmartZone Front Panel Upgrade (Facelift Retrofit)',
+      sv: 'Officiell SmartZone Frontpanel-uppgradering (Facelift Retrofit)',
+    },
+    feasibility: 'expert',
+    description: {
+      en: 'Replace the pre-facelift grid grille with the body-colored, flat SmartZone sensor panel introduced in the MY24 facelift. Offered in select markets (such as the UK) as an official aftermarket upgrade package, it refreshes the front-end styling while keeping the existing ADAS radar and front camera components functional.',
+      sv: 'Ersätt den äldre gallergrillen med den karossfärgade, platta SmartZone-panelen som introducerades i MY24 facelift. Erbjuds på vissa marknader (som Storbritannien) som en officiell eftermonteringsuppgradering för att uppdatera utseendet medan befintlig radar och kamera behålls.',
+    },
+    warning: {
+      en: 'This retrofit requires moving sensitive front camera and mid-range radar sensors into the new panel. If the sensors are misaligned during swap, safety systems (Pilot Assist, Collision Avoidance) will throw faults or fail. Proper professional calibration via VIDA at a certified Polestar Service Point is highly recommended.',
+      sv: 'Denna eftermontering kräver att de känsliga främre kamera- och radarsensorerna flyttas till den nya panelen. Om sensorerna hamnar snett under bytet kommer säkerhetssystemen (Pilot Assist, Collision Avoidance) att kasta felkoder eller sluta fungera. Professionell kalibrering via VIDA hos en auktoriserad Polestar-verkstad rekommenderas starkt.',
+    },
+    steps: {
+      en: [
+        'Consult your local Polestar Extras shop or service center to confirm parts availability for your specific VIN.',
+        'Remove the front bumper assembly to access the grille mounting clips and sensor brackets.',
+        'Carefully disconnect the wiring harness and unbolt the mid-range radar and front parking camera from the original grille.',
+        'Install the new body-colored SmartZone cover panel and bolt the sensors into the new mounting bracket array.',
+        'Reassemble the front bumper and schedule a safety system calibration (VMCU and ADAS alignment) via Volvo/Polestar VIDA service software.',
+      ],
+      sv: [
+        'Kontakta din lokala Polestar Extras-butik eller verkstad för att bekräfta tillgängligheten av delar för ditt specifika chassinummer (VIN).',
+        'Demontera den främre stötfångaren för att komma åt grillens fästklämmor och sensorfästen.',
+        'Koppla försiktigt ur kablaget och skruva loss radar- och parkeringskameran från originalgrillen.',
+        'Montera den nya karossfärgade SmartZone-panelen och skruva fast sensorerna i de nya fästena.',
+        'Montera tillbaka främre stötfångaren och boka tid för kalibrering av säkerhetssystemen (VMCU och ADAS-inriktning) via Volvo/Polestar VIDA-programvaran.',
+      ],
+    },
+  },
 ];
 
 export default function RetrofitsImprovements() {
