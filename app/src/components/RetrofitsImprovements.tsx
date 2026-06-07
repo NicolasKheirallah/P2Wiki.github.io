@@ -6,7 +6,6 @@ interface RetrofitItem {
   id: string;
   category: 'oem' | 'aftermarket' | 'diyCoding';
   title: Record<'en' | 'sv', string>;
-  cost: Record<'en' | 'sv', string>;
   feasibility: 'easy' | 'medium' | 'hard' | 'expert';
   description: Record<'en' | 'sv', string>;
   steps?: Record<'en' | 'sv', string[]>;
@@ -21,10 +20,6 @@ const retrofitsData: RetrofitItem[] = [
     title: {
       en: 'Pixel Active High Beam Software Enable',
       sv: 'Pixel Aktivt Helljus Mjukvaruaktivering',
-    },
-    cost: {
-      en: 'Free (if hardware present) or Custom License fee',
-      sv: 'Gratis (om hårdvara finns) eller mjukvarulicensavgift',
     },
     feasibility: 'hard',
     description: {
@@ -52,10 +47,6 @@ const retrofitsData: RetrofitItem[] = [
     title: {
       en: 'Power Tailgate Kick Sensor Retrofit',
       sv: 'Kick-sensor för baklucka Retrofit',
-    },
-    cost: {
-      en: '$90 - $150 (OEM Parts)',
-      sv: '1 000 - 1 500 kr (Originaldelar)',
     },
     feasibility: 'medium',
     description: {
@@ -86,10 +77,6 @@ const retrofitsData: RetrofitItem[] = [
       en: 'MagSafe Console Wireless Charger Upgrade',
       sv: 'MagSafe Magnetisk Trådlös Laddare',
     },
-    cost: {
-      en: '$30 - $55',
-      sv: '350 - 600 kr',
-    },
     feasibility: 'easy',
     description: {
       en: 'The standard OEM wireless charging pad is slow, generates significant heat, and allows devices to slide off on turns. Upgrading to a custom 3D-printed MagSafe tray mount provides fast, stable charging and holds the phone securely.',
@@ -117,10 +104,6 @@ const retrofitsData: RetrofitItem[] = [
       en: 'Fitted Contoured Mud Guards',
       sv: 'Formanpassade Stänkskydd',
     },
-    cost: {
-      en: '$35 - $75',
-      sv: '400 - 850 kr',
-    },
     feasibility: 'easy',
     description: {
       en: 'Polestar 2 paint is susceptible to stone chips and road debris damage along the lower sills and rear wheel arches due to the flared body styling. Fitted aftermarket mud guards offer subtle, functional protection.',
@@ -134,10 +117,6 @@ const retrofitsData: RetrofitItem[] = [
       en: 'Dual-Tier Center Armrest Organizer',
       sv: 'Förvaringsfack för Mittkonsol',
     },
-    cost: {
-      en: '$12 - $22',
-      sv: '150 - 250 kr',
-    },
     feasibility: 'easy',
     description: {
       en: 'A drop-in divider tray designed specifically for the deep under-armrest storage well. It creates a practical upper shelf for sunglasses, keys, and coins while leaving the lower main compartment accessible.',
@@ -150,10 +129,6 @@ const retrofitsData: RetrofitItem[] = [
     title: {
       en: 'Orbit Car Configuration Coding',
       sv: 'Bilkonfiguration via Orbit',
-    },
-    cost: {
-      en: '$100 - $350 (OBD reader + license)',
-      sv: '1 000 - 3 500 kr (OBD-läsare + licens)',
     },
     feasibility: 'medium',
     description: {
@@ -255,7 +230,6 @@ export default function RetrofitsImprovements() {
         {filteredItems.map((item) => {
           const isExpanded = expandedId === item.id;
           const titleText = isSv ? item.title.sv : item.title.en;
-          const costText = isSv ? item.cost.sv : item.cost.en;
           const descText = isSv ? item.description.sv : item.description.en;
           const stepsList = item.steps ? (isSv ? item.steps.sv : item.steps.en) : null;
 
@@ -317,17 +291,8 @@ export default function RetrofitsImprovements() {
                 )}
               </div>
 
-              <div className="mt-5 pt-4 border-t border-[var(--ps-border-light)] flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="text-[9px] uppercase tracking-wider font-semibold" style={{ color: 'var(--ps-text-tertiary)' }}>
-                    {t('cost')}
-                  </span>
-                  <span className="text-[13px] font-medium" style={{ color: 'var(--ps-text)' }}>
-                    {costText}
-                  </span>
-                </div>
-
-                {stepsList ? (
+              {stepsList && (
+                <div className="mt-5 pt-4 border-t border-[var(--ps-border-light)] flex items-center justify-end">
                   <button
                     onClick={() => toggleExpand(item.id)}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[var(--ps-border)] text-[11px] uppercase tracking-wider hover:border-[var(--ps-text)] transition-colors rounded-none"
@@ -343,8 +308,8 @@ export default function RetrofitsImprovements() {
                       </>
                     )}
                   </button>
-                ) : null}
-              </div>
+                </div>
+              )}
             </div>
           );
         })}
