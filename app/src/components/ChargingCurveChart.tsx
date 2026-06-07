@@ -71,7 +71,7 @@ function CustomTooltip({ active, payload, label }: {
       {payload.map((entry, i) => (
         <div key={i} className="flex items-center gap-2">
           <span
-            className="inline-block w-2 h-2 shrink-0"
+            className="inline-block w-2 h-2 rounded-full"
             style={{ backgroundColor: entry.color }}
           />
           <span style={{ color: 'var(--ps-text-secondary)' }}>
@@ -125,7 +125,7 @@ export default function ChargingCurveChart() {
           >
             {v.key !== 'all' && (
               <span
-                className="inline-block w-2 h-2 shrink-0 mr-1.5"
+                className="inline-block w-2 h-2 rounded-full mr-1.5"
                 style={{ backgroundColor: v.color }}
               />
             )}

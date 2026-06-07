@@ -220,7 +220,7 @@ export default function MilestoneHighlights() {
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 pt-2">
           {bullets.map((bullet, idx) => (
             <li key={idx} className="flex items-start gap-2.5 text-[12px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
-              <span className="mt-2 inline-block w-1.5 h-1.5 rounded-none shrink-0 bg-[var(--ps-gold)]" />
+              <span className="mt-2 inline-block w-1.5 h-1.5 rounded-full shrink-0 bg-[var(--ps-gold)]" />
               <span>{bullet}</span>
             </li>
           ))}
