@@ -5,7 +5,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { useMarket, markets } from '@/contexts/MarketContext';
 import { useLocale } from '@/contexts/LocaleContext';
 
-export type TabId = 'specs' | 'knownIssues' | 'printing' | 'service' | 'chargingPerf';
+export type TabId = 'specs' | 'knownIssues' | 'printing' | 'service' | 'chargingPerf' | 'retrofits';
 
 interface TabDef {
   path: string;
@@ -18,6 +18,7 @@ const tabs: TabDef[] = [
   { path: '/3d-printing', label: 'tabPrinting' },
   { path: '/service', label: 'tabService' },
   { path: '/charging', label: 'tabCharging' },
+  { path: '/retrofits', label: 'tabRetrofits' },
 ];
 
 function useClickOutside(ref: React.RefObject<HTMLElement | null>, handler: () => void) {

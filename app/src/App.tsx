@@ -9,6 +9,7 @@ import KnownIssuesPage from '@/pages/KnownIssuesPage';
 import PrintingPage from '@/pages/PrintingPage';
 import ServicePage from '@/pages/ServicePage';
 import ChargingPage from '@/pages/ChargingPage';
+import RetrofitsPage from '@/pages/RetrofitsPage';
 
 function AppLayout() {
   const { t } = useLocale();
@@ -25,6 +26,7 @@ function AppLayout() {
           <Route path="/3d-printing" element={<PrintingPage />} />
           <Route path="/service" element={<ServicePage />} />
           <Route path="/charging" element={<ChargingPage />} />
+          <Route path="/retrofits" element={<RetrofitsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
