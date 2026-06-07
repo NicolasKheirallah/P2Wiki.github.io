@@ -73,12 +73,12 @@ export const categories: Category[] = [
       {
         name: 'Apple CarPlay (wired)',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
-        notes: 'Added via P2.9 OTA update in July 2022. Retroactively available on all model years. Wired connection only.',
+        notes: 'Added via P2.2 OTA update in June 2022. Driver display Apple Maps support added in P2.9 (May 2023). Retroactively available on all model years. Wired connection only.',
       },
       {
         name: 'Android Auto (wired)',
-        values: ['\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
-        notes: 'Added via P3.3.16 OTA update in late 2023. MY23+ had it from factory; earlier cars received it via update. Wired connection only.',
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        notes: 'Added via P3.3.16 software update in late 2024. Retroactively available on all model years. Wired connection only.',
       },
     ],
   },
