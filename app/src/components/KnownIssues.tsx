@@ -9,7 +9,7 @@ interface IssueItem {
   category: 'software' | 'drivetrain' | 'electrical' | 'body';
   issue: Record<'en' | 'sv', string>;
   affectedYearsList: string[]; // e.g. ['MY21', 'MY22', 'MY23'] or ['All']
-  resolution: Record<'en' | 'sv', string>; // e.g. 'Resolved in MY24+ via upgraded hardware'
+  resolution: Record<'en' | 'sv', string>; // e.g. 'MY24+ (upgraded hardware)'
   symptoms: Record<'en' | 'sv', string>;
   diy: Record<'en' | 'sv', string>;
   dealer: Record<'en' | 'sv', string>;
@@ -25,8 +25,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23', 'MY24', 'MY25'],
     resolution: {
-      en: 'Resolved in MY26 (Qualcomm Snapdragon processor)',
-      sv: 'Åtgärdat i MY26 (Qualcomm Snapdragon-processor)',
+      en: 'MY26 (Qualcomm Snapdragon processor)',
+      sv: 'MY26 (Qualcomm Snapdragon-processor)',
     },
     symptoms: {
       en: 'UI lag, boot loops, system crashes due to Android Automotive OS memory leaks.',
@@ -50,8 +50,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     resolution: {
-      en: 'Resolved in MY24+ (Upgraded hardware/software integration)',
-      sv: 'Åtgärdat i MY24+ (Uppgraderad hårdvara/mjukvaruintegration)',
+      en: 'MY24+ (Upgraded hardware/software integration)',
+      sv: 'MY24+ (Uppgraderad hårdvara/mjukvaruintegration)',
     },
     symptoms: {
       en: 'Total loss of LTE, GPS, eCall, and Phone-as-Key (PAK) connection.',
@@ -75,8 +75,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     resolution: {
-      en: 'Resolved in MY24+ (Updated rear drive units/splines/axles)',
-      sv: 'Åtgärdat i MY24+ (Uppdaterade bakre drivenheter/splines/axlar)',
+      en: 'MY24+ (Updated rear drive units/splines/axles)',
+      sv: 'MY24+ (Uppdaterade bakre drivenheter/splines/axlar)',
     },
     symptoms: {
       en: 'Low-speed clicking/ticking from rear. Often misdiagnosed as CV joints; root cause is often ERAD internal wear.',
@@ -100,8 +100,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     resolution: {
-      en: 'Resolved in MY24+ (Updated strut top mounts/bearings)',
-      sv: 'Åtgärdat i MY24+ (Uppdaterade fjäderbensfästen/lager)',
+      en: 'MY24+ (Updated strut top mounts/bearings)',
+      sv: 'MY24+ (Uppdaterade fjäderbensfästen/lager)',
     },
     symptoms: {
       en: 'Popping/grinding during low-speed steering over uneven surfaces. Premature strut top bearing wear.',
@@ -125,8 +125,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     resolution: {
-      en: 'Resolved in MY24+ (Re-indexed shaft & updated motor mounts)',
-      sv: 'Åtgärdat i MY24+ (Omindexerad axel & uppdaterade motorfästen)',
+      en: 'MY24+ (Re-indexed shaft & updated motor mounts)',
+      sv: 'MY24+ (Omindexerad axel & uppdaterade motorfästen)',
     },
     symptoms: {
       en: 'Vibration/shudder felt through the cabin or steering wheel during moderate acceleration between 50 and 70 km/h.',
@@ -150,8 +150,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     resolution: {
-      en: 'Improved in MY24+ (Updated battery sensor & power management)',
-      sv: 'Förbättrat i MY24+ (Uppdaterad batterigivare & strömhantering)',
+      en: 'MY24+ (Updated battery sensor & power management)',
+      sv: 'MY24+ (Uppdaterad batterigivare & strömhantering)',
     },
     symptoms: {
       en: 'Total vehicle immobilization. Contactor fails to close regardless of high-voltage pack state of charge.',
@@ -175,8 +175,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     resolution: {
-      en: 'Resolved in MY24+ (Next-generation Webasto heater units)',
-      sv: 'Åtgärdat i MY24+ (Nästa generations Webasto-värmare)',
+      en: 'MY24+ (Next-generation Webasto heater units)',
+      sv: 'MY24+ (Nästa generations Webasto-värmare)',
     },
     symptoms: {
       en: 'Loss of cabin heat, "Parking Climate Temporarily Unavailable" error. Blown 15A inverter fuse.',
@@ -200,8 +200,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     resolution: {
-      en: 'Resolved in MY24+ (Updated blend door actuator design)',
-      sv: 'Åtgärdat i MY24+ (Uppdaterad ställdonsdesign)',
+      en: 'MY24+ (Updated blend door actuator design)',
+      sv: 'MY24+ (Uppdaterad ställdonsdesign)',
     },
     symptoms: {
       en: 'Extreme temperature delta across zones (e.g., hot driver, cold passenger), rapid dashboard clicking.',
@@ -225,8 +225,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     resolution: {
-      en: 'Resolved in MY24+ (Updated latch design with improved seals)',
-      sv: 'Åtgärdat i MY24+ (Uppdaterad låsdesign och förbättrade tätningar)',
+      en: 'MY24+ (Updated latch design with improved seals)',
+      sv: 'MY24+ (Uppdaterad låsdesign och förbättrade tätningar)',
     },
     symptoms: {
       en: 'Rear exterior/interior handles freeze shut or fail to latch below -10 °C. Factory grease inadequacy.',
@@ -250,8 +250,8 @@ const issueData: IssueItem[] = [
     },
     affectedYearsList: ['All'],
     resolution: {
-      en: 'Normal characteristic across all model years (MY21–MY26)',
-      sv: 'Normal egenskap för alla modellår (MY21–MY26)',
+      en: 'MY21–MY26 (Normal characteristic across all model years)',
+      sv: 'MY21–MY26 (Normal egenskap för alla modellår)',
     },
     symptoms: {
       en: 'Visible moisture build-up, misting, or water droplets inside the front headlamps or rear light bar.',
