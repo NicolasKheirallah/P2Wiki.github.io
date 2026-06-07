@@ -71,7 +71,7 @@ export default function SpecTable({
             {category.title}
           </h2>
 
-          <div className="overflow-x-auto scrollbar-hide -mx-2 px-2">
+          <div className="overflow-x-auto overflow-y-clip scrollbar-hide -mx-2 px-2">
             <table className="w-full min-w-[800px] border-collapse">
               <thead className="z-30 border-b border-[var(--ps-table-border)]">
                 <tr>
