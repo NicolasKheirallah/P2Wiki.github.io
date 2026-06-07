@@ -146,6 +146,9 @@ export default function SpecsPage() {
     <div className="space-y-12">
       {/* Hero */}
       <div>
+        <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-[var(--ps-text-tertiary)] block mb-1">
+          01 / Model Overview
+        </span>
         <div className="flex items-center gap-3 mt-2 flex-wrap float-right">
           <span
             className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 border border-[var(--ps-border)] uppercase tracking-[0.1em]"
@@ -177,8 +180,12 @@ export default function SpecsPage() {
       </section>
 
       {/* Main Table Content View */}
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 pt-6">
-        <Sidebar sections={visibleSidebarSections} activeSection={activeSection} onSectionClick={handleSectionClick} />
+      <section className="space-y-3">
+        <p className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: 'var(--ps-text-tertiary)' }}>
+          03 / Technical Specifications
+        </p>
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 pt-6">
+          <Sidebar sections={visibleSidebarSections} activeSection={activeSection} onSectionClick={handleSectionClick} />
 
         <main ref={mainRef} className="flex-1 min-w-0 space-y-8">
           {/* Filtering & Live Search Controls */}
@@ -215,7 +222,7 @@ export default function SpecsPage() {
                             color: isChecked ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
                           }}
                         >
-                          {label.split('\n')[0]}
+                          {label.replace('\n', ' ')}
                         </button>
                       );
                     })}
@@ -295,7 +302,7 @@ export default function SpecsPage() {
           />
 
           {/* Paint section */}
-          <div id="section-paint" className="mt-16 scroll-mt-24">
+          <div id="section-paint" className="mt-16 scroll-mt-32">
             <hr className="border-0 border-t mb-6" style={{ borderColor: 'var(--ps-border)' }} />
             <h2 className="text-[24px] font-normal mb-2" style={{ color: 'var(--ps-text)', letterSpacing: '-0.01em' }}>
               {t('paintColours')}
@@ -314,6 +321,7 @@ export default function SpecsPage() {
           </div>
         </main>
       </div>
+      </section>
     </div>
   );
 }

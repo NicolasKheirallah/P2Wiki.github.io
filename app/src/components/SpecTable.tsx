@@ -62,7 +62,7 @@ export default function SpecTable({
   return (
     <div ref={containerRef} className="space-y-10">
       {categories.map((category) => (
-        <section key={category.id} id={`section-${category.id}`} className="scroll-mt-24">
+        <section key={category.id} id={`section-${category.id}`} className="scroll-mt-32">
           <hr className="border-0 border-t" style={{ borderColor: 'var(--ps-table-border)' }} />
           <h2
             className="text-[24px] font-normal mt-4 mb-6"
