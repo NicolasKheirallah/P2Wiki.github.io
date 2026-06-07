@@ -35,7 +35,7 @@ export default function PackageFilterPills({ activePackage, onPackageChange }: P
           >
             {pkg.color && (
               <span
-                className="inline-block w-2 h-2 shrink-0"
+                className="inline-block w-2 h-2 rounded-full"
                 style={{
                   backgroundColor: isActive ? 'var(--ps-gold)' : pkg.color,
                 }}

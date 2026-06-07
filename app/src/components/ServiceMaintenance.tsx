@@ -332,7 +332,7 @@ export default function ServiceMaintenance() {
                     <td key={i} className="text-center py-3 px-1 align-middle">
                       {due ? (
                         <span
-                          className="inline-flex items-center justify-center w-5 h-5 rounded-none text-[10px] font-bold"
+                          className="inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold"
                           style={{
                             backgroundColor: 'var(--ps-standard)',
                             color: 'var(--ps-bg)',
@@ -342,7 +342,7 @@ export default function ServiceMaintenance() {
                         </span>
                       ) : (
                         <span
-                          className="inline-block w-1.5 h-1.5 rounded-none"
+                          className="inline-block w-1.5 h-1.5 rounded-full"
                           style={{ backgroundColor: 'var(--ps-unavailable)' }}
                         />
                       )}

@@ -12,7 +12,7 @@ export default function SymbolCell({ value, isHovered }: SymbolCellProps) {
     return (
       <span className="inline-flex items-center justify-center" title="Standard">
         <span
-          className="inline-block w-1.5 h-1.5 rounded-none"
+          className="inline-block w-1.5 h-1.5 rounded-full"
           style={{ backgroundColor: 'var(--ps-standard)' }}
         />
       </span>
@@ -23,7 +23,7 @@ export default function SymbolCell({ value, isHovered }: SymbolCellProps) {
     return (
       <span className="inline-flex items-center justify-center" title="Optional Extra">
         <span
-          className="inline-block w-1.5 h-1.5 rounded-none"
+          className="inline-block w-1.5 h-1.5 rounded-full"
           style={{ border: '1.5px solid var(--ps-optional)' }}
         />
       </span>
