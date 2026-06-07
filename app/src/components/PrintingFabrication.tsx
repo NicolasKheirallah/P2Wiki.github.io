@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
-import { ChevronDown, Info, Settings, ArrowRight, RotateCcw } from 'lucide-react';
+import { ChevronDown, Info, Settings, ArrowRight, RotateCcw, AlertTriangle } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -11,6 +11,7 @@ interface PrintableComponent {
   material: string; // Display string
   materialsList: string[]; // e.g. ['ASA', 'PETG']
   location: 'interior' | 'exterior' | 'mechanical';
+  sourceFormat: 'STL' | 'STEP' | 'STL + STEP';
   link: string;
   linkLabel: string;
   // Slicer settings
@@ -35,6 +36,7 @@ const printableComponents: PrintableComponent[] = [
     material: 'ASA / PETG',
     materialsList: ['ASA', 'PETG'],
     location: 'interior',
+    sourceFormat: 'STL',
     link: 'https://www.printables.com/model/85125-polestar-2-cupholder-and-armrest',
     linkLabel: 'Printables: 85125',
     printTime: '4h 45m',
@@ -59,6 +61,7 @@ const printableComponents: PrintableComponent[] = [
     material: 'ASA / PC',
     materialsList: ['ASA', 'PC'],
     location: 'interior',
+    sourceFormat: 'STL + STEP',
     link: 'https://www.thingiverse.com/thing:7271739',
     linkLabel: 'Thingiverse: 7271739',
     printTime: '2h 15m',
@@ -83,6 +86,7 @@ const printableComponents: PrintableComponent[] = [
     material: 'ASA / PETG',
     materialsList: ['ASA', 'PETG'],
     location: 'interior',
+    sourceFormat: 'STL',
     link: 'https://www.thingiverse.com/thing:6577352',
     linkLabel: 'Thingiverse: 6577352',
     printTime: '1h 50m',
@@ -107,6 +111,7 @@ const printableComponents: PrintableComponent[] = [
     material: 'ASA',
     materialsList: ['ASA'],
     location: 'exterior',
+    sourceFormat: 'STL',
     link: 'https://www.printables.com/model/1482336-polestar-2-charge-snow-cover',
     linkLabel: 'Printables: 1482336',
     printTime: '3h 10m',
@@ -131,6 +136,7 @@ const printableComponents: PrintableComponent[] = [
     material: 'PC / ASA',
     materialsList: ['PC', 'ASA'],
     location: 'mechanical',
+    sourceFormat: 'STL + STEP',
     link: 'https://www.thingiverse.com/thing:6207821',
     linkLabel: 'Thingiverse: 6207821',
     printTime: '3h 30m',
@@ -140,6 +146,106 @@ const printableComponents: PrintableComponent[] = [
     orientation: {
       en: 'Print flat. Enable brim if printing with PC to prevent corner warping.',
       sv: 'Skriv ut platt. Aktivera brim vid utskrift i PC för att förhindra kantresning.',
+    },
+  },
+  {
+    id: 'key-fob-shell',
+    name: {
+      en: 'Key Fob Replacement Shell',
+      sv: 'Nyckelfodral Ersättningsskal',
+    },
+    description: {
+      en: 'Custom lightweight and textured replacement shells for the bulky OEM key fob, featuring exact fit tolerances.',
+      sv: 'Anpassade, lätta och strukturerade ersättningsskal för den klumpiga originalnyckeln, med exakta passningstoleranser.',
+    },
+    material: 'PETG / ASA',
+    materialsList: ['PETG', 'ASA'],
+    location: 'interior',
+    sourceFormat: 'STL + STEP',
+    link: 'https://www.printables.com/model/426002-polestar-2-key-fob-shell',
+    linkLabel: 'Printables: 426002',
+    printTime: '1h 10m',
+    filamentWeight: '15g',
+    infill: '100% Solid',
+    perimeters: 3,
+    orientation: {
+      en: 'Print flat on the main outer face; use a textured bed sheet for a high-end matte OEM-like finish.',
+      sv: 'Skriv ut platt på den yttre huvudyta; använd en texturerad byggplatta för en matt, OEM-liknande yta.',
+    },
+  },
+  {
+    id: 'trunk-cargo-hooks',
+    name: {
+      en: 'Trunk Cargo Bag Hooks',
+      sv: 'Bagagekrokar för Kassar',
+    },
+    description: {
+      en: 'Heavy-duty clip-on bag hanger hooks designed to slide into the trunk side liner slots to secure bags.',
+      sv: 'Slitstarka kassehängare utformade för att skjutas in i bagageutrymmets sidospår för att hålla kassar på plats.',
+    },
+    material: 'ASA / PC',
+    materialsList: ['ASA', 'PC'],
+    location: 'mechanical',
+    sourceFormat: 'STL',
+    link: 'https://www.thingiverse.com/thing:6074211',
+    linkLabel: 'Thingiverse: 6074211',
+    printTime: '1h 40m',
+    filamentWeight: '45g',
+    infill: '45% Gyroid',
+    perimeters: 5,
+    orientation: {
+      en: 'Print flat on its side so the layer lines run parallel to the hook curve for maximum load capacity.',
+      sv: 'Skriv ut platt på sidan så att lagerlinjerna löper parallellt med krokens kurva för maximal belastningstolerans.',
+    },
+  },
+  {
+    id: 'console-storage-divider',
+    name: {
+      en: 'Center Console Storage Divider',
+      sv: 'Mittkonsol Fackavdelare',
+    },
+    description: {
+      en: 'Drop-in slot divider insert to partition the deep center armrest compartment for cards, sunglasses, and keys.',
+      sv: 'Fackavdelare som släpps ned i mittkonsolen för att dela upp det djupa armstödsfacket för kort, solglasögon och nycklar.',
+    },
+    material: 'ASA / PETG',
+    materialsList: ['ASA', 'PETG'],
+    location: 'interior',
+    sourceFormat: 'STL',
+    link: 'https://www.printables.com/model/294025-polestar-2-console-divider',
+    linkLabel: 'Printables: 294025',
+    printTime: '2h 30m',
+    filamentWeight: '75g',
+    infill: '20% Grid',
+    perimeters: 3,
+    orientation: {
+      en: 'Print flat on its bottom face. No support material required.',
+      sv: 'Skriv ut platt på dess bottenyta. Inget stödmaterial krävs.',
+    },
+  },
+  {
+    id: 'parcel-shelf-clips',
+    name: {
+      en: 'Parcel Shelf String Clips',
+      sv: 'Hatthylleklämmor för Snöre',
+    },
+    description: {
+      en: 'High-tolerance replacements for the fragile plastic string clips that secure the rear parcel cargo shelf.',
+      sv: 'Ersättningsklämmor med hög tolerans för hatthyllans ömtåliga snörklämmor.',
+    },
+    material: 'PETG / ASA',
+    materialsList: ['PETG', 'ASA'],
+    location: 'mechanical',
+    sourceFormat: 'STL + STEP',
+    link: 'https://www.printables.com/model/612245-polestar-2-parcel-shelf-clip',
+    linkLabel: 'Printables: 612245',
+    printTime: '0h 40m',
+    filamentWeight: '12g',
+    infill: '35% Gyroid',
+    perimeters: 4,
+    orientation: {
+      en: 'Print vertically with the slot facing upwards. Enable a small brim to stabilize the print.',
+      sv: 'Skriv ut vertikalt med öppningen uppåt. Aktivera en liten brim för att stabilisera utskriften.',
     },
   },
 ];
@@ -201,6 +307,14 @@ const materialGuidelines = [
   },
 ];
 
+const filamentProperties = [
+  { name: 'ASA', tg: '100°C', uv: { en: 'Excellent', sv: 'Utmärkt' }, difficulty: { en: 'Hard', sv: 'Svår' }, useCase: { en: 'Cabin & Exterior Panels', sv: 'Kupé- & Exteriördelar' } },
+  { name: 'PC', tg: '145°C', uv: { en: 'Good', sv: 'Bra' }, difficulty: { en: 'Expert', sv: 'Avancerad' }, useCase: { en: 'Structural & Speaker Adapters', sv: 'Mekaniskt & Högtalaradaptrar' } },
+  { name: 'PETG', tg: '75°C', uv: { en: 'Good', sv: 'Bra' }, difficulty: { en: 'Moderate', sv: 'Måttlig' }, useCase: { en: 'General Cabin Accessories', sv: 'Allmänna kupétillbehör' } },
+  { name: 'TPU', tg: 'Flexible', uv: { en: 'Fair', sv: 'Medelmåttig' }, difficulty: { en: 'Moderate', sv: 'Måttlig' }, useCase: { en: 'Gaskets & Cup Holder Inserts', sv: 'Packningar & Mugghållarinsatser' } },
+  { name: 'PLA', tg: '60°C', uv: { en: 'Poor', sv: 'Dålig' }, difficulty: { en: 'Easy', sv: 'Enkel' }, useCase: { en: 'Fit Testing & Prototypes Only', sv: 'Endast testpassning & prototyper' } },
+];
+
 export default function PrintingFabrication() {
   const { locale, t } = useLocale();
   const isSv = locale === 'sv';
@@ -214,6 +328,7 @@ export default function PrintingFabrication() {
   const [enclosure, setEnclosure] = useState<string | null>(null);
   const [bedTemp, setBedTemp] = useState<string | null>(null);
   const [partLoc, setPartLoc] = useState<string | null>(null);
+  const [expandedWarping, setExpandedWarping] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -454,32 +569,135 @@ export default function PrintingFabrication() {
       </div>
 
       {/* Material Guidelines */}
+      <div className="space-y-6">
+        <div>
+          <h3
+            className="text-[16px] font-medium mb-4"
+            style={{ color: 'var(--ps-text)', letterSpacing: '-0.01em' }}
+          >
+            {t('materialGuidelines')}
+          </h3>
+          <p className="text-[13px] leading-relaxed mb-4" style={{ color: 'var(--ps-text-secondary)' }}>
+            {t('materialWarning')}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {materialGuidelines.map((mat) => (
+              <div
+                key={mat.name}
+                className="rounded-none p-5 border border-[var(--ps-border)] relative overflow-hidden"
+                style={{ backgroundColor: 'var(--ps-bg-secondary)/10' }}
+              >
+                <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-[var(--ps-border)] opacity-35" />
+                <h4 className="text-[13px] font-semibold mb-2" style={{ color: 'var(--ps-text)' }}>
+                  {mat.name}
+                </h4>
+                <p className="text-[12px] leading-relaxed text-[var(--ps-text-secondary)]">
+                  {isSv ? mat.description.sv : mat.description.en}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Warping Troubleshooting sub-panel */}
+        <div className="border border-[var(--ps-border)] rounded-none overflow-hidden bg-[var(--ps-bg)]">
+          <button
+            onClick={() => setExpandedWarping(!expandedWarping)}
+            className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-[var(--ps-bg-secondary)]/25 transition-colors duration-150 rounded-none cursor-pointer"
+          >
+            <div className="flex items-center gap-2">
+              <AlertTriangle size={16} className="text-[var(--ps-gold)]" />
+              <h4 className="text-[13.5px] font-medium tracking-wide uppercase" style={{ color: 'var(--ps-text)' }}>
+                {isSv ? 'Felsökning: Förhindra kantresning & krympning (ASA/PC)' : 'Troubleshooting Warping & Bed Adhesion (ASA/PC)'}
+              </h4>
+            </div>
+            <ChevronDown
+              size={16}
+              className="text-[var(--ps-text-secondary)] transition-transform duration-250"
+              style={{
+                transform: expandedWarping ? 'rotate(180deg)' : 'rotate(0deg)',
+              }}
+            />
+          </button>
+          
+          {expandedWarping && (
+            <div className="border-t border-[var(--ps-border-light)] p-5 bg-[var(--ps-bg-secondary)]/5 space-y-4 text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
+              <div className="space-y-1">
+                <span className="font-semibold text-[var(--ps-text)] block">
+                  1. {isSv ? 'Förvärm byggkammaren' : 'Preheat the Build Chamber'}
+                </span>
+                <p>
+                  {isSv
+                    ? 'Innan du startar en utskrift i ASA eller PC, slå på byggplattan på 100°C–110°C och låt skrivaren stå stängd i 15–20 minuter. Detta värmer upp luften i kabinen, vilket drastiskt minskar spänningarna i plasten som orsakar kantresning.'
+                    : 'Before printing ASA or PC, turn your heated bed to 100°C–110°C and let the enclosed printer sit idle for 15–20 minutes. This preheats the ambient chamber air, drastically reducing thermal shock stresses that pull corners off the bed.'}
+                </p>
+              </div>
+              <div className="space-y-1">
+                <span className="font-semibold text-[var(--ps-text)] block">
+                  2. {isSv ? 'Använd rätt lim på plattan' : 'Select Appropriate Bed Adhesives'}
+                </span>
+                <p>
+                  {isSv
+                    ? 'För trådar som krymper mycket räcker inte enbart en ren byggplatta. Använd ett speciallim (t.ex. Magigoo, ABS-slurry eller ett vanligt stiftlim) på en texturerad PEI-platta. Detta skapar en stark kemisk bindning som håller fast hörnen under utskriften.'
+                    : 'High-shrinkage filaments require active adhesion. Apply specialized adhesive (such as Magigoo, ABS juice/slurry, or standard glue stick) onto a clean textured PEI plate. This provides the chemical bond necessary to lock down warping corners.'}
+                </p>
+              </div>
+              <div className="space-y-1">
+                <span className="font-semibold text-[var(--ps-text)] block">
+                  3. {isSv ? 'Aktivera dragsköld i slicern' : 'Enable Slicer Draft Shielding'}
+                </span>
+                <p>
+                  {isSv
+                    ? 'Om din skrivare inte är helt stängd kan du aktivera "Draft Shield" i slicern. Skrivaren bygger då en tunn skyddsvägg (sköld) runt hela modellen under utskriften, vilket blockerar sval omgivningsluft från att kyla ner delens väggar ojämnt.'
+                    : 'If your printer is only semi-enclosed, turn on the "Draft Shield" (or wind shield) option in your slicer. This prints a sacrificial single-walled shroud around your model, blocking cooling drafts from hitting the printed object.'}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Filament Properties Matrix */}
       <div>
         <h3
           className="text-[16px] font-medium mb-4"
           style={{ color: 'var(--ps-text)', letterSpacing: '-0.01em' }}
         >
-          {t('materialGuidelines')}
+          {isSv ? 'Jämförelsematris för Materialegenskaper' : 'Filament Properties Matrix'}
         </h3>
-        <p className="text-[13px] leading-relaxed mb-4" style={{ color: 'var(--ps-text-secondary)' }}>
-          {t('materialWarning')}
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {materialGuidelines.map((mat) => (
-            <div
-              key={mat.name}
-              className="rounded-none p-5 border border-[var(--ps-border)] relative overflow-hidden"
-              style={{ backgroundColor: 'var(--ps-bg-secondary)' }}
-            >
-              <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-[var(--ps-border)] opacity-35" />
-              <h4 className="text-[13px] font-semibold mb-2" style={{ color: 'var(--ps-text)' }}>
-                {mat.name}
-              </h4>
-              <p className="text-[12px] leading-relaxed text-[var(--ps-text-secondary)]">
-                {isSv ? mat.description.sv : mat.description.en}
-              </p>
-            </div>
-          ))}
+        <div className="overflow-x-auto scrollbar-hide border border-[var(--ps-border)] bg-[var(--ps-bg)] rounded-none">
+          <table className="w-full min-w-[750px] border-collapse text-left">
+            <thead>
+              <tr className="border-b border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-secondary)' }}>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[100px]">{isSv ? 'Tråd' : 'Filament'}</th>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[110px]">{isSv ? 'Mjukpunkt (Tg)' : 'Glass Temp (Tg)'}</th>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[130px]">{isSv ? 'UV-tålighet' : 'UV Resistance'}</th>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[120px]">{isSv ? 'Utskriftssvårighet' : 'Print Difficulty'}</th>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)]">{isSv ? 'Primärt Användningsområde' : 'Optimal Used Case'}</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--ps-border-light)] text-[12.5px]">
+              {filamentProperties.map((f) => (
+                <tr key={f.name} className="hover:bg-[var(--ps-bg-secondary)]/30 transition-colors">
+                  <td className="p-3 font-semibold text-[var(--ps-text)]">{f.name}</td>
+                  <td className="p-3 text-[var(--ps-text-secondary)]">{f.tg}</td>
+                  <td className="p-3 text-[var(--ps-text-secondary)]">{isSv ? f.uv.sv : f.uv.en}</td>
+                  <td className="p-3">
+                    <span className={`px-1.5 py-0.5 border text-[10px] font-medium tracking-wide uppercase rounded-none ${
+                      f.name === 'PLA'
+                        ? 'border-[var(--ps-success)]/40 text-[var(--ps-success)] bg-[var(--ps-success)]/5'
+                        : f.name === 'PC'
+                        ? 'border-[var(--ps-error)]/40 text-[var(--ps-error)] bg-[var(--ps-error)]/5'
+                        : 'border-[var(--ps-gold)]/40 text-[var(--ps-gold)] bg-[var(--ps-gold)]/5'
+                    }`}>
+                      {isSv ? f.difficulty.sv : f.difficulty.en}
+                    </span>
+                  </td>
+                  <td className="p-3 text-[var(--ps-text-secondary)]">{isSv ? f.useCase.sv : f.useCase.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -602,6 +820,10 @@ export default function PrintingFabrication() {
                         ))}
                         <span className="px-1.5 py-0.5 border border-[var(--ps-border)] bg-[var(--ps-bg-secondary)] text-[9px] tracking-wider uppercase font-semibold text-[var(--ps-text-tertiary)] rounded-none">
                           {locationLabel}
+                        </span>
+                        {/* CAD format badge */}
+                        <span className="px-1.5 py-0.5 border border-[var(--ps-gold)]/40 bg-[var(--ps-gold)]/5 text-[9px] tracking-wider uppercase font-semibold text-[var(--ps-gold)] rounded-none">
+                          {comp.sourceFormat}
                         </span>
                       </div>
                     </div>
