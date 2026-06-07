@@ -4,6 +4,7 @@ interface IssueRow {
   issue: string;
   symptoms: string;
   diy: string;
+  dealer: string;
 }
 
 interface IssueCategory {
@@ -19,11 +20,13 @@ const issueData: IssueCategory[] = [
         issue: 'Infotainment (IHU) Instability',
         symptoms: 'UI lag, boot loops, system crashes due to Android Automotive OS memory leaks.',
         diy: 'Soft Reset: Hold home button for 20 seconds.\nHard Reset: Recovery menu wipe (requires VIDA key re-pairing).',
+        dealer: 'Performs full software reload (re-flash). In rare, persistent hardware lockup cases, replaces IHU module under warranty.',
       },
       {
         issue: 'TCAM Module Failure',
         symptoms: 'Total loss of LTE, GPS, eCall, and Phone-as-Key (PAK).',
         diy: 'Soft Reset: Hold front defroster button for 20 seconds.\nHard Reset: Disconnect TCAM 12V backup battery under rear roof trim.',
+        dealer: 'Performs TCAM battery replacement, software reload, or replaces module with updated hardware revision.',
       },
     ],
   },
@@ -34,11 +37,19 @@ const issueData: IssueCategory[] = [
         issue: 'Rear Axle "Clicking" (Dual Motor)',
         symptoms: 'Low-speed clicking/ticking from rear. Often misdiagnosed as CV joints; root cause is often ERAD internal wear.',
         diy: 'Checks: Verify axle bolt torque. Note: Axle nut is single-use (45 Nm + 90 degrees).',
+        dealer: 'Applies specialized spline grease/adhesive to driveshaft splines and fits new axle bolts under service bulletin.',
       },
       {
         issue: 'Front Suspension Knocking',
         symptoms: 'Popping/grinding during low-speed steering over uneven surfaces. Premature strut top bearing wear.',
         diy: 'Repair: Replace strut top mounts in pairs. Apply final torque (81 Nm) only when suspension is fully loaded on the ground.',
+        dealer: 'Replaces strut top mounts and bearings with updated, improved part numbers under warranty.',
+      },
+      {
+        issue: 'AWD Propeller Shaft Vibration',
+        symptoms: 'Vibration/shudder felt through the cabin or steering wheel during moderate acceleration between 50 and 70 km/h.',
+        diy: 'Diagnostic check: Inspect motor mounts and driveshaft alignment for play.',
+        dealer: 'Re-indexes the propeller shaft or replaces front motor mounts/driveshafts under warranty.',
       },
     ],
   },
@@ -49,11 +60,13 @@ const issueData: IssueCategory[] = [
         issue: '12V Auxiliary Battery Drain',
         symptoms: 'Total vehicle immobilization. Contactor fails to close regardless of high-voltage pack state of charge.',
         diy: 'Preventative: Replace 12V lead-acid battery every 36 months.',
+        dealer: 'Replaces 12V auxiliary battery and performs battery sensor calibration using VIDA.',
       },
       {
         issue: 'HVCH (High Voltage Coolant Heater) Failure',
         symptoms: 'Loss of cabin heat, "Parking Climate Temporarily Unavailable" error. Blown 15A inverter fuse.',
         diy: 'Not recommended: High-voltage (400V) system hazard.',
+        dealer: 'Replaces the high-voltage coolant heating assembly and replaces the blown inverter fuse.',
       },
     ],
   },
@@ -64,11 +77,19 @@ const issueData: IssueCategory[] = [
         issue: 'HVAC Blend Door Actuator Failure',
         symptoms: 'Extreme temperature delta across zones (e.g., hot driver, cold passenger), rapid dashboard clicking.',
         diy: 'Repair: Replace stripped damper motors (shared Volvo XC40 part). Requires VIDA for end-stop recalibration.',
+        dealer: 'Replaces the faulty blend door actuator motor and performs calibration sweep via VIDA.',
       },
       {
         issue: 'Frozen Rear Door Latches',
         symptoms: 'Rear exterior/interior handles freeze shut or fail to latch < -10 °C. Factory grease inadequacy.',
         diy: 'Mitigation: Apply water-displacing silicone lubricant inside latch assembly (temporary fix).',
+        dealer: 'Replaces latch assemblies with updated versions featuring improved moisture seals and low-temperature grease.',
+      },
+      {
+        issue: 'Headlamp & Taillight Condensation',
+        symptoms: 'Visible moisture build-up, misting, or water droplets inside the front headlamps or rear light bar.',
+        diy: 'Inspect and clean ventilation caps on back of assemblies. Temporary misting is normal and should clear on drive.',
+        dealer: 'Replaces light assembly housings if water droplets pool or if internal LED drivers fail.',
       },
     ],
   },
@@ -105,22 +126,28 @@ export default function KnownIssues() {
               <thead>
                 <tr style={{ borderBottom: '1px solid var(--ps-table-border)' }}>
                   <th
-                    className="text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[200px]"
+                    className="text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[180px]"
                     style={{ color: 'var(--ps-text-tertiary)' }}
                   >
                     {t('issue')}
                   </th>
                   <th
-                    className="text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[360px]"
+                    className="text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[260px]"
                     style={{ color: 'var(--ps-text-tertiary)' }}
                   >
                     {t('symptoms')}
                   </th>
                   <th
-                    className="text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider"
+                    className="text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[240px]"
                     style={{ color: 'var(--ps-text-tertiary)' }}
                   >
                     {t('diyRemediation')}
+                  </th>
+                  <th
+                    className="text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider"
+                    style={{ color: 'var(--ps-text-tertiary)' }}
+                  >
+                    {t('dealerAction')}
                   </th>
                 </tr>
               </thead>
@@ -128,6 +155,7 @@ export default function KnownIssues() {
                 {category.rows.map((row, idx) => (
                   <tr
                     key={idx}
+                    className="hover:bg-[var(--ps-bg-secondary)]/50 transition-colors duration-150"
                     style={{ borderBottom: '1px solid var(--ps-table-row)' }}
                   >
                     <td
@@ -147,6 +175,12 @@ export default function KnownIssues() {
                       style={{ color: 'var(--ps-text-secondary)' }}
                     >
                       {formatMultiline(row.diy)}
+                    </td>
+                    <td
+                      className="py-4 pr-4 text-[13px] leading-relaxed align-top"
+                      style={{ color: 'var(--ps-text-secondary)' }}
+                    >
+                      {row.dealer}
                     </td>
                   </tr>
                 ))}
