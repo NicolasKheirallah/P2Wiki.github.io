@@ -16,7 +16,7 @@ const milestoneData: MilestoneData[] = [
     label: { en: 'Launch Edition', sv: 'Lanseringsutgåva' },
     summary: {
       en: 'The inaugural year of the Polestar 2, launched exclusively in a high-specification Dual Motor variant.',
-      sv: 'Polestar 2:s premiärår, lanserades exklusivt i en högspecificerad Dual Motor-variant.',
+      sv: 'Introduktionsåret för Polestar 2, som lanserades exklusivt som en välutrustad Dual Motor-variant.',
     },
     bullets: {
       en: [
@@ -26,19 +26,19 @@ const milestoneData: MilestoneData[] = [
         '78 kWh battery capacity supporting up to 150 kW DC charging.',
       ],
       sv: [
-        'Drivlina med Dual Motor AWD (300 kW / 408 hk) standard.',
-        'Plus- och Pilot-paket ingår som standardutrustning på alla bilar.',
-        'Högglansigt svart taksegment och pixel-LED-strålkastare ingår.',
-        '78 kWh batterikapacitet med stöd för upp till 150 kW DC-snabbladdning.',
+        'Drivlina med fyrhjulsdriven Dual Motor (AWD) på 300 kW / 408 hk som standard.',
+        'Plus- och Pilot-paket ingick som standardutrustning på alla bilar.',
+        'Högglanspolerat svart taksegment och Pixel LED-strålkastare ingick.',
+        'Batterikapacitet på 78 kWh med stöd för DC-snabbladdning upp till 150 kW.',
       ],
     },
   },
   {
     year: 'MY22',
-    label: { en: 'Drivetrain Expansion', sv: 'Drivlineexpansion' },
+    label: { en: 'Drivetrain Expansion', sv: 'Utökat drivlineutbud' },
     summary: {
       en: 'Introduction of Single Motor (Front-Wheel Drive) configurations and the splitting of equipment packs into optional packages.',
-      sv: 'Introduktion av Single Motor (framhjulsdrift) och uppdelning av utrustningspaket till tillval.',
+      sv: 'Introduktion av framhjulsdrivna (FWD) Single Motor-varianter och uppdelning av utrustningspaketen till tillval.',
     },
     bullets: {
       en: [
@@ -48,19 +48,19 @@ const milestoneData: MilestoneData[] = [
         'Heat pump introduced as part of the optional Plus pack.',
       ],
       sv: [
-        'Lansering av framhjulsdrivna Single Motor Standard Range (ursprungligen 64 kWh, uppgraderad till 69 kWh i mars 2022) och Long Range (78 kWh).',
-        'Plus- och Pilot-paket separerades till separata tillval.',
-        'Introduktion av valbart Performance-paket och ventilerat Nappa-läder.',
-        'Värmepump introducerades som en del av det valbara Plus-paketet.',
+        'Lansering av framhjulsdriven Single Motor i utförandena Standard Range (ursprungligen 64 kWh, uppgraderad till 69 kWh i mars 2022) och Long Range (78 kWh).',
+        'Plus- och Pilot-paketen blev separata tillval.',
+        'Introduktion av Performance-paket som tillval samt ventilerad Nappa-läderklädsel som fristående uppgradering.',
+        'Värmepump introducerades som en del av tillvalet Plus-paket.',
       ],
     },
   },
   {
     year: 'MY23',
-    label: { en: 'Range & Aesthetic Refinements', sv: 'Räckvidd & Designuppdateringar' },
+    label: { en: 'Range & Aesthetic Refinements', sv: 'Räckvidd & designuppdateringar' },
     summary: {
       en: 'Incremental battery cell updates boosting efficiency alongside fresh paint and wheel designs.',
-      sv: 'Inkrementella batteriuppdateringar som ökade effektiviteten, samt nya lacker och fälgar.',
+      sv: 'Smärre uppdateringar av battericellerna förbättrade effektiviteten, samtidigt som nya lackfärger och fälgdesigner lanserades.',
     },
     bullets: {
       en: [
@@ -70,19 +70,19 @@ const milestoneData: MilestoneData[] = [
         'Cabin air quality sensor (PM2.5) added to the Plus package.',
       ],
       sv: [
-        'Optimerad cellkemi ökade räckvidden något på Standard Range-modellerna.',
-        'Nya lackfärger: Space (metallic-svart) och Jupiter (guld-grå metallic).',
-        'Uppdaterad design på standard 19" och tillval 20" fälgar.',
-        'Kupéluftfiltersensor (PM2.5) lades till i Plus-paketet.',
+        'Optimerad cellkemi gav något längre räckvidd för Standard Range-modellerna.',
+        'Nya exteriörfärger: Space (metallicsvart) och Jupiter (guldgrå metallic).',
+        'Ny design på standardmonterade 19-tumsfälgar och tillvalet 20-tumsfälgar.',
+        'Sensor för partikelmätning i kupéluften (PM2.5) lades till i Plus-paketet.',
       ],
     },
   },
   {
     year: 'MY24',
-    label: { en: 'Major Facelift & Drivetrain Shift', sv: 'Stor Ansiktslyftning & Drivlinebyte' },
+    label: { en: 'Major Facelift & Drivetrain Shift', sv: 'Stort ansiktslyft & ny drivlina' },
     summary: {
       en: 'A massive architectural refresh: Single Motor models transitioned from FWD to Rear-Wheel Drive (RWD) with next-generation motors.',
-      sv: 'En massiv arkitektonisk uppdatering: Single Motor-modellerna bytte från framhjulsdrift till bakhjulsdrift (RWD) med nästa generations motorer.',
+      sv: 'En omfattande teknisk uppdatering: Single Motor-modellerna gick från framhjulsdrift till bakhjulsdrift (RWD) med nästa generations elmotorer.',
     },
     bullets: {
       en: [
@@ -92,16 +92,16 @@ const milestoneData: MilestoneData[] = [
         'SmartZone shield replaces the mesh grille to house front radar and cameras.',
       ],
       sv: [
-        'Bytte från framhjulsdrift (FWD) till bakhjulsdrift (RWD) för kraftigt förbättrad körkänsla.',
-        'Nästa generations högeffektiva växelriktare och motorer, vilket ökade räckvidden med upp till 22%.',
-        'Nytt CATL 82 kWh batteripaket för Long Range, vilket höjde max DC-laddning till 205 kW.',
-        'SmartZone-front ersatte den traditionella grillen för att husera radar och kameror.',
+        'Skifte från framhjulsdrift (FWD) till bakhjulsdrift (RWD), vilket markant förbättrade vägegenskaper och grepp.',
+        'Nästa generations högeffektiva växelriktare (inverter) och elmotorer, vilket ökade räckvidden med upp till 22 % och förbättrade accelerationen.',
+        'Nytt 82 kWh CATL-batteripaket för Long Range-modeller, vilket höjde maximal DC-snabbladdning till 205 kW.',
+        'SmartZone-panelen ersatte den traditionella grillen och hyser nu den främre radarn och kamerorna.',
       ],
     },
   },
   {
     year: 'MY25',
-    label: { en: 'Package Reorganization', sv: 'Paketomstrukturering' },
+    label: { en: 'Package Reorganization', sv: 'Omstrukturerade utrustningspaket' },
     summary: {
       en: 'Visual tweaks and reorganization of optional packages to allow more standalone customization.',
       sv: 'Designjusteringar och omstrukturering av tillvalspaket för mer fristående anpassning.',
@@ -114,19 +114,19 @@ const milestoneData: MilestoneData[] = [
         'Plus and Pilot packages standard again on late-production models in select markets.',
       ],
       sv: [
-        'Harman Kardon-ljudet separerades från Plus-paketet och blev ett fristående tillval.',
-        'Climate-paket introducerades för att bunta ihop baksätesvärme, rattvärme och värmepump.',
-        'Ny Storm-grå lackfärg och uppdaterade interiörklädselval.',
-        'Plus- och Pilot-paket blev åter standard på sena modeller på vissa marknader.',
+        'Harman Kardon Premium Sound lyftes ur Plus-paketet och blev ett fristående tillval.',
+        'Klimatpaket (Climate) introducerades som samlar eluppvärmda baksäten, eluppvärmd ratt samt värmepump.',
+        'Ny exteriörfärg (Storm-grå) och uppdaterade val för interiörklädsel.',
+        'Plus- och Pilot-paketen blev åter standardutrustning på sent producerade bilar på vissa marknader.',
       ],
     },
   },
   {
     year: 'MY26',
-    label: { en: 'Hardware & Infotainment Upgrades', sv: 'Hårdvara & Infotainmentuppgraderingar' },
+    label: { en: 'Hardware & Infotainment Upgrades', sv: 'Processor- & ljuduppgraderingar' },
     summary: {
       en: 'Major processor upgrade to Qualcomm Snapdragon and introduction of high-end audio options.',
-      sv: 'Stor processoruppgradering till Qualcomm Snapdragon samt introduktion av Bowers & Wilkins.',
+      sv: 'Betydande processoruppgradering till Qualcomm Snapdragon samt introduktion av avancerade ljudsystem.',
     },
     bullets: {
       en: [
@@ -136,10 +136,10 @@ const milestoneData: MilestoneData[] = [
         'Standard Range peak charging increased to 180 kW (up from 135 kW).',
       ],
       sv: [
-        'Ny Qualcomm Snapdragon infotainmentprocessor ger betydligt snabbare systemrespons.',
-        'Introduktion av Bowers & Wilkins premiumljudsystem (14 högtalare, 1350W) som tillval.',
-        'Nytt 70 kWh CATL-batteripaket ersätter tidigare 69 kWh batteri på Standard Range.',
-        'Standard Range maxladdning höjd till 180 kW (upp från 135 kW).',
+        'Ny Qualcomm Snapdragon-infotainmentprocessor ger avsevärt snabbare systemrespons.',
+        'Introduktion av Bowers & Wilkins premiumljudsystem (14 högtalare, 1350 W) som tillval.',
+        'Nytt 70 kWh CATL-batteripaket ersatte det tidigare 69 kWh-batteriet på Standard Range.',
+        'Maximal laddhastighet för Standard Range höjdes till 180 kW (tidigare 135 kW).',
       ],
     },
   },

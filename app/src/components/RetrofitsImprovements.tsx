@@ -27,16 +27,16 @@ const retrofitsData: RetrofitItem[] = [
     category: 'oem',
     title: {
       en: 'Pixel Active High Beam Software Enable (US/Canada)',
-      sv: 'Pixel Aktivt Helljus Mjukvaruaktivering (USA/Kanada)',
+      sv: 'Mjukvaruaktivering av Pixel-helljus (USA/Kanada)',
     },
     feasibility: 'hard',
     description: {
       en: 'Enable steering-responsive adaptive headlights that dynamically dim individual pixel sections to prevent glare for oncoming drivers. This software deactivation was specific to North American (US/Canada) vehicles due to old FMVSS 108 regulatory bans. Note that the physical Pixel LED hardware must be present (MY21 Launch Edition or MY22-MY23 Pilot pack). Cars with Pilot Lite packages lack the hardware arrays.',
-      sv: 'Aktivera styrresponsiva adaptiva strålkastare som dynamiskt dämpar enskilda pixeldelar. Denna mjukvarudeaktivering var specifik för nordamerikanska (USA/Kanada) fordon på grund av äldre FMVSS 108-regler. Fysisk Pixel LED-hårdvara måste finnas (MY21 Launch Edition eller MY22-MY23 Pilot-paket). Bilar med Pilot Lite saknar hårdvaran.',
+      sv: 'Aktivera adaptiva strålkastare (kurvljus) som dynamiskt släcker enskilda pixel-sektioner för att inte blända mötande fordon. Mjukvaran deaktiverades för den nordamerikanska marknaden (USA/Kanada) på grund av dåvarande FMVSS 108-regler. Obs: Strålkastarna måste ha fysisk Pixel LED-hårdvara installerad (standard på MY21 Launch Edition samt ingår i Pilot-paketet på MY22–MY23). Bilar med Pilot Lite-paket saknar denna hårdvara.',
     },
     warning: {
       en: 'Adaptive beam functions were disabled by default on US/Canadian cars. Enabling this feature via CCF modification will be overwritten whenever the vehicle receives an official OTA software update from Polestar, requiring you to re-apply the coding change.',
-      sv: 'Adaptiva helljusfunktioner var inaktiverade som standard på bilar i USA/Kanada. Aktivering via CCF-kodning kommer att skrivas över vid officiella OTA-mjukvaruuppdateringar från Polestar, vilket kräver att kodningen görs om.',
+      sv: 'Adaptiva helljusfunktioner var avaktiverade från fabrik på bilar för USA/Kanada. Om funktionen aktiveras via CCF-kodning kommer den att skrivas över och återställas varje gång bilen får en officiell mjukvaruuppdatering (OTA) från Polestar, vilket innebär att kodningen måste göras om.',
     },
     steps: {
       en: [
@@ -46,10 +46,10 @@ const retrofitsData: RetrofitItem[] = [
         'Perform an ECU reset (CEM and VMCU) to apply and index the new headlight settings.',
       ],
       sv: [
-        'Verifiera att de fysiska strålkastarna har texten "Polestar Pixel Technology" på den inre ramen.',
-        'Anslut en OBD2-kabel/adapter till fordonets OBD-uttag.',
-        'Använd tredjepartsverktyg för ändring av Car Configuration File (CCF), till exempel Orbit, för att ändra strålkastarinställningen till Pixel Adaptive.',
-        'Utför en återställning av styrenheter (CEM och VMCU) för att tillämpa och indexera de nya strålkastarinställningarna.',
+        'Kontrollera att strålkastarhusen har texten "Polestar Pixel Technology" präglad på den inre ramen.',
+        'Anslut en OBD2-kabel eller adapter till bilens OBD-port.',
+        'Använd ett tredjepartsverktyg för CCF-modifiering (Car Configuration File), exempelvis Orbit, och ändra värdet för strålkastarkonfiguration till "Pixel Adaptive".',
+        'Utför en omstart (reset) av styrenheterna CEM och VMCU för att tillämpa och spara de nya strålkastarinställningarna.',
       ],
     },
   },
@@ -58,38 +58,38 @@ const retrofitsData: RetrofitItem[] = [
     category: 'oem',
     title: {
       en: 'Power Tailgate Kick Sensor Retrofit (FMDM)',
-      sv: 'Kick-sensor för Baklucka Retrofit (FMDM)',
+      sv: 'Eftermontering av kicksensor för baklucka (FMDM)',
     },
     feasibility: 'hard',
     description: {
       en: 'Retrofit the Foot Movement Detection Module (FMDM) that was omitted from select late MY22 and early MY23 Polestar 2 vehicles due to the global semiconductor shortage. Some affected vehicles have the rear bumper wiring harness pre-installed with a dummy connector, but many do not — the harness may lack the required Power, Ground, and LIN bus lines. After hardware installation, the Central Electronic Module (CEM) must be software-configured to recognize the new sensor before the kick-to-open function will activate.',
-      sv: 'Eftermontera Foot Movement Detection Module (FMDM) som utelämnades från vissa sena MY22- och tidiga MY23-modeller av Polestar 2 på grund av den globala halvledarbristen. Vissa drabbade fordon har bakre stötfångarens kablage förberett med en blindkontakt, men många saknar de nödvändiga ström-, jord- och LIN-bussledningarna. Efter hårdvarumontering måste CEM (Central Electronic Module) programmeras för att känna igen den nya sensorn innan kick-funktionen aktiveras.',
+      sv: 'Eftermontering av Foot Movement Detection Module (FMDM), en sensor som togs bort på vissa sent producerade MY22- och tidiga MY23-bilar på grund av den globala halvledarbristen. En del av dessa bilar har kablaget i den bakre stötfångaren förberett med en blindkontakt, men många saknar anslutningar för ström, jord och LIN-buss. Efter att hårdvaran installerats måste bilens centrala styrenhet (CEM) konfigureras för att känna igen den nya sensorn innan öppning med fotrörelse kan fungera.',
     },
     warning: {
       en: 'This is not a simple plug-and-play installation. The FMDM communicates over the LIN bus with the CEM, and incorrect wiring can cause tailgate system faults or interfere with other vehicle modules. Modifying CEM configuration may affect your warranty. Check with your Polestar Service Point first — many affected vehicles are eligible for a free official retrofit under an open service campaign.',
-      sv: 'Detta är inte en enkel plug-and-play-installation. FMDM kommunicerar via LIN-bussen med CEM, och felaktig kabeldragning kan orsaka bakluckefel eller störa andra fordonsmoduler. Ändring av CEM-konfiguration kan påverka din garanti. Kontrollera med din Polestar-verkstad först — många drabbade fordon är berättigade till gratis officiell eftermontering via en öppen servicekampanj.',
+      sv: 'Detta är inte en ren plug-and-play-installation. FMDM-modulen kommunicerar via LIN-buss med CEM. Felaktig inkoppling kan störa bakluckans styrsystem eller andra styrdon i bilen. Modifiering av CEM-konfigurationen kan påverka garantin. Kontrollera med en auktoriserad Polestar-verkstad först, då många drabbade bilar omfattas av en kostnadsfri eftermonteringskampanj från fabriken.',
     },
     partNumbers: [
       {
         label: {
           en: 'Foot Movement Detection Module (FMDM)',
-          sv: 'Fotrörelsedetekteringsmodul (FMDM)',
+          sv: 'Styrenhet för fotrörelsesensor (FMDM)',
         },
         number: '32337498',
         note: {
           en: 'Primary OEM part. May be superseded — verify with VIN.',
-          sv: 'Primärt OEM-artikelnummer. Kan vara ersatt — verifiera med VIN.',
+          sv: 'Originalartikelnummer (OEM). Kan ha ersatts av nyare nummer — kontrollera mot chassinummer (VIN).',
         },
       },
       {
         label: {
           en: 'FMDM Module (Alternate / Earlier Revision)',
-          sv: 'FMDM-modul (Alternativ / Tidigare revision)',
+          sv: 'FMDM-modul (Alternativ / Tidigare utförande)',
         },
         number: '32252119',
         note: {
           en: 'Earlier revision number referenced in some service bulletins.',
-          sv: 'Tidigare revisionsnummer som nämns i vissa servicemeddelanden.',
+          sv: 'Tidigare artikelnummer som kan förekomma i äldre tekniska servicemeddelanden.',
         },
       },
     ],
@@ -104,13 +104,13 @@ const retrofitsData: RetrofitItem[] = [
         'Reassemble the bumper trim and test by standing within 1 meter of the rear bumper with the key fob and performing a foot-sweep motion under the center of the bumper.',
       ],
       sv: [
-        'Kontakta din Polestar-verkstad med ditt VIN för att kontrollera om du är berättigad till gratis fabrikseftermontering innan du försöker göra det själv.',
-        'Köp FMDM-modulen och de dubbla antennsensorrören. Se till att 12V-batteriet är fulladdat eller anslutet till en laddare.',
-        'Ta bort den nedre bakre stötfångarplasten för att komma åt sensorns monteringsarea och stötfångarens kablage.',
-        'Inspektera kablaget efter en befintlig blindkontakt. Om den saknas måste du dra ström-, jord- och LIN-busskablar från det bakre säkringsutrymmet till stötfångaren — konsultera fordonsspecifika kopplingsscheman för din årsmodell.',
-        'Montera FMDM-antennrören i fästklämmorna på insidan av stötfångarhöljet och anslut modulen till kablaget.',
-        'Aktivera kick-sensorfunktionen i CEM med ett CCF-konfigurationsverktyg (t.ex. Orbit via OBD2) eller låt en Polestar-verkstad aktivera den via VIDA. Hårdvaran fungerar inte utan detta mjukvarusteg.',
-        'Montera tillbaka stötfångarplasten och testa genom att stå inom 1 meter från bakre stötfångaren med nyckelbrickan och utföra en fotsveprörelse under mitten av stötfångaren.',
+        'Kontakta en auktoriserad Polestar-verkstad och uppge ditt chassinummer (VIN) för att kontrollera om bilen omfattas av gratis fabriksåtgärd innan du påbörjar ett eget eftermonteringsförsök.',
+        'Köp FMDM-modulen samt de två tillhörande antennsensorerna. Kontrollera att bilens 12V-batteri är fulladdat eller anslutet till en underhållsladdare under arbetet.',
+        'Demontera den nedre plastpanelen på bakre stötfångaren för att komma åt monteringsplatsen och stötfångarens kablage.',
+        'Kontrollera om kablaget har en förberedd blindkontakt. Om kontakt saknas måste du själv dra ström-, jord- och LIN-busskablar från bakre säkringsboxen till stötfångaren. Se bilens kopplingsschema för respektive årsmodell.',
+        'Montera sensorns antennrör i fästklämmorna på insidan av stötfångarhöljet och anslut modulen till kablaget.',
+        'Aktivera kicksensorn i CEM med hjälp av ett CCF-verktyg (t.ex. Orbit via OBD2) eller låt en verkstad göra det via VIDA. Hårdvaran fungerar inte innan mjukvarukonfigurationen är uppdaterad.',
+        'Montera tillbaka stötfångarpanelerna och testa funktionen genom att stå ca 1 meter bakom bilen med nyckeln på dig och göra en svepande fotrörelse under mitten av stötfångaren.',
       ],
     },
   },
@@ -119,12 +119,12 @@ const retrofitsData: RetrofitItem[] = [
     category: 'aftermarket',
     title: {
       en: 'MagSafe Console Wireless Charger Upgrade',
-      sv: 'MagSafe Magnetisk Trådlös Laddare',
+      sv: 'Trådlös MagSafe-laddare för mittkonsol',
     },
     feasibility: 'easy',
     description: {
       en: 'The standard OEM wireless charging pad is slow, generates significant heat, and allows devices to slide off on turns. Upgrading to a custom 3D-printed MagSafe tray mount provides fast, stable charging and holds the phone securely.',
-      sv: 'Den trådlösa standardladdaren i bilen är långsam, genererar mycket värme och gör att telefonen glider runt i kurvorna. Att uppgradera till ett specialanpassat 3D-utskrivet MagSafe-fack ger snabb och stabil laddning samt håller mobilen på plats.',
+      sv: 'Bilen har en trådlös laddplatta som standard, men den laddar långsamt, alstrar mycket värme och telefonen glider lätt ur läge vid svängar. En uppgradering till ett modellanpassat, 3D-utskrivet MagSafe-fack ger snabbare och mer stabil laddning samtidigt som magneterna håller telefonen säkert på plats.',
     },
     steps: {
       en: [
@@ -134,10 +134,10 @@ const retrofitsData: RetrofitItem[] = [
         'Place the assembly in the wireless charging slot for a flush, OEM-like look.',
       ],
       sv: [
-        'Skriv ut eller köp en anpassad trådlös laddningsinsats för mittkonsolen.',
-        'Placera en standard 15W MagSafe-laddningspuck i det avsedda runda uttaget.',
-        'Dra USB-C-kabeln under panelen till mittkonsolens USB-portar.',
-        'Placera monteringen i det trådlösa laddningsfacket för ett snyggt, integrerat utseende.',
+        'Skriv ut eller köp en modellanpassad insats för mittkonsolens laddfack.',
+        'Montera en standard 15 W MagSafe-laddare i det runda urtaget i insatsen.',
+        'Dra USB-kabeln dolt under mittkonsolens sidopaneler fram till USB-portarna.',
+        'Lägg ned hela insatsen i laddfacket för en sömlös och fabriksliknande integration.',
       ],
     },
   },
@@ -146,12 +146,12 @@ const retrofitsData: RetrofitItem[] = [
     category: 'aftermarket',
     title: {
       en: 'Fitted Contoured Mud Guards',
-      sv: 'Formanpassade Stänkskydd',
+      sv: 'Formanpassade stänkskydd',
     },
     feasibility: 'easy',
     description: {
       en: 'Polestar 2 paint is susceptible to stone chips and road debris damage along the lower sills and rear wheel arches due to the flared body styling. Fitted aftermarket mud guards offer subtle, functional protection.',
-      sv: 'Lacken på Polestar 2 är känslig för stenskott och vägsmuts längs trösklarna och bakre hjulhusen på grund av den utställda karossformen. Formanpassade stänkskydd ger diskret och funktionellt skydd.',
+      sv: 'Polestar 2 har en utställd karossform som gör att lacken på trösklar och bakre skärmar är mycket utsatt för stenskott och stänk från framhjulen. Modellanpassade eftermarknadsstänkskydd ger ett diskret och effektivt skydd för lacken.',
     },
   },
   {
@@ -159,12 +159,12 @@ const retrofitsData: RetrofitItem[] = [
     category: 'diyCoding',
     title: {
       en: 'Dual-Tier Center Armrest Organizer',
-      sv: 'Förvaringsfack för Mittkonsol',
+      sv: 'Insatslåda till armstödsfack',
     },
     feasibility: 'easy',
     description: {
       en: 'A drop-in divider tray designed specifically for the deep under-armrest storage well. It creates a practical upper shelf for sunglasses, keys, and coins while leaving the lower main compartment accessible.',
-      sv: 'En insatslåda speciellt utformad för det djupa förvaringsfacket under armstödet. Den skapar en praktisk övre hylla för solglasögon, nycklar och mynt samtidigt som det nedre huvudfacket förblir tillgängligt.',
+      sv: 'Ett förvaringsfack (insats) speciellt framtaget för det djupa utrymmet under mittarmstödet. Det skapar en praktisk övre hylla för solglasögon, nycklar och mynt samtidigt som det undre huvudfacket förblir lättåtkomligt.',
     },
   },
   {
@@ -172,12 +172,12 @@ const retrofitsData: RetrofitItem[] = [
     category: 'diyCoding',
     title: {
       en: 'Orbit Car Configuration Coding',
-      sv: 'Bilkonfiguration via Orbit',
+      sv: 'Programmering och CCF-ändringar via Orbit',
     },
     feasibility: 'medium',
     description: {
       en: 'Modify your vehicle Car Configuration File (CCF) using Orbit software. This utility lets you connect your computer to the OBD port to unlock factory features that were disabled in your region, modify lighting patterns, or configure pilot package upgrades.',
-      sv: 'Ändra bilens konfigurationsfil (CCF) med programvaran Orbit. Det här verktyget gör det möjligt att ansluta en dator till OBD-uttaget för att låsa upp fabriksfunktioner som inaktiverats i din region, ändra ljusmönster eller konfigurera förarassistentuppgraderingar.',
+      sv: 'Modifiera bilens konfigurationsfil (CCF) med programvaran Orbit. Detta verktyg låter dig ansluta en dator till OBD-porten för att låsa upp fabriksfunktioner som kan vara inaktiverade för din marknad, ändra belysningsmönster eller konfigurera eftermonterade förarassistanspaket.',
     },
     steps: {
       en: [
@@ -187,10 +187,10 @@ const retrofitsData: RetrofitItem[] = [
         'Read current CCF configurations and make adjustments carefully. Keep a backup copy of your original configuration file.',
       ],
       sv: [
-        'Skaffa en kompatibel OBD2-adapter (OBDLink MX+ eller en ENET-kabel med USB-C-nätverksadapter).',
-        'Ladda ner Orbit och köp en prenumerationslicens.',
-        'Anslut adaptern till OBD2-uttaget i fotutrymmet på förarsidan.',
-        'Läs in aktuella CCF-inställningar och gör ändringar försiktigt. Spara alltid en säkerhetskopia av din ursprungliga konfigurationsfil.',
+        'Införskaffa en kompatibel OBD2-adapter (exempelvis OBDLink MX+ eller en ENET-kabel ansluten via en USB-till-Ethernet-adapter).',
+        'Ladda ner Orbit-mjukvaran och skaffa en prenumerationslicens.',
+        'Anslut adaptern till OBD2-porten som sitter i fotutrymmet på förarsidan (ovanför pedalerna).',
+        'Läs av bilens nuvarande CCF-konfiguration och utför ändringar med stor försiktighet. Spara alltid en säkerhetskopia av din originalkonfiguration innan du skriver nya värden.',
       ],
     },
   },
@@ -199,49 +199,49 @@ const retrofitsData: RetrofitItem[] = [
     category: 'oem',
     title: {
       en: 'Official SmartZone Front Panel Upgrade (Facelift Retrofit)',
-      sv: 'Officiell SmartZone Frontpanel-uppgradering (Facelift Retrofit)',
+      sv: 'Uppgradering till SmartZone-front (eftermontering av facelift)',
     },
     feasibility: 'expert',
     description: {
       en: 'Replace the pre-facelift grid grille with the body-colored, flat SmartZone sensor panel introduced in the MY24 facelift. Offered in select markets (such as the UK) as an official aftermarket upgrade package, it refreshes the front-end styling while keeping the existing ADAS radar and front camera components functional.',
-      sv: 'Ersätt den äldre gallergrillen med den karossfärgade, platta SmartZone-panelen som introducerades i MY24 facelift. Erbjuds på vissa marknader (som Storbritannien) som en officiell eftermonteringsuppgradering för att uppdatera utseendet medan befintlig radar och kamera behålls.',
+      sv: 'Ersätt den äldre ribbade grillen med den släta, karossfärgade SmartZone-panelen som introducerades vid ansiktslyftet för modellår 2024 (MY24). Detta erbjuds på vissa marknader (t.ex. Storbritannien) som ett officiellt tillbehörspaket för att ge bilen det nyare utseendet utan att påverka funktionen hos befintlig radar och framkamera.',
     },
     warning: {
       en: 'This retrofit requires moving sensitive front camera and mid-range radar sensors into the new panel. If the sensors are misaligned during swap, safety systems (Pilot Assist, Collision Avoidance) will throw faults or fail. Proper professional calibration via VIDA at a certified Polestar Service Point is highly recommended.',
-      sv: 'Denna eftermontering kräver att de känsliga främre kamera- och radarsensorerna flyttas till den nya panelen. Om sensorerna hamnar snett under bytet kommer säkerhetssystemen (Pilot Assist, Collision Avoidance) att kasta felkoder eller sluta fungera. Professionell kalibrering via VIDA hos en auktoriserad Polestar-verkstad rekommenderas starkt.',
+      sv: 'Denna uppgradering kräver att den främre kameran samt radarsensorn flyttas över till den nya panelen. Om sensorerna hamnar utanför sina toleranser under flytten kommer bilens säkerhetssystem (t.ex. Pilot Assist och nödbromsassistent) att sätta felkoder eller sluta fungera. En professionell kalibrering via VIDA på en auktoriserad verkstad rekommenderas starkt efter montering.',
     },
     partNumbers: [
       {
         label: {
           en: 'SmartZone Front Panel (Facelift Cover)',
-          sv: 'SmartZone Frontpanel (Facelift-kåpa)',
+          sv: 'SmartZone frontpanel (facelift-kåpa)',
         },
         number: '32228862',
         note: {
           en: 'May be superseded. Color-specific variants exist — verify with VIN.',
-          sv: 'Kan vara ersatt. Färgspecifika varianter finns — verifiera med VIN.',
+          sv: 'Kan ha ersatts av nyare artikelnummer. Finns i olika lackfärger — kontrollera mot VIN.',
         },
       },
       {
         label: {
           en: 'Pre-Facelift Front Grille (Original)',
-          sv: 'Före-facelift Frontgrill (Original)',
+          sv: 'Frontgrill pre-facelift (originalgrill)',
         },
         number: '31663679',
         note: {
           en: 'Reference only — the part being replaced.',
-          sv: 'Endast referens — delen som byts ut.',
+          sv: 'Endast referens — den del som demonteras och ersätts.',
         },
       },
       {
         label: {
           en: 'Front Mid-Range Radar Sensor Module',
-          sv: 'Främre Mellandistansradarsensor',
+          sv: 'Främre radarsensor (mellandistans)',
         },
         number: '32134966',
         note: {
           en: 'May be superseded by 32315667 on later builds. Always confirm with your VIN.',
-          sv: 'Kan vara ersatt av 32315667 på senare byggen. Bekräfta alltid med ditt VIN.',
+          sv: 'Kan ha ersatts av 32315667 på senare tillverkade bilar. Verifiera alltid med chassinummer.',
         },
       },
     ],
@@ -254,11 +254,11 @@ const retrofitsData: RetrofitItem[] = [
         'Reassemble the front bumper and schedule a safety system calibration (VMCU and ADAS alignment) via Volvo/Polestar VIDA service software.',
       ],
       sv: [
-        'Kontakta din lokala Polestar Extras-butik eller verkstad för att bekräfta tillgängligheten av delar för ditt specifika chassinummer (VIN).',
-        'Demontera den främre stötfångaren för att komma åt grillens fästklämmor och sensorfästen.',
-        'Koppla försiktigt ur kablaget och skruva loss radar- och parkeringskameran från originalgrillen.',
-        'Montera den nya karossfärgade SmartZone-panelen och skruva fast sensorerna i de nya fästena.',
-        'Montera tillbaka främre stötfångaren och boka tid för kalibrering av säkerhetssystemen (VMCU och ADAS-inriktning) via Volvo/Polestar VIDA-programvaran.',
+        'Kontakta en auktoriserad verkstad för att kontrollera tillgänglighet och rätt artikelnummer för ditt specifika chassinummer (VIN).',
+        'Demontera främre stötfångarhöljet för att komma åt grillens clips och sensorfästen.',
+        'Koppla ur kablaget och skruva försiktigt loss radarsensorn och framkameran från originalgrillen.',
+        'Montera den nya SmartZone-panelen i stötfångaren och skruva fast sensorerna i de nya monteringsfästena.',
+        'Montera tillbaka stötfångaren på bilen och boka tid för en fullständig kalibrering av radarsensor och kamera via VIDA.',
       ],
     },
   },
@@ -267,38 +267,38 @@ const retrofitsData: RetrofitItem[] = [
     category: 'oem',
     title: {
       en: 'Semi-Electric Folding Tow Bar Retrofit',
-      sv: 'Halvautomatisk Fällbar Dragkrok Retrofit',
+      sv: 'Eftermontering av halv elektrisk infällbar dragkrok',
     },
     feasibility: 'expert',
     description: {
       en: 'Retrofit the OEM semi-electric, retractable tow bar assembly onto vehicles not originally equipped. The system integrates with Trailer Stability Assist (TSA), automated trailer light checks, and dashboard trailer warnings. This is an extensive installation requiring bumper removal, chassis mounting, wiring harness routing from rear to front, and mandatory VIDA software activation at a Polestar Service Point.',
-      sv: 'Eftermontera den originala halvautomatiska, infällbara dragkroken på fordon som inte ursprungligen var utrustade. Systemet integreras med Trailer Stability Assist (TSA), automatisk kontroll av släpvagnsbelysning och instrumentpanelsvarningar. Installation kräver demontering av stötfångare, chassimontering, kabeldragning bakifrån och framåt, samt obligatorisk VIDA-mjukvaruaktivering hos en Polestar-verkstad.',
+      sv: 'Eftermontera Polestars semielektriska, infällbara dragkrok på bilar som saknar detta från fabrik. Systemet integreras fullt ut med bilens släpvagnsstabilisering (TSA), automatiska belysningstester samt instrumenteringens varningar. Detta är en omfattande installation som kräver demontering av bakre stötfångare, mekanisk montering i chassit, kabeldragning samt en obligatorisk mjukvaruaktivering via VIDA på en auktoriserad verkstad.',
     },
     warning: {
       en: 'This is a safety-critical component. The Trailer Module (TRM) must be activated via VIDA to integrate with the CAN bus — the hardware will not function without this dealer-performed software step. Aftermarket alternatives (e.g. EcoHitch) exist for bike rack use but lack electronic integration, TSA, and the folding mechanism.',
-      sv: 'Detta är en säkerhetskritisk komponent. Trailermodulen (TRM) måste aktiveras via VIDA för att integreras med CAN-bussen — hårdvaran fungerar inte utan detta mjukvarusteg som utförs av verkstad. Eftermarknadslösningar (t.ex. EcoHitch) finns för cykelhållare men saknar elektronisk integration, TSA och fällmekanism.',
+      sv: 'Detta är en säkerhetskritisk komponent. Styrenheten för släpvagnen (TRM) måste programmeras och aktiveras via VIDA för att kommunicerar på bilens CAN-buss — utan detta mjukvarusteg fungerar inte dragkrokens eluttag eller fällmekanism. Eftermarknadsdragkrokar (t.ex. från Brink eller EcoHitch) förekommer men saknar ofta samma djupa elektroniska integration och TSA-stöd.',
     },
     partNumbers: [
       {
         label: {
           en: 'Tow Bar Assembly Kit',
-          sv: 'Dragkrokssats',
+          sv: 'Infällbar dragkrok (komplett mekanisk sats)',
         },
         number: '32414268',
         note: {
           en: 'Latest revision. Earlier revisions include 32207226, 32270344. Always confirm with VIN.',
-          sv: 'Senaste revision. Tidigare versioner inkluderar 32207226, 32270344. Bekräfta alltid med VIN.',
+          sv: 'Senaste artikelnumret. Äldre versioner (t.ex. 32207226, 32270344) kan förekomma. Kontrollera alltid mot VIN.',
         },
       },
       {
         label: {
           en: 'Tow Bar Wiring Harness',
-          sv: 'Dragkrok Kablage',
+          sv: 'Kablage och styrenhet (TRM) för dragkrok',
         },
         number: '32386674',
         note: {
           en: 'Harness routes from rear to front. May vary by model year.',
-          sv: 'Kablage dras bakifrån och framåt. Kan variera beroende på årsmodell.',
+          sv: 'Inkluderar kabelsats samt monteringsdetaljer. Kan variera beroende på modellår.',
         },
       },
     ],
@@ -312,12 +312,12 @@ const retrofitsData: RetrofitItem[] = [
         'Have a Polestar Service Point perform the mandatory VIDA software activation to register the Trailer Module (TRM) on the CAN bus and enable TSA and trailer light checks.',
       ],
       sv: [
-        'Kontakta din Polestar-verkstad med ditt VIN för att beställa rätt dragkrokssats och bekräfta att mjukvaruaktivering finns tillgänglig.',
-        'Ta bort den bakre stötfångarplasten, diffusorpanelen och underplåten för att komma åt chassits monteringspunkter.',
-        'Montera dragkroksramen på chassits tvärbalk med medföljande bultar och dra åt till specificerat moment.',
-        'Dra släpvagnskablaget från den bakre kontakten genom underdelen av kaross, invändiga golvkanaler och fram till den främre eldosan.',
-        'Montera tillbaka stötfångarplasten — den nedre delen kan kräva en fabriksurskärning eller trimning för att passa fällmekanismen.',
-        'Låt en Polestar-verkstad utföra den obligatoriska VIDA-mjukvaruaktiveringen för att registrera trailermodulen (TRM) på CAN-bussen och aktivera TSA och kontroll av släpvagnsbelysning.',
+        'Kontakta en auktoriserad verkstad med ditt chassinummer för att beställa rätt dragkrokssats samt boka tid för mjukvaruaktivering.',
+        'Demontera bakre stötfångarhöljet, diffusorn och underredets skyddsplåtar för att frilägga monteringspunkterna i chassit.',
+        'Skruva fast dragkroksbalken i bilens ramsidomedlemmar med föreskrivna bultar och dra åt med rätt åtdragningsmoment.',
+        'Dra släpvagnskablaget från bakre stötfångaren in i kupén och vidare fram till elcentralen under instrumentbrädan enligt monteringsanvisningen.',
+        'Montera tillbaka stötfångaren. Den nedre diffusorpanelen kan behöva skäras ut eller bytas till en panel förberedd för dragkrok.',
+        'Låt en auktoriserad verkstad utföra mjukvaruprogrammeringen i VIDA för att driftsätta släpvagnsmodulen (TRM) på CAN-bussen, vilket aktiverar TSA samt instrumenteringens släpvagnsfunktioner.',
       ],
     },
   },
@@ -326,12 +326,12 @@ const retrofitsData: RetrofitItem[] = [
     category: 'aftermarket',
     title: {
       en: 'FitCamX Integrated Dash Cam',
-      sv: 'FitCamX Integrerad Dashkamera',
+      sv: 'FitCamX integrerad färdkamera (dashcam)',
     },
     feasibility: 'easy',
     description: {
       en: 'Replace the plastic sensor cover behind the rearview mirror with a FitCamX dash cam module that looks factory-integrated. The unit is designed specifically for the Polestar 2 and connects to the existing wiring harness for a clean, OEM-look installation with no visible cables. An optional rear camera can be added by routing a cable through the headliner.',
-      sv: 'Byt ut plastskyddet bakom backspegeln mot en FitCamX-dashkamera som ser fabriksintegrerad ut. Enheten är specifikt designad för Polestar 2 och ansluts till befintligt kablage för en ren, OEM-liknande installation utan synliga kablar. En valfri bakre kamera kan läggas till genom att dra en kabel genom takhimlen.',
+      sv: 'Ersätt plastkåpan bakom innerbackspegeln med en FitCamX-kamera som ser helt fabriksmonterad ut. Kameran är modellanpassad för Polestar 2 och kopplas in med en medföljande Y-kabelsplitt på bilens befintliga regnsensorkablage (ingen synlig kabeldragning krävs). En bakre kamera kan monteras som tillval genom att dra en medföljande kabel dolt längs taklinjen.',
     },
     steps: {
       en: [
@@ -343,12 +343,12 @@ const retrofitsData: RetrofitItem[] = [
         '(Optional) Route the rear camera cable along the headliner, through the rubber conduit in the rear hatch, and mount the rear unit on the back glass.',
       ],
       sv: [
-        'Köp FitCamX-satsen för Polestar 2 (bekräfta din årsmodell för korrekt passning).',
-        'Bänd försiktigt loss det befintliga plastskyddet bakom backspegeln med ett skonsamt bändverktyg.',
-        'Koppla bort det ursprungliga kablaget och anslut FitCamX-adapterkabeln.',
-        'Klicka fast FitCamX-kameramodulen på plats — den ersätter det ursprungliga skyddet för ett sömlöst utseende.',
-        'Sätt i ett microSD-kort och konfigurera inspelningsinställningarna via FitCamX-appen.',
-        '(Valfritt) Dra den bakre kamerakabeln längs takhimlen, genom gummikonduiten i bakluckan, och montera den bakre enheten på bakrutan.',
+        'Köp FitCamX-satsen som matchar din bils modellår (det finns skillnader på kåporna mellan olika årsmodeller).',
+        'Bänd försiktigt loss den befintliga plastkåpan bakom innerbackspegeln med ett plasthandtag eller demonteringsverktyg.',
+        'Koppla ur kontakten till regnsensorn och anslut FitCamX Y-kablage emellan.',
+        'Klicka fast den nya kamerakåpan på plats där originalkåpan satt.',
+        'Sätt i ett kompatibelt microSD-kort och anslut till kamerans Wi-Fi för att göra inställningar i FitCamX-appen.',
+        'Dra (om tillämpligt) kabeln till den bakre kameran dolt under takhimlen, trä den genom bakluckans gummigenomföring och montera kameran på bakrutan.',
       ],
     },
   },
@@ -357,16 +357,16 @@ const retrofitsData: RetrofitItem[] = [
     category: 'aftermarket',
     title: {
       en: 'Door Puddle Light Logo Projectors',
-      sv: 'Dörrbelysning med Logotypprojektion',
+      sv: 'Dörrbelysning med logoprojektion (puddle lights)',
     },
     feasibility: 'easy',
     description: {
       en: 'Swap the standard door puddle lights for custom projector modules that display the Polestar logo on the ground when the door opens. On vehicles equipped with factory door lights, this is a direct plug-and-play replacement — simply pull out the old light module and click in the new projector unit.',
-      sv: 'Byt ut de vanliga dörrbelysningarna mot projektorer som visar Polestars logotyp på marken när dörren öppnas. På fordon med fabriksmonterad dörrbelysning är detta en direkt plug-and-play-byte — dra ut den gamla ljusmodulen och klicka i den nya projektorenheten.',
+      sv: 'Ersätt bilens standardmonterade markbelysning under dörrarna med projektorer som projicerar Polestar-logotypen på marken när dörren öppnas. På bilar som har markbelysning installerad från fabrik är detta ett enkelt plug-and-play-byte där du bara petar ut originalmodulen och klickar i den nya.',
     },
     warning: {
       en: 'If your specific trim did not include factory puddle lights, the necessary wiring may be absent behind the door cards. In that case, installation becomes significantly more complex and may require door panel removal and wiring work.',
-      sv: 'Om din specifika utrustningsnivå inte inkluderade fabriksmonterad dörrbelysning kan nödvändigt kablage saknas bakom dörrpanelerna. I så fall blir installationen betydligt mer komplex och kan kräva demontering av dörrpanelen och kabeldragning.',
+      sv: 'Om din bil saknar fabriksmonterad markbelysning under dörrarna (vilket beror på utrustningsnivå/modellår) saknas ofta kablaget bakom dörrsidorna. Eftermontering kräver då att dörrsidorna demonteras samt att kablar dras manuellt.',
     },
     steps: {
       en: [
@@ -377,11 +377,11 @@ const retrofitsData: RetrofitItem[] = [
         'Open the door to test projection alignment and brightness on the ground.',
       ],
       sv: [
-        'Bekräfta att ditt fordon har fabriksmonterad dörrbelysning genom att kontrollera under den öppna dörren efter befintliga ljusmoduler.',
-        'Köp projektorenheter som passar Polestar 2:s dörrbelysningssockel.',
-        'Använd ett skonsamt bändverktyg för att försiktigt lossa den befintliga dörrbelysningsmodulen från dörrpanelen.',
-        'Sätt i den nya projektormodulen i sockeln — den ska klicka fast ordentligt.',
-        'Öppna dörren för att testa projiceringens riktning och ljusstyrka mot marken.',
+        'Kontrollera under nederkanten på de öppna dörrarna att det sitter belysningsmoduler där.',
+        'Köp LED-projektorer som är kompatibla med Polestar 2:s dörrpanelsuttag.',
+        'Använd ett platt plastverktyg för att bända ut den befintliga belysningsmodulen ur dörrsidan.',
+        'Koppla in kontakten och tryck upp den nya projektormodulen så att den snäpper fast i dörrsidan.',
+        'Öppna dörren i mörker för att kontrollera att logotypen projiceras åt rätt håll och är skarp.',
       ],
     },
   },
@@ -390,12 +390,12 @@ const retrofitsData: RetrofitItem[] = [
     category: 'aftermarket',
     title: {
       en: 'Ceramic Window Tint',
-      sv: 'Keramisk Fönsterfilm',
+      sv: 'Keramisk solfilm (toning)',
     },
     feasibility: 'medium',
     description: {
       en: 'Apply professional-grade ceramic window tint to side windows and the panoramic glass roof for superior infrared heat rejection, 99% UV protection, and glare reduction. Ceramic film does not interfere with GPS, cellular, key fob, or Phone-as-Key signals — critical for the Polestar 2. The panoramic roof already has some factory UV filtering, but additional ceramic tint dramatically improves cabin comfort in warm climates and reduces HVAC load, helping preserve range.',
-      sv: 'Applicera professionell keramisk fönsterfilm på sidorutor och det panoramiska glastaket för överlägsen infraröd värmeavvisning, 99% UV-skydd och bländningsreducering. Keramisk film stör inte GPS, mobilnät, nyckelbricka eller Phone-as-Key-signaler — avgörande för Polestar 2. Panoramaglastaket har visst fabriksmonterat UV-skydd, men extra keramisk film förbättrar kupékomforten dramatiskt i varma klimat och minskar HVAC-belastningen, vilket bidrar till bättre räckvidd.',
+      sv: 'Montering av professionell keramisk solfilm på bilens rutor och panoramaglastaket för att effektivt stänga ute infraröd värmestrålning och ge 99 % UV-skydd. Keramisk film stör inte GPS, mobilnät eller Phone-as-Key-signaler, vilket är avgörande på Polestar 2. Glastaket har ett inbyggt UV-skydd från fabrik, men en extra keramisk solfilm förbättrar kupékomforten markant under varma sommardagar och sänker klimatanläggningens energiförbrukning, vilket sparar räckvidd.',
     },
     steps: {
       en: [
@@ -406,11 +406,11 @@ const retrofitsData: RetrofitItem[] = [
         'Allow 3–5 days of curing time before rolling down windows. Avoid car washes during this period.',
       ],
       sv: [
-        'Välj ett välrenommerat keramiskt filmvarumärke och mörkningsgrad (t.ex. 35% sidor, 70% vindruta). Kontrollera lokala regler för filmade rutor.',
-        'Rengör alla glasytor noggrant för att säkerställa en lintfri och smutsbefriad yta.',
-        'Applicera filmen på sidorutor och bakruta med en våtapplikationsmetod och glidsolution.',
-        'Använd en enstycksfilm skuren för att matcha glasets dimensioner för panoramaglastaket. Arbeta försiktigt för att undvika bubblor och veck.',
-        'Tillåt 3–5 dagars härdningstid innan rutorna fälls ner. Undvik biltvätt under denna period.',
+        'Välj en högkvalitativ keramisk solfilm och önskad toningsgrad (kontrollera gällande regler för solfilm på främre sidorutor och vindruta).',
+        'Rengör rutorna extremt noggrant för att undvika att damm eller smuts stängs in under filmen.',
+        'Skär till och applicera solfilmen på rutorna med hjälp av våtmontering och monteringsskrapa.',
+        'För panoramaglastaket rekommenderas att filmen skärs till i ett enda stycke för att undvika skarvar. Arbeta metodiskt för att pressa ut allt monteringsvatten.',
+        'Låt filmen torka och härda i 3–5 dagar innan du hissar ner rutorna eller tvättar bilen.',
       ],
     },
   },
@@ -419,16 +419,16 @@ const retrofitsData: RetrofitItem[] = [
     category: 'diyCoding',
     title: {
       en: 'Frunk LED Lighting Upgrade',
-      sv: 'Frunk LED-belysningsuppgradering',
+      sv: 'Extra LED-belysning i frunken',
     },
     feasibility: 'easy',
     description: {
       en: 'The Polestar 2 frunk lacks adequate factory lighting, making it difficult to see contents at night. A self-adhesive LED strip or battery-operated motion-sensing LED bar can be installed in minutes for dramatically improved visibility. For a permanent solution, tap into a switched 12V source using proper automotive connectors.',
-      sv: 'Polestar 2:s frunk saknar tillräcklig fabriksbelysning, vilket gör det svårt att se innehållet på natten. En självhäftande LED-list eller batteridriven rörelsestyrd LED-lampa kan monteras på några minuter för dramatiskt förbättrad synlighet. För en permanent lösning, anslut till en switchad 12V-källa med korrekta fordonskontakter.',
+      sv: 'Bilens främre bagageutrymme (frunk) saknar belysning från fabrik, vilket gör det mörkt och svåråtkomligt på kvällen. En självhäftande LED-slinga eller en batteridriven rörelsestyrd LED-lampa kan installeras på bara några minuter. För en permanent installation kan belysningen kopplas in på bilens 12V-system med säkra anslutningar.',
     },
     warning: {
       en: "If you splice into the vehicle's 12V wiring, use proper automotive-grade connectors (e.g. TE connectors) rather than bare wire splices. Incorrect wiring in the frunk area could affect warranty coverage. Battery-operated alternatives avoid this risk entirely.",
-      sv: 'Om du ansluter till fordonets 12V-kablage, använd korrekta fordonskontakter (t.ex. TE-kontakter) istället för lösa skarvar. Felaktig kabeldragning i frunk-området kan påverka garantin. Batteridrivna alternativ undviker denna risk helt.',
+      sv: 'Om du skarvar in dig på bilens 12V-system bör du använda fukttäta fordonskontakter av hög kvalitet istället för enkla strömtjuvar. Felaktiga elinstallationer i frunkutrymmet kan påverka garantin. Batteridrivna eller uppladdningsbara lampor är ett säkert alternativ som helt eliminerar denna risk.',
     },
     steps: {
       en: [
@@ -439,11 +439,11 @@ const retrofitsData: RetrofitItem[] = [
         'Close and reopen the frunk to verify even illumination coverage.',
       ],
       sv: [
-        'Välj belysningsmetod: självhäftande LED-list (12V-ansluten), USB-driven LED-lampa eller batteridriven rörelsesensorlampa.',
-        'Rengör monteringsytan inuti frunkluckan eller den övre kanten med isopropylalkohol.',
-        'Dra av det självhäftande skyddet och tryck fast LED-listen eller ljusrampen längs överkanten av frunkens öppning.',
-        'För kablade installationer: dra strömkabeln till en switchad 12V-källa med korrekta TE- eller Posi-Tap-kontakter. För batteri/USB: placera enheten och säkerställ ett säkert fäste.',
-        'Stäng och öppna frunken igen för att verifiera jämn belysning.',
+        'Välj belysningskälla: 12V LED-slinga, USB-laddningsbar LED-bar eller en batteridriven lampa med rörelsesensor.',
+        'Rengör monteringsytan under frunkkåpan eller längs kanten noga med isopropylalkohol (IPA).',
+        'Dra av skyddsplasten på LED-lampans tejp och tryck fast den ordentligt längs kanten av frunköppningen.',
+        'Koppla in strömmen (vid 12V-installation) via en avsäkrad krets med fukttäta kontakter. Vid batteridrift är det bara att placera lampan i sitt fäste.',
+        'Testa att stänga och öppna frunken för att kontrollera belysningens funktion och spridning.',
       ],
     },
   },

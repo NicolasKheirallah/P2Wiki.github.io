@@ -28,16 +28,16 @@ const issueData: IssueItem[] = [
     severity: 'minor',
     issue: {
       en: 'Infotainment (IHU) Instability',
-      sv: 'Infotainmentsystem (IHU) instabilitet',
+      sv: 'Instabilitet i infotainmentsystemet (IHU)',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23', 'MY24', 'MY25'],
     symptoms: {
       en: 'UI lag, boot loops, system crashes due to Android Automotive OS memory leaks.',
-      sv: 'Fördröjning i gränssnittet, loopande omstarter, systemkrascher på grund av minnesläckor i Android Automotive OS.',
+      sv: 'Segt gränssnitt, upprepade omstarter (bootloops) och systemkrascher på grund av minnesläckor i Android Automotive OS.',
     },
     diy: {
       en: 'Soft Reset: Hold home button below screen for 20 seconds.\nHard Reset: Recovery menu factory reset (requires VIDA key re-pairing).',
-      sv: 'Mjuk återställning: Håll hemknappen under skärmen intryckt i 20 sekunder.\nHård återställning: Fabriksåterställning via återställningsmenyn (kräver VIDA-nyckelparning).',
+      sv: 'Mjuk återställning: Håll hemknappen under skärmen intryckt i 20 sekunder.\nHård återställning: Fabriksåterställning via återställningsmenyn (kräver nyckelparning i VIDA).',
     },
   },
   {
@@ -46,24 +46,24 @@ const issueData: IssueItem[] = [
     severity: 'critical',
     issue: {
       en: 'TCAM Module Failure',
-      sv: 'TCAM-modul haveri',
+      sv: 'Haveri i TCAM-modulen',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     symptoms: {
       en: 'Total loss of LTE, GPS, eCall, and Phone-as-Key (PAK) connection.',
-      sv: 'Total förlust av LTE, GPS, eCall och Mobil som nyckel (PAK)-anslutning.',
+      sv: 'Total förlust av uppkoppling (LTE/GPS), eCall och funktionen Mobil som nyckel (PAK).',
     },
     diy: {
       en: 'Soft Reset: Hold front defroster button for 20 seconds.\nHard Reset: Disconnect TCAM 12V backup battery under rear roof trim.',
-      sv: 'Mjuk återställning: Håll främre defrosterknappen intryckt i 20 sekunder.\nHård återställning: Koppla bort TCAM 12V-backuphissbatteriet under den bakre takklädseln.',
+      sv: 'Mjuk återställning: Håll defrosterknappen fram intryckt i 20 sekunder.\nHård återställning: Koppla tillfälligt ur TCAM-modulens 12V-backupbatteri (BUB) som sitter under innertaket i bilens bakkant.',
     },
     partNumbers: [
       {
-        label: { en: 'TCAM Backup Battery (BUB)', sv: 'TCAM backupbatteri (BUB)' },
+        label: { en: 'TCAM Backup Battery (BUB)', sv: 'TCAM-backupbatteri (BUB)' },
         number: '32319770',
         note: {
           en: 'Rechargeable backup battery located under the rear headliner.',
-          sv: 'Laddningsbart reservbatteri placerat under det bakre innertaket.',
+          sv: 'Laddningsbart reservbatteri placerat under innertaket i bakkant.',
         },
       },
     ],
@@ -74,16 +74,16 @@ const issueData: IssueItem[] = [
     severity: 'critical',
     issue: {
       en: 'Rearview Camera Display Glitch',
-      sv: 'Backkamera skärmfel',
+      sv: 'Skärmfel för backkameran',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23', 'MY24', 'MY25'],
     symptoms: {
       en: 'Rearview backup camera image fails to render or remains blank when shifting into reverse.',
-      sv: 'Backkamerabilden visas inte eller förblir svart när backväxeln läggs i.',
+      sv: 'Backkamerabilden visas inte eller skärmen förblir svart när backväxeln läggs i.',
     },
     diy: {
       en: 'Verify camera lens is clean. If screen is black, perform IHU soft reset (hold Home button below screen for 20 seconds).',
-      sv: 'Kontrollera att kameralinsen är ren. Om skärmen är svart, utför en mjuk återställning av IHU (håll hemknappen intryckt i 20 sekunder).',
+      sv: 'Kontrollera att kameralinsen är ren. Om skärmen är svart, utför en mjuk återställning av infotainmentsystemet (IHU) genom att hålla hemknappen intryckt i 20 sekunder.',
     },
   },
   {
@@ -92,24 +92,24 @@ const issueData: IssueItem[] = [
     severity: 'moderate',
     issue: {
       en: 'Rear Axle "Clicking" (Dual Motor)',
-      sv: 'Bakaxel "klickande" (Dual Motor)',
+      sv: 'Klickande ljud från bakaxeln (Dual Motor)',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     symptoms: {
       en: 'Low-speed clicking/ticking from rear. Often misdiagnosed as CV joints; root cause is often ERAD internal wear.',
-      sv: 'Klickande/tickande ljud från bakaxeln vid låga hastigheter. Feldiagnostiseras ofta som drivknutar; den bakomliggande orsaken är ofta internt slitage i ERAD.',
+      sv: 'Klickande eller tickande ljud från bakaxeln vid låga hastigheter. Feldiagnostiseras ofta som slitna drivknutar, men orsaken är ofta internt slitage i den bakre elmotorn (ERAD).',
     },
     diy: {
       en: 'Checks: Verify axle bolt torque. Note: Axle nut is single-use (45 Nm + 90 degrees).',
-      sv: 'Kontroll: Verifiera åtdragningsmoment för axelbult. Obs: Axelmutter är av engångstyp (45 Nm + 90 grader).',
+      sv: 'Kontroll: Kontrollera åtdragningsmomentet för drivaxelbulten. Obs: Axelskrubben/muttern är av engångstyp och ska bytas (45 Nm + 90°).',
     },
     partNumbers: [
       {
-        label: { en: 'Axle Bolt with Rubber Washer', sv: 'Axelbult med gummibricka' },
+        label: { en: 'Axle Bolt with Rubber Washer', sv: 'Drivaxelbult med gummibricka' },
         number: '30670602',
         note: {
           en: 'Torque-to-yield stretch bolt. Must be replaced whenever removed (single-use).',
-          sv: 'Sträckbult för engångsbruk. Måste bytas ut varje gång den lossas.',
+          sv: 'Sträckbult för engångsbruk. Måste alltid bytas ut mot en ny om den lossas.',
         },
       },
     ],
@@ -120,24 +120,24 @@ const issueData: IssueItem[] = [
     severity: 'moderate',
     issue: {
       en: 'Front Suspension Knocking',
-      sv: 'Knackande framhjulsupphängning',
+      sv: 'Knackande ljud från framvagnen',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     symptoms: {
       en: 'Popping/grinding during low-speed steering over uneven surfaces. Premature strut top bearing wear.',
-      sv: 'Knackande/knarrande ljud vid styrning i låg fart över ojämna underlag. Förtida slitage på övre fjäderbenslager.',
+      sv: 'Kluckande, knackande eller knarrande ljud från framvagnen vid styrning i låg fart över ojämna underlag. Beror på förtida slitage i de övre fjäderbenslagren.',
     },
     diy: {
       en: 'Repair: Replace strut top mounts in pairs. Apply final torque (81 Nm) only when suspension is fully loaded on the ground.',
-      sv: 'Reparation: Byt fjäderbensfästen parvis. Applicera slutmoment (81 Nm) endast när upphängningen är helt belastad på marken.',
+      sv: 'Reparation: Byt fjäderbenslagringar/stödlager parvis. Dra slutmomentet (81 Nm) först när bilen står på hjulen och hjulupphängningen är helt belastad.',
     },
     partNumbers: [
       {
-        label: { en: 'Strut Support Mount/Bearing', sv: 'Fjäderbensfäste/Lager' },
+        label: { en: 'Strut Support Mount/Bearing', sv: 'Övre fjäderbenslagring (stödlager)' },
         number: '32395175',
         note: {
           en: 'Front upper suspension bearing and mount assembly. Recommended to replace in pairs.',
-          sv: 'Främre övre fjäderbenslager och fäste. Rekommenderas att byta parvis.',
+          sv: 'Främre övre stödlager och fjäderbenslagring. Rekommenderas att alltid bytas parvis.',
         },
       },
     ],
@@ -148,16 +148,16 @@ const issueData: IssueItem[] = [
     severity: 'moderate',
     issue: {
       en: 'AWD Propeller Shaft Vibration',
-      sv: 'AWD Kardanaxel vibration',
+      sv: 'Vibrationer från kardanaxel (AWD)',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     symptoms: {
       en: 'Vibration/shudder felt through the cabin or steering wheel during moderate acceleration between 50 and 70 km/h.',
-      sv: 'Vibrationer/skakningar som känns i kupén eller ratten vid måttlig acceleration mellan 50 och 70 km/h.',
+      sv: 'Vibrationer eller skakningar som känns i kupén eller ratten vid måttlig acceleration, oftast mellan 50 och 70 km/h.',
     },
     diy: {
       en: 'Diagnostic check: Inspect motor mounts and driveshaft alignment for play.',
-      sv: 'Diagnostisk kontroll: Inspektera motorfästen och drivaxelns inriktning för spel.',
+      sv: 'Felsökning: Kontrollera motorfästen/bussningar samt kardanaxelns inriktning och eventuellt glapp.',
     },
   },
   {
@@ -166,16 +166,16 @@ const issueData: IssueItem[] = [
     severity: 'critical',
     issue: {
       en: '12V Auxiliary Battery Drain',
-      sv: '12V-hjälpbatteri urladdning',
+      sv: 'Urladdning av 12V-hjälpbatteriet',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     symptoms: {
       en: 'Total vehicle immobilization. Contactor fails to close regardless of high-voltage pack state of charge.',
-      sv: 'Total fordonstillstånd. Kontaktorn stängs inte oavsett högspänningsbatteriets laddningstillstånd.',
+      sv: 'Bilen är helt stendöd och går inte att starta. Högspänningskontaktorn slår inte till, oavsett högspänningsbatteriets laddningsnivå.',
     },
     diy: {
       en: 'Preventative: Replace 12V lead-acid battery every 36 months to prevent sudden failures.',
-      sv: 'Förebyggande: Byt ut 12V blybatteriet var 36:e månad för att förhindra plötsliga fel.',
+      sv: 'Förebyggande åtgärd: Byt ut 12V-batteriet (AGM) i förebyggande syfte var 36:e månad för att slippa plötsliga stopp.',
     },
     partNumbers: [
       {
@@ -183,7 +183,7 @@ const issueData: IssueItem[] = [
         number: '31652494',
         note: {
           en: 'OEM H5 AGM battery. Can be replaced with premium aftermarket H5 AGM battery equivalents.',
-          sv: 'Original H5 AGM-batteri. Kan ersättas med likvärdiga eftermarknads H5 AGM-batterier.',
+          sv: 'Original H5 AGM-batteri. Kan ersättas med valfritt eftermarknadsbatteri av typen H5/Group 47 AGM.',
         },
       },
     ],
@@ -194,16 +194,16 @@ const issueData: IssueItem[] = [
     severity: 'critical',
     issue: {
       en: 'HVCH (High Voltage Coolant Heater) Failure',
-      sv: 'HVCH (högspänningsvärmare) haveri',
+      sv: 'Haveri i högspänningsvärmaren (HVCH)',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     symptoms: {
       en: 'Loss of cabin heat, "Parking Climate Temporarily Unavailable" error. Blown 15A inverter fuse.',
-      sv: 'Förlust av kupévärme, felmeddelande "Parkeringsklimat tillfälligt otillgängligt". Säkring för växelriktare (15A) har gått.',
+      sv: 'Kupévärmen slutar helt att fungera, felmeddelandet "Parkeringsklimat tillfälligt otillgängligt" visas och 15A-säkringen till värmaren har ofta gått.',
     },
     diy: {
       en: 'Not recommended: High-voltage (400V) system hazard. Seek professional service.',
-      sv: 'Rekommenderas ej: Fara relaterad till högspänningssystemet (400V). Sök professionell hjälp.',
+      sv: 'Gör ej själv: Högspänningssystem (400V) med livsfara. Låt en auktoriserad verkstad utföra bytet.',
     },
     partNumbers: [
       {
@@ -211,7 +211,7 @@ const issueData: IssueItem[] = [
         number: '32275606',
         note: {
           en: 'Updated heater unit revision. Sourced to fix failure-prone initial 2021 parts.',
-          sv: 'Uppdaterad värmarenhet. Ersätter de felbenägna ursprungliga delarna från 2021.',
+          sv: 'Uppdaterad version av värmarenheten. Ersätter den felbenägna första generationen från 2021.',
         },
       },
     ],
@@ -222,16 +222,16 @@ const issueData: IssueItem[] = [
     severity: 'critical',
     issue: {
       en: 'Power Inverter Assembly Failure',
-      sv: 'Växelriktare (Inverter) modulhaveri',
+      sv: 'Haveri i växelriktaren (inverter)',
     },
     affectedYearsList: ['MY21'],
     symptoms: {
       en: 'Sudden loss of propulsion while driving, "Propulsion system urgent service required" dashboard warning, or failure to start.',
-      sv: 'Plötslig förlust av drivkraft under körning, varningsmeddelande "Drivsystem brådskande service krävs", eller startsvårigheter.',
+      sv: 'Plötslig förlust av drivkraft under körning, varningsmeddelandet "Drivsystem brådskande service krävs" i förardisplayen, eller att bilen inte går att starta.',
     },
     diy: {
       en: 'No DIY action: High-voltage system hazard. Pull over safely and arrange towing to a service point.',
-      sv: 'Ingen DIY-åtgärd: Fara relaterad till högspänningssystemet. Kör åt sidan på ett säkert sätt och ordna bärgning till verkstad.',
+      sv: 'Gör ej själv: Högspänningssystem med livsfara. Kör åt sidan på ett säkert sätt, stäng av bilen och kontakta bärgare till en Polestar-verkstad.',
     },
   },
   {
@@ -240,24 +240,24 @@ const issueData: IssueItem[] = [
     severity: 'minor',
     issue: {
       en: 'HVAC Blend Door Actuator Failure',
-      sv: 'HVAC Spjällmotor ställdon haveri',
+      sv: 'Haveri i spjällmotor till klimatanläggningen (HVAC)',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     symptoms: {
       en: 'Extreme temperature delta across zones (e.g., hot driver, cold passenger), rapid dashboard clicking.',
-      sv: 'Extrema temperaturskillnader mellan zoner (t.ex. varmt för föraren, kallt för passageraren), snabbt klickande ljud från instrumentpanelen.',
+      sv: 'Extrema temperaturskillnader mellan klimatzoner (t.ex. brännande hett på förarsidan men iskallt på passagerarsidan) samt ett snabbt klickande ljud bakom instrumentpanelen.',
     },
     diy: {
       en: 'Repair: Replace stripped damper motors (shared Volvo XC40 part). Requires VIDA for end-stop recalibration.',
-      sv: 'Reparation: Byt ut utslitna spjällmotorer (delad Volvo XC40-del). Kräver VIDA för kalibrering av ändlägen.',
+      sv: 'Reparation: Byt ut den felande spjällmotorn (samma komponent som i Volvo XC40). Efter byte krävs VIDA för att kalibrera in spjällets ändlägen.',
     },
     partNumbers: [
       {
-        label: { en: 'HVAC Damper/Actuator Motor', sv: 'Ställdon/Spjällmotor för HVAC' },
+        label: { en: 'HVAC Damper/Actuator Motor', sv: 'Spjällmotor/Ställdon till HVAC' },
         number: '32226715',
         note: {
           en: 'Electric actuator motor controlling HVAC flaps (shared with Volvo XC40).',
-          sv: 'Elektrisk ställmotor för att reglera ventilationsspjäll (delas med Volvo XC40).',
+          sv: 'Elektrisk ställmotor som reglerar ventilationsspjällen (samma som i Volvo XC40).',
         },
       },
     ],
@@ -268,32 +268,32 @@ const issueData: IssueItem[] = [
     severity: 'moderate',
     issue: {
       en: 'Frozen Rear Door Latches',
-      sv: 'Frysta bakdörrslås',
+      sv: 'Frysta dörrlås bak',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23'],
     symptoms: {
       en: 'Rear exterior/interior handles freeze shut or fail to latch below -10 °C. Factory grease inadequacy.',
-      sv: 'Bakre yttre/inre handtag fryser fast eller låser inte vid temperaturer under -10 °C. Otillräckligt fabriksfett.',
+      sv: 'Inre eller yttre dörrhandtag bak fryser fast, eller så går dörren inte i baklås (går inte att stänga) när temperaturen sjunker under -10 °C. Beror på felaktigt/otillräckligt fett från fabrik.',
     },
     diy: {
       en: 'Mitigation: Apply water-displacing silicone lubricant inside latch assembly (temporary fix).',
-      sv: 'Åtgärd: Applicera fuktavvisande silikonsmörjmedel inuti låsmekanismen (tillfällig lösning).',
+      sv: 'Tillfällig åtgärd: Spruta fuktavvisande silikonspray eller låsspray direkt in i låskistan (endast tillfällig lösning).',
     },
     partNumbers: [
       {
-        label: { en: 'Rear Left Door Latch Assembly', sv: 'Bakdörrslås Vänster' },
+        label: { en: 'Rear Left Door Latch Assembly', sv: 'Låskista bak vänster' },
         number: '32131412',
         note: {
           en: 'Updated latch with improved moisture seals and low-temperature grease.',
-          sv: 'Uppdaterat lås med förbättrad fukt-tätning och lågtemperaturfett.',
+          sv: 'Uppdaterad låskista med förbättrade fukt- och dammtätningar samt speciellt lågtemperaturfett.',
         },
       },
       {
-        label: { en: 'Rear Right Door Latch Assembly', sv: 'Bakdörrslås Höger' },
+        label: { en: 'Rear Right Door Latch Assembly', sv: 'Låskista bak höger' },
         number: '32131413',
         note: {
           en: 'Updated latch with improved moisture seals and low-temperature grease.',
-          sv: 'Uppdaterat lås med förbättrad fukt-tätning och lågtemperaturfett.',
+          sv: 'Uppdaterad låskista med förbättrade fukt- och dammtätningar samt speciellt lågtemperaturfett.',
         },
       },
     ],
@@ -304,16 +304,16 @@ const issueData: IssueItem[] = [
     severity: 'minor',
     issue: {
       en: 'Headlamp & Taillight Condensation',
-      sv: 'Strålkastare & Bakljus kondens',
+      sv: 'Kondens i strålkastare och bakljus',
     },
     affectedYearsList: ['All'],
     symptoms: {
       en: 'Visible moisture build-up, misting, or water droplets inside the front headlamps or rear light bar.',
-      sv: 'Synlig fuktansamling, imma eller vattendroppar inuti främre strålkastare eller bakre ljusramp.',
+      sv: 'Synlig fukt, imma eller vattendroppar på insidan av strålkastarna fram eller den bakre ljusrampen.',
     },
     diy: {
       en: 'Inspect and clean ventilation caps on back of assemblies. Temporary misting is normal and should clear on drive.',
-      sv: 'Inspektera och rengör ventilationslock på baksidan av enheterna. Tillfällig imma är normalt och bör försvinna under körning.',
+      sv: 'Kontrollera och rengör ventilationsventilerna på baksidan av lyktornas hus. Tillfällig lätt imma är normalt och bör försvinna av sig självt under körning med lysena tända.',
     },
   },
   {
@@ -322,32 +322,32 @@ const issueData: IssueItem[] = [
     severity: 'moderate',
     issue: {
       en: 'Power Tailgate Spindle Drive Failure',
-      sv: 'Elektrisk baklucka spindelmotor (strut) haveri',
+      sv: 'Havererade elektriska dämpare till bakluckan',
     },
     affectedYearsList: ['MY21', 'MY22', 'MY23', 'MY24'],
     symptoms: {
       en: 'Tailgate makes a loud grinding, squeaking, or groaning noise during operation. It may open halfway and reverse, or fail to open/close under power.',
-      sv: 'Bakluckan låter mycket (gnisslande, malande eller gnällande) under drift. Den kan öppnas halvvägs och sedan vända, eller helt sluta fungera elektriskt.',
+      sv: 'Bakluckan ger ifrån sig ett högt malande, gnisslande eller stönande ljud när den öppnas/stängs. Luckan kan stanna och vända halvvägs, eller vägra att manövreras elektriskt överhuvudtaget.',
     },
     diy: {
       en: '1. Calibration: Manually open tailgate fully, press and hold the close button for 5 seconds until it beeps twice to reset.\n2. Inspection: Pull back the rubber boot at the top of the struts and check for pinched or broken wires (solder any breaks).\n3. Squeaks: Apply silicone-based lubricant to rubber weather seals.\n4. Replacement: If internal motor/gears have failed (grinding/stalling persists), replace both left and right motorized spindle struts as a pair (Left: 31690370, Right: 31690371).',
-      sv: '1. Kalibrering: Öppna bakluckan helt manuellt, tryck och håll stängningsknappen i 5 sekunder tills det piper två gånger för att återställa.\n2. Inspektera: Dra tillbaka gummibälgen vid toppen av dämparna och leta efter klämda eller trasiga kablar (löd eventuella brott).\n3. Gnissel: Applicera silikonbaserat smörjmedel på tätningslisterna.\n4. Byte: Om den interna motorn/kuggarna har gått sönder (malande ljud/stopp kvarstår), byt ut båda elektriska dämparna som ett par (Vänster: 31690370, Höger: 31690371).',
+      sv: '1. Kalibrering: Öppna bakluckan helt för hand, tryck och håll stängningsknappen intryckt i 5 sekunder tills du hör två pip för att återställa.\n2. Kontroll: Dra tillbaka gummibälgen längst upp på dämparna och leta efter klämda eller trasiga kablar (löd ihop eventuella kabelbrott).\n3. Gnissel: Applicera silikonfett eller gummivårdsspray på bakluckans tätningslister.\n4. Byte: Om den inbyggda motorn eller kuggarna i dämparen har rasat (malande ljud/stopp kvarstår), måste båda de elektriska dämparna bytas ut parvis (Vänster: 31690370, Höger: 31690371).',
     },
     partNumbers: [
       {
-        label: { en: 'Power Spindle Drive Strut (Left)', sv: 'Elektrisk spindeldämpare (Vänster)' },
+        label: { en: 'Power Spindle Drive Strut (Left)', sv: 'Elektrisk dämpare/spindel (Vänster)' },
         number: '31690370',
         note: {
           en: 'Driver side motorized lift strut. Replaced as a matched pair.',
-          sv: 'Motoriserad dämpare för förarsidan. Bör bytas parvis.',
+          sv: 'Motoriserad dämpare för vänster sida. Bör bytas parvis.',
         },
       },
       {
-        label: { en: 'Power Spindle Drive Strut (Right)', sv: 'Elektrisk spindeldämpare (Höger)' },
+        label: { en: 'Power Spindle Drive Strut (Right)', sv: 'Elektrisk dämpare/spindel (Höger)' },
         number: '31690371',
         note: {
           en: 'Passenger side motorized lift strut. Replaced as a matched pair.',
-          sv: 'Motoriserad dämpare för passagerarsidan. Bör bytas parvis.',
+          sv: 'Motoriserad dämpare för höger sida. Bör bytas parvis.',
         },
       },
     ],

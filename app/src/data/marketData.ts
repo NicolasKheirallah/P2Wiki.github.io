@@ -201,19 +201,19 @@ export const sectionLabelsEn: Record<string, string> = {
 };
 
 export const sectionLabelsSv: Record<string, string> = {
-  keys: 'Nycklar & \u00C5tkomst',
+  keys: 'Nycklar & tillträde',
   infotainment: 'Infotainment',
-  wheels: 'Hjul & D\u00E4ck',
+  wheels: 'Hjul & däck',
   performance: 'Prestanda',
-  seats: 'S\u00E4ten & Interi\u00F6r',
+  seats: 'Säten & interiör',
   lights: 'Belysning',
-  safety: 'S\u00E4kerhet & Assistans',
+  safety: 'Säkerhet & assistans',
   comfort: 'Komfort',
   charging: 'Laddning',
   packs: 'Tillvalspaket',
-  paint: 'Lackf\u00E4rger',
-  knownIssues: 'K\u00E4nda Fel',
-  printing: '3D-printing',
-  service: 'Service & Underhåll',
-  chargingPerf: 'Laddning & Termisk',
+  paint: 'Lackfärger',
+  knownIssues: 'Kända problem',
+  printing: '3D-utskrifter',
+  service: 'Service & underhåll',
+  chargingPerf: 'Laddning & temperaturhantering',
 };

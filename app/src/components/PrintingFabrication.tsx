@@ -27,11 +27,11 @@ const printableComponents: PrintableComponent[] = [
     id: 'cupholder-armrest',
     name: {
       en: 'Cupholder & Armrest Extension',
-      sv: 'Mugghållare & Armstödsförlängning',
+      sv: 'Mugghållare & armstödsförlängning',
     },
     description: {
       en: 'Double cupholder supporting 330 ml cans and an elevated armrest extension.',
-      sv: 'Dubbel mugghållare med stöd för 330 ml burkar samt en upphöjd armstödsförlängning.',
+      sv: 'Dubbel mugghållare med stöd för 330 ml-burkar samt en upphöjd armstödsförlängning.',
     },
     material: 'ASA / PETG',
     materialsList: ['ASA', 'PETG'],
@@ -45,18 +45,18 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 4,
     orientation: {
       en: 'Print face down to avoid supports on the main armrest segment.',
-      sv: 'Skriv ut uppochnervänd för att undvika stödmaterial på armstödsdelen.',
+      sv: 'Skriv ut med ovansidan nedåt mot byggplattan för att undvika stödmaterial (supports) på armstödsdelen.',
     },
   },
   {
     id: 'magsafe-mount',
     name: {
       en: 'MagSafe Phone Mount',
-      sv: 'MagSafe Telefonfäste',
+      sv: 'MagSafe-mobilfäste',
     },
     description: {
       en: 'Bracket fitting around the center screen with interchangeable phone holders.',
-      sv: 'Konsol som fästs runt mittskärmen med utbytbara telefonhållare.',
+      sv: 'Konsol som fästs runt mittskärmen med utbytbara mobilhållare.',
     },
     material: 'ASA / PC',
     materialsList: ['ASA', 'PC'],
@@ -70,18 +70,18 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 5,
     orientation: {
       en: 'Print on its side to maximize layer line strength around the screen clip area.',
-      sv: 'Skriv ut på sidan för att maximera lagerlinjestyrkan runt skärmklämman.',
+      sv: 'Skriv ut liggande på sidan för åstadkomma maximal lagerhållfasthet runt skärmklämman.',
     },
   },
   {
     id: 'usb-shelf-tidy',
     name: {
       en: 'USB Shelf Tidy',
-      sv: 'USB-fack Organiserare',
+      sv: 'USB-facksorganiserare',
     },
     description: {
       en: 'Shelf insert for the USB port area to reclaim space, featuring cable pass-through notches.',
-      sv: 'Hyllinsats för USB-portområdet för att spara utrymme, med spår för kabelgenomföring.',
+      sv: 'Hyllinsats för USB-uttaget för att optimera förvaringsutrymmet, med urspårningar för kabelgenomföring.',
     },
     material: 'ASA / PETG',
     materialsList: ['ASA', 'PETG'],
@@ -95,18 +95,18 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 3,
     orientation: {
       en: 'Print flat on the bed. No support material required.',
-      sv: 'Skriv ut platt på byggplattan. Inget stödmaterial krävs.',
+      sv: 'Skriv ut liggande platt mot byggplattan. Inget stödmaterial behövs.',
     },
   },
   {
     id: 'charge-port-cover',
     name: {
       en: 'Charge Port Snow Cover',
-      sv: 'Laddlucka Snöskydd',
+      sv: 'Snöskydd för laddinlopp',
     },
     description: {
       en: 'Protective cover fitting precisely over the charging area to prevent snow and debris accumulation.',
-      sv: 'Skyddskåpa som passar exakt över laddningsområdet för att förhindra snö och skräpansamling.',
+      sv: 'Skyddskåpa med exakt passform över ladduttaget för att förhindra ansamling av snö, is och smuts.',
     },
     material: 'ASA',
     materialsList: ['ASA'],
@@ -120,7 +120,7 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 4,
     orientation: {
       en: 'Print with the weather seal face flat against the build plate.',
-      sv: 'Skriv ut med vädertätningen platt mot byggplattan.',
+      sv: 'Skriv ut med tätningssidan platt mot byggplattan.',
     },
   },
   {
@@ -131,7 +131,7 @@ const printableComponents: PrintableComponent[] = [
     },
     description: {
       en: 'Aftermarket speaker adapters compatible with the Polestar 2 and Volvo XC40.',
-      sv: 'Högtalaradaptrar för eftermarknadshögtalare kompatibla med Polestar 2 och Volvo XC40.',
+      sv: 'Eftermarknads-högtalaradaptrar kompatibla med Polestar 2 och Volvo XC40.',
     },
     material: 'PC / ASA',
     materialsList: ['PC', 'ASA'],
@@ -145,18 +145,18 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 6,
     orientation: {
       en: 'Print flat. Enable brim if printing with PC to prevent corner warping.',
-      sv: 'Skriv ut platt. Aktivera brim vid utskrift i PC för att förhindra kantresning.',
+      sv: 'Skriv ut platt. Aktivera kantstöd (brim) vid utskrift i PC för att förhindra kantresning (warping).',
     },
   },
   {
     id: 'key-fob-shell',
     name: {
       en: 'Key Fob Replacement Shell',
-      sv: 'Nyckelfodral Ersättningsskal',
+      sv: 'Ersättningsskal för nyckel',
     },
     description: {
       en: 'Custom lightweight and textured replacement shells for the bulky OEM key fob, featuring exact fit tolerances.',
-      sv: 'Anpassade, lätta och strukturerade ersättningsskal för den klumpiga originalnyckeln, med exakta passningstoleranser.',
+      sv: 'Eget, lättviktigt och texturerat ersättningsskal med exakt passform för den klumpiga originalnyckeln.',
     },
     material: 'PETG / ASA',
     materialsList: ['PETG', 'ASA'],
@@ -170,18 +170,18 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 3,
     orientation: {
       en: 'Print flat on the main outer face; use a textured bed sheet for a high-end matte OEM-like finish.',
-      sv: 'Skriv ut platt på den yttre huvudyta; använd en texturerad byggplatta för en matt, OEM-liknande yta.',
+      sv: 'Skriv ut platt med den yttre huvudytan mot byggplattan. Använd en texturerad byggplatta för att få en matt yta som efterliknar originalutförandet.',
     },
   },
   {
     id: 'trunk-cargo-hooks',
     name: {
       en: 'Trunk Cargo Bag Hooks',
-      sv: 'Bagagekrokar för Kassar',
+      sv: 'Kassekrokar till bagageutrymme',
     },
     description: {
       en: 'Heavy-duty clip-on bag hanger hooks designed to slide into the trunk side liner slots to secure bags.',
-      sv: 'Slitstarka kassehängare utformade för att skjutas in i bagageutrymmets sidospår för att hålla kassar på plats.',
+      sv: 'Kraftiga hängkrokar som skjuts in i spåren på bagageutrymmets sidopaneler för att hålla kassar på plats.',
     },
     material: 'ASA / PC',
     materialsList: ['ASA', 'PC'],
@@ -195,18 +195,18 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 5,
     orientation: {
       en: 'Print flat on its side so the layer lines run parallel to the hook curve for maximum load capacity.',
-      sv: 'Skriv ut platt på sidan så att lagerlinjerna löper parallellt med krokens kurva för maximal belastningstolerans.',
+      sv: 'Skriv ut liggande på sidan så att lagerlinjerna löper parallellt med krokens krökning för maximal draghållfasthet.',
     },
   },
   {
     id: 'console-storage-divider',
     name: {
       en: 'Center Console Storage Divider',
-      sv: 'Mittkonsol Fackavdelare',
+      sv: 'Fackavdelare för mittkonsol',
     },
     description: {
       en: 'Drop-in slot divider insert to partition the deep center armrest compartment for cards, sunglasses, and keys.',
-      sv: 'Fackavdelare som släpps ned i mittkonsolen för att dela upp det djupa armstödsfacket för kort, solglasögon och nycklar.',
+      sv: 'Mellanvägg som sticks ned i mittkonsolen för att dela upp det djupa armstödsfacket för kort, solglasögon och nycklar.',
     },
     material: 'ASA / PETG',
     materialsList: ['ASA', 'PETG'],
@@ -220,18 +220,18 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 3,
     orientation: {
       en: 'Print flat on its bottom face. No support material required.',
-      sv: 'Skriv ut platt på dess bottenyta. Inget stödmaterial krävs.',
+      sv: 'Skriv ut platt med bottenytan nedåt. Inget stödmaterial behövs.',
     },
   },
   {
     id: 'parcel-shelf-clips',
     name: {
       en: 'Parcel Shelf String Clips',
-      sv: 'Hatthylleklämmor för Snöre',
+      sv: 'Fästklämmor till hatthyllans snören',
     },
     description: {
       en: 'High-tolerance replacements for the fragile plastic string clips that secure the rear parcel cargo shelf.',
-      sv: 'Ersättningsklämmor med hög tolerans för hatthyllans ömtåliga snörklämmor.',
+      sv: 'Ersättningsklämmor med hög precision för hatthyllans ömtåliga originalklämmor i plast.',
     },
     material: 'PETG / ASA',
     materialsList: ['PETG', 'ASA'],
@@ -245,7 +245,7 @@ const printableComponents: PrintableComponent[] = [
     perimeters: 4,
     orientation: {
       en: 'Print vertically with the slot facing upwards. Enable a small brim to stabilize the print.',
-      sv: 'Skriv ut vertikalt med öppningen uppåt. Aktivera en liten brim för att stabilisera utskriften.',
+      sv: 'Skriv ut stående (vertikalt) med spåret uppåt. Aktivera en liten brim (kantstöd) för att stabilisera utskriften.',
     },
   },
 ];
@@ -254,11 +254,11 @@ const reverseEngineeringTips = [
   {
     title: {
       en: 'Dimensional Extraction',
-      sv: 'Dimensionell Extraktion',
+      sv: 'Måttbestämning',
     },
     description: {
       en: 'Utilize photogrammetry or reference scaling from module photographs to build initial CAD wireframes for custom trim.',
-      sv: 'Använd fotogrammetri eller referensskalning från modulbilder för att bygga inledande CAD-trådmodeller för anpassade paneler.',
+      sv: 'Använd fotogrammetri eller skalning utifrån referensbilder för att bygga upp grundläggande CAD-trådmodeller för anpassade interiörpaneler.',
     },
   },
   {
@@ -268,7 +268,7 @@ const reverseEngineeringTips = [
     },
     description: {
       en: 'Apply standardized dimensions for replicating factory mounting clips to secure custom components without permanent modifications.',
-      sv: 'Använd standardiserade dimensioner för att replikera fabrikens monteringsklämmor så att anpassade komponenter kan fästas utan permanenta ändringar.',
+      sv: 'Använd standardiserade mått för att replikera originaldelarnas monteringsklämmor, så att egentillverkade delar kan monteras utan att göra permanenta ingrepp på bilen.',
     },
   },
   {
@@ -278,7 +278,7 @@ const reverseEngineeringTips = [
     },
     description: {
       en: 'Apply scaling compensation factors within the slicer or CAD software to account for material shrinkage when printing functional engineering filaments like PC or ASA.',
-      sv: 'Applicera skalningskompensation i slicern eller CAD-programvaran för att ta hänsyn till materialkrympning vid utskrift av funktionella trådar som PC eller ASA.',
+      sv: 'Kompensera för materialkrympning i slicern eller CAD-programvaran vid utskrift i funktionella konstruktionsplaster (tekniska filament) som PC eller ASA.',
     },
   },
 ];
@@ -288,31 +288,31 @@ const materialGuidelines = [
     name: 'Acrylonitrile Styrene Acrylate (ASA)',
     description: {
       en: 'Recommended for interior trim and exterior components. Provides high UV resistance, thermal stability, and a matte finish suitable for matching OEM aesthetics.',
-      sv: 'Rekommenderas för kupépaneler och exteriöra delar. Ger hög UV-beständighet, termisk stabilitet och en matt yta lämplig för att matcha OEM-estetik.',
+      sv: 'Rekommenderas för interiör- och exteriördetaljer. Ger utmärkt UV- och väderbeständighet, hög formstabilitet vid värme samt en matt yta som matchar bilens originalplast (OEM) perfekt.',
     },
   },
   {
     name: 'Polycarbonate (PC)',
     description: {
       en: 'Required for structural components, parts exposed to high mechanical stress, or extreme temperature environments.',
-      sv: 'Krävs för strukturella komponenter, delar som utsätts för hög mekanisk belastning eller extrema temperaturmiljöer.',
+      sv: 'Krävs för strukturella komponenter samt delar som utsätts för hög mekanisk belastning eller extrema temperaturer.',
     },
   },
   {
     name: 'Thermoplastic Polyurethane (TPU)',
     description: {
       en: 'Optimal for cup holder inserts, gaskets, or vibration-dampening mounts.',
-      sv: 'Optimalt för mugghållarinsatser, packningar eller vibrationsdämpande fästen.',
+      sv: 'Idealiskt för mugghållarinsatser, packningar eller vibrationsdämpande fästen.',
     },
   },
 ];
 
 const filamentProperties = [
-  { name: 'ASA', tg: '100°C', uv: { en: 'Excellent', sv: 'Utmärkt' }, difficulty: { en: 'Hard', sv: 'Svår' }, useCase: { en: 'Cabin & Exterior Panels', sv: 'Kupé- & Exteriördelar' } },
-  { name: 'PC', tg: '145°C', uv: { en: 'Good', sv: 'Bra' }, difficulty: { en: 'Expert', sv: 'Avancerad' }, useCase: { en: 'Structural & Speaker Adapters', sv: 'Mekaniskt & Högtalaradaptrar' } },
-  { name: 'PETG', tg: '75°C', uv: { en: 'Good', sv: 'Bra' }, difficulty: { en: 'Moderate', sv: 'Måttlig' }, useCase: { en: 'General Cabin Accessories', sv: 'Allmänna kupétillbehör' } },
-  { name: 'TPU', tg: 'Flexible', uv: { en: 'Fair', sv: 'Medelmåttig' }, difficulty: { en: 'Moderate', sv: 'Måttlig' }, useCase: { en: 'Gaskets & Cup Holder Inserts', sv: 'Packningar & Mugghållarinsatser' } },
-  { name: 'PLA', tg: '60°C', uv: { en: 'Poor', sv: 'Dålig' }, difficulty: { en: 'Easy', sv: 'Enkel' }, useCase: { en: 'Fit Testing & Prototypes Only', sv: 'Endast testpassning & prototyper' } },
+  { name: 'ASA', tg: '100°C', uv: { en: 'Excellent', sv: 'Utmärkt' }, difficulty: { en: 'Hard', sv: 'Svår' }, useCase: { en: 'Cabin & Exterior Panels', sv: 'Kupé- & exteriörpaneler' } },
+  { name: 'PC', tg: '145°C', uv: { en: 'Good', sv: 'Bra' }, difficulty: { en: 'Expert', sv: 'Avancerad' }, useCase: { en: 'Structural & Speaker Adapters', sv: 'Strukturella delar & högtalaradaptrar' } },
+  { name: 'PETG', tg: '75°C', uv: { en: 'Good', sv: 'Bra' }, difficulty: { en: 'Moderate', sv: 'Måttlig' }, useCase: { en: 'General Cabin Accessories', sv: 'Allmänna interiörtillbehör' } },
+  { name: 'TPU', tg: 'Flexible', uv: { en: 'Fair', sv: 'Medelmåttig' }, difficulty: { en: 'Moderate', sv: 'Måttlig' }, useCase: { en: 'Gaskets & Cup Holder Inserts', sv: 'Packningar & mugghållarinsatser' } },
+  { name: 'PLA', tg: '60°C', uv: { en: 'Poor', sv: 'Dålig' }, difficulty: { en: 'Easy', sv: 'Enkel' }, useCase: { en: 'Fit Testing & Prototypes Only', sv: 'Endast för testpassning & prototyper' } },
 ];
 
 export default function PrintingFabrication() {
@@ -383,42 +383,42 @@ export default function PrintingFabrication() {
     if (partLoc === 'flexible') {
       filament = 'TPU (Thermoplastic Polyurethane)';
       description = isSv
-        ? 'TPU är idealiskt för flexibla eller vibrationsdämpande delar (t.ex. mugghållare eller packningar). Det kan enkelt skrivas ut på skrivare utan inbyggnad eftersom det inte krymper mycket.'
+        ? 'TPU är idealiskt för flexibla eller vibrationsdämpande delar (t.ex. mugghållarinsatser eller packningar). Det kan enkelt skrivas ut på skrivare utan inbyggnad eftersom materialet krymper minimalt.'
         : 'TPU is ideal for flexible, vibration-dampening components like cup holders or gaskets. It is easy to print on open-frame printers as it has very low shrinkage.';
     } else if (partLoc === 'exterior') {
       if (enclosure === 'yes' && bedTemp === 'high') {
         filament = 'ASA (Acrylonitrile Styrene Acrylate)';
         description = isSv
-          ? 'ASA är det bästa valet för exteriöra delar. Det har utmärkt UV- och väderbeständighet samt hög temperaturtålighet, men kräver en stängd inbyggnad och hög bäddtemperatur (100°C+) för att förhindra skevhet.'
+          ? 'ASA är det bästa valet för exteriöra delar. Det har utmärkt UV- och väderbeständighet samt hög temperaturtålighet, men kräver inbyggnad (kabin) och hög byggplattetemperatur (100 °C+) för att förhindra kantresning (warping).'
           : 'ASA is the best choice for exterior parts. It features outstanding UV/weather resistance and high thermal limits, but requires a closed enclosure and high bed temperature (100°C+) to prevent warping.';
       } else {
         filament = 'PETG (with UV/Weather Clear Coat)';
         description = isSv
-          ? 'Eftersom du saknar en stängd inbyggnad eller hög bäddtemperatur är PETG det säkraste valet för utomhusbruk. Det tål UV hyfsat, men spraya delen med ett UV-skyddande klarlack för långvarig hållbarhet.'
+          ? 'Eftersom du saknar inbyggnad eller hög byggplattetemperatur är PETG det säkraste valet för exteriördelar. Det har ett hyfsat inbyggt UV-skydd, men vi rekommenderar att du sprayar den färdiga delen med ett UV-skyddande klarlack för längre hållbarhet.'
           : 'Since you lack an enclosure or high bed temp, PETG is the safest choice for exterior parts. It has decent natural UV resistance, but we recommend spraying the finished part with a UV-blocking clear coat for longevity.';
       }
     } else if (partLoc === 'interior') {
       if (enclosure === 'yes' && bedTemp === 'high') {
         filament = 'ASA';
         description = isSv
-          ? 'ASA är det absolut bästa för kupépaneler. Temperaturen inuti kupén i direkt solljus kan nå 70°C, vilket får PLA att smälta/skeva. ASA tål detta och matchar bilens OEM-plast perfekt.'
+          ? 'ASA rekommenderas starkt för kupépaneler. Temperaturen inuti en parkerad bil i direkt solljus kan nå 70 °C, vilket får PLA att mjukna och deformeras. ASA tål denna värme och dess matta yta matchar bilens originalplast (OEM) perfekt.'
           : 'ASA is highly recommended for cabin panels. Temperatures inside a parked cabin in direct sun can exceed 70°C, causing PLA to warp. ASA withstands this heat and matches the matte OEM plastic texture.';
       } else {
         filament = 'PETG';
         description = isSv
-          ? 'Utan en inbyggnad är PETG det bästa valet för kupéinteriör. Det tål temperaturer upp till 75°C vilket räcker för delar som inte sitter i direkt solsken på instrumentbrädan. Undvik helt vanlig PLA i kupén.'
+          ? 'Utan inbyggnad är PETG det bästa valet för interiördelar. Det tål temperaturer upp till 75 °C, vilket är tillräckligt för delar som inte utsätts för direkt solljus på instrumentbrädan. Undvik helt att använda vanlig PLA i kupén.'
           : 'Without an enclosure, PETG is the best choice for cabin interior parts. It withstands up to 75°C, which is sufficient for parts not in direct dashboard sunlight. Avoid standard PLA inside the cabin.';
       }
     } else if (partLoc === 'mechanical') {
       if (enclosure === 'yes' && bedTemp === 'high') {
         filament = 'Polycarbonate (PC)';
         description = isSv
-          ? 'Polykarbonat (PC) ger extrem styrka, mekanisk styvhet och mycket hög temperaturtålighet (110°C+). Perfekt för t.ex. högtalaradaptrar. Kräver hög munstyckstemp (270°C+) och stängd inbyggnad.'
+          ? 'Polykarbonat (PC) ger extrem styrka, mekanisk styvhet och mycket hög temperaturbeständighet (110 °C+). Perfekt för exempelvis högtalaradaptrar. Kräver hög munstyckstemperatur (270 °C+) och uppvärmd/stängd byggkammare.'
           : 'Polycarbonate (PC) provides extreme strength, mechanical stiffness, and very high thermal resistance (110°C+). Ideal for speaker adapters. Requires hot nozzles (270°C+) and a heated chamber.';
       } else {
         filament = 'PETG (Heavy Perimeters)';
         description = isSv
-          ? 'För mekaniska delar utan inbyggnad, skriv ut i PETG med extra väggar (5-6 st) och 40%+ infill. Det ger god seghet och slagtålighet och är betydligt starkare än standard-PLA.'
+          ? 'För mekaniska delar utan inbyggnad rekommenderas utskrift i PETG med extra många väggar (5–6 perimetrar) och minst 40 % infill (fyllnadsgrad). Detta ger god seghet och slagtålighet, vilket är betydligt starkare än PLA.'
           : 'For mechanical parts without an enclosure, print with PETG using extra perimeters (5-6 walls) and 40%+ infill. This provides great impact resistance and is significantly stronger than PLA.';
       }
     }
@@ -429,7 +429,7 @@ export default function PrintingFabrication() {
         <div className="absolute top-2 right-2 w-1.5 h-1.5 border-t border-r border-[var(--ps-gold)]/60" />
         
         <h4 className="text-[12px] uppercase tracking-wider font-semibold text-[var(--ps-gold)] mb-1">
-          {isSv ? 'Rekommenderat Material' : 'Recommended Filament'}
+          {isSv ? 'Rekommenderat filament' : 'Recommended Filament'}
         </h4>
         <p className="text-[14px] font-medium text-[var(--ps-text)] mb-2">
           {filament}
@@ -480,7 +480,7 @@ export default function PrintingFabrication() {
           {/* Question 1: Enclosure */}
           <div className="space-y-2">
             <label className="text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-medium block">
-              1. {isSv ? 'Skrivarkabin / Inbyggnad?' : 'Enclosure / Chamber?'}
+              1. {isSv ? 'Inbyggnad / Kabin?' : 'Enclosure / Chamber?'}
             </label>
             <div className="flex gap-2">
               <button
@@ -491,7 +491,7 @@ export default function PrintingFabrication() {
                     : 'border-[var(--ps-border)] bg-transparent text-[var(--ps-text-secondary)] hover:border-[var(--ps-text-secondary)]'
                 }`}
               >
-                {isSv ? 'Ja (Stängd/Värmd)' : 'Yes (Enclosed/Vented)'}
+                {isSv ? 'Ja (Stängd/uppvärmd)' : 'Yes (Enclosed/Vented)'}
               </button>
               <button
                 onClick={() => setEnclosure('no')}
@@ -509,7 +509,7 @@ export default function PrintingFabrication() {
           {/* Question 2: Bed Temp */}
           <div className="space-y-2">
             <label className="text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-medium block">
-              2. {isSv ? 'Max Byggplattetemp?' : 'Max Bed Temperature?'}
+              2. {isSv ? 'Max temperatur för byggplatta?' : 'Max Bed Temperature?'}
             </label>
             <div className="flex gap-2">
               <button
@@ -538,7 +538,7 @@ export default function PrintingFabrication() {
           {/* Question 3: Part Location */}
           <div className="space-y-2">
             <label className="text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-medium block">
-              3. {isSv ? 'Delens Funktion/Placering?' : 'Part Function/Location?'}
+              3. {isSv ? 'Delens placering/funktion?' : 'Part Function/Location?'}
             </label>
             <select
               value={partLoc || ''}
@@ -549,16 +549,16 @@ export default function PrintingFabrication() {
                 {isSv ? 'Välj alternativ...' : 'Select option...'}
               </option>
               <option value="interior" style={{ backgroundColor: 'var(--ps-bg)' }}>
-                {isSv ? 'Kupéinteriör (Värmetålig)' : 'Cabin Interior (Heat)'}
+                {isSv ? 'Kupéinteriör (Värmebeständighet)' : 'Cabin Interior (Heat)'}
               </option>
               <option value="exterior" style={{ backgroundColor: 'var(--ps-bg)' }}>
-                {isSv ? 'Exteriör (UV-tålig/Väder)' : 'Exterior (UV/Weather)'}
+                {isSv ? 'Exteriör (UV- & väderbeständighet)' : 'Exterior (UV/Weather)'}
               </option>
               <option value="mechanical" style={{ backgroundColor: 'var(--ps-bg)' }}>
-                {isSv ? 'Mekanisk / Styvhet' : 'Mechanical / High Strength'}
+                {isSv ? 'Mekanisk del (Hög hållfasthet)' : 'Mechanical / High Strength'}
               </option>
               <option value="flexible" style={{ backgroundColor: 'var(--ps-bg)' }}>
-                {isSv ? 'Flexibel / Mugghållare / Gummipackning' : 'Flexible / Cup Inserts / Gaskets'}
+                {isSv ? 'Flexibel del (Mugghållare, packningar)' : 'Flexible / Cup Inserts / Gaskets'}
               </option>
             </select>
           </div>
@@ -608,7 +608,7 @@ export default function PrintingFabrication() {
             <div className="flex items-center gap-2">
               <AlertTriangle size={16} className="text-[var(--ps-gold)]" />
               <h4 className="text-[13.5px] font-medium tracking-wide uppercase" style={{ color: 'var(--ps-text)' }}>
-                {isSv ? 'Felsökning: Förhindra kantresning & krympning (ASA/PC)' : 'Troubleshooting Warping & Bed Adhesion (ASA/PC)'}
+                {isSv ? 'Felsökning: Kantresning och vidhäftning (ASA/PC)' : 'Troubleshooting Warping & Bed Adhesion (ASA/PC)'}
               </h4>
             </div>
             <ChevronDown
@@ -628,27 +628,27 @@ export default function PrintingFabrication() {
                 </span>
                 <p>
                   {isSv
-                    ? 'Innan du startar en utskrift i ASA eller PC, slå på byggplattan på 100°C–110°C och låt skrivaren stå stängd i 15–20 minuter. Detta värmer upp luften i kabinen, vilket drastiskt minskar spänningarna i plasten som orsakar kantresning.'
+                    ? 'Innan du påbörjar en utskrift i ASA eller PC, slå på byggplattan på 100 °C–110 °C och låt skrivaren stå stängd i 15–20 minuter. Detta värmer upp luften i byggkammaren, vilket drastiskt minskar de termiska spänningar som annars gör att delens hörn slår sig.'
                     : 'Before printing ASA or PC, turn your heated bed to 100°C–110°C and let the enclosed printer sit idle for 15–20 minutes. This preheats the ambient chamber air, drastically reducing thermal shock stresses that pull corners off the bed.'}
                 </p>
               </div>
               <div className="space-y-1">
                 <span className="font-semibold text-[var(--ps-text)] block">
-                  2. {isSv ? 'Använd rätt lim på plattan' : 'Select Appropriate Bed Adhesives'}
+                  2. {isSv ? 'Använd lämpligt lim på byggplattan' : 'Select Appropriate Bed Adhesives'}
                 </span>
                 <p>
                   {isSv
-                    ? 'För trådar som krymper mycket räcker inte enbart en ren byggplatta. Använd ett speciallim (t.ex. Magigoo, ABS-slurry eller ett vanligt stiftlim) på en texturerad PEI-platta. Detta skapar en stark kemisk bindning som håller fast hörnen under utskriften.'
+                    ? 'Filament som krymper mycket kräver god vidhäftning. Applicera speciallim (såsom Magigoo, ABS-slurry eller vanligt limstift) på en ren, texturerad PEI-platta. Detta skapar den kemiska bindning som krävs för att hålla nere hörnen på modellen.'
                     : 'High-shrinkage filaments require active adhesion. Apply specialized adhesive (such as Magigoo, ABS juice/slurry, or standard glue stick) onto a clean textured PEI plate. This provides the chemical bond necessary to lock down warping corners.'}
                 </p>
               </div>
               <div className="space-y-1">
                 <span className="font-semibold text-[var(--ps-text)] block">
-                  3. {isSv ? 'Aktivera dragsköld i slicern' : 'Enable Slicer Draft Shielding'}
+                  3. {isSv ? 'Aktivera dragsköld (draft shield) i slicern' : 'Enable Slicer Draft Shielding'}
                 </span>
                 <p>
                   {isSv
-                    ? 'Om din skrivare inte är helt stängd kan du aktivera "Draft Shield" i slicern. Skrivaren bygger då en tunn skyddsvägg (sköld) runt hela modellen under utskriften, vilket blockerar sval omgivningsluft från att kyla ner delens väggar ojämnt.'
+                    ? 'Om din skrivare bara är delvis inbyggd kan du aktivera funktionen "Draft Shield" (dragsköld) i din slicer. Detta skriver ut en skyddande enväggig sköld runt din modell, vilket förhindrar att svala luftdrag träffar den utskrivna delen.'
                     : 'If your printer is only semi-enclosed, turn on the "Draft Shield" (or wind shield) option in your slicer. This prints a sacrificial single-walled shroud around your model, blocking cooling drafts from hitting the printed object.'}
                 </p>
               </div>
@@ -663,17 +663,17 @@ export default function PrintingFabrication() {
           className="text-[16px] font-medium mb-4"
           style={{ color: 'var(--ps-text)', letterSpacing: '-0.01em' }}
         >
-          {isSv ? 'Jämförelsematris för Materialegenskaper' : 'Filament Properties Matrix'}
+          {isSv ? 'Jämförelsematris för materialegenskaper' : 'Filament Properties Matrix'}
         </h3>
         <div className="overflow-x-auto scrollbar-hide border border-[var(--ps-border)] bg-[var(--ps-bg)] rounded-none">
           <table className="w-full min-w-[750px] border-collapse text-left">
             <thead>
               <tr className="border-b border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-secondary)' }}>
-                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[100px]">{isSv ? 'Tråd' : 'Filament'}</th>
-                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[110px]">{isSv ? 'Mjukpunkt (Tg)' : 'Glass Temp (Tg)'}</th>
-                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[130px]">{isSv ? 'UV-tålighet' : 'UV Resistance'}</th>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[100px]">{isSv ? 'Filament' : 'Filament'}</th>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[110px]">{isSv ? 'Mjukningstemperatur (Tg)' : 'Glass Temp (Tg)'}</th>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[130px]">{isSv ? 'UV-beständighet' : 'UV Resistance'}</th>
                 <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)] w-[120px]">{isSv ? 'Utskriftssvårighet' : 'Print Difficulty'}</th>
-                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)]">{isSv ? 'Primärt Användningsområde' : 'Optimal Used Case'}</th>
+                <th className="p-3 text-[11px] uppercase tracking-wider font-semibold text-[var(--ps-text-tertiary)]">{isSv ? 'Primärt användningsområde' : 'Optimal Used Case'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--ps-border-light)] text-[12.5px]">
@@ -793,10 +793,10 @@ export default function PrintingFabrication() {
               // Format location badge
               const locationLabel =
                 comp.location === 'interior'
-                  ? (isSv ? 'Kupéinteriör' : 'Interior Cabin')
+                  ? (isSv ? 'Interiör (kupé)' : 'Interior Cabin')
                   : comp.location === 'exterior'
                   ? (isSv ? 'Exteriör' : 'Exterior Trim')
-                  : (isSv ? 'Mekanisk del' : 'Structural Part');
+                  : (isSv ? 'Strukturell del' : 'Structural Part');
 
               return (
                 <div
@@ -875,14 +875,14 @@ export default function PrintingFabrication() {
                           </div>
                           <div>
                             <span className="font-semibold text-[var(--ps-text-tertiary)]">
-                              {isSv ? 'Väggar:' : 'Walls:'}
+                              {isSv ? 'Perimetrar (väggar):' : 'Walls:'}
                             </span>{' '}
                             {comp.perimeters} {isSv ? 'st' : 'loops'}
                           </div>
                         </div>
                         <div className="border-t border-[var(--ps-border-light)] pt-1.5 mt-1 text-[10px]">
                           <span className="font-semibold text-[var(--ps-text-tertiary)] uppercase tracking-wider block mb-0.5">
-                            {isSv ? 'Riktlinjer:' : 'Orientation Guideline:'}
+                            {isSv ? 'Utskriftsriktning:' : 'Orientation Guideline:'}
                           </span>
                           {orient}
                         </div>
