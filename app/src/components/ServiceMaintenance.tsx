@@ -115,17 +115,20 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex items-center gap-1 ml-2 text-[11px] transition-colors duration-150"
-      style={{ color: 'var(--ps-text-tertiary)' }}
+      className="inline-flex items-center gap-1 ml-2 text-[11px] opacity-0 group-hover:opacity-100 transition-all duration-200"
+      style={{
+        color: copied ? 'var(--ps-gold)' : 'var(--ps-text-tertiary)',
+        transform: copied ? 'scale(1.2)' : 'scale(1)',
+      }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.color = 'var(--ps-text)';
+        if (!copied) e.currentTarget.style.color = 'var(--ps-text)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.color = copied ? 'var(--ps-gold)' : 'var(--ps-text-tertiary)';
+        if (!copied) e.currentTarget.style.color = 'var(--ps-text-tertiary)';
       }}
       title="Copy to clipboard"
     >
-      {copied ? <Check size={12} /> : <Copy size={12} />}
+      {copied ? <Check size={12} className="text-[var(--ps-gold)]" /> : <Copy size={12} />}
     </button>
   );
 }
@@ -181,7 +184,7 @@ export default function ServiceMaintenance() {
               </thead>
               <tbody>
                 {torqueSpecs.map((spec, idx) => (
-                  <tr key={idx} style={{ borderBottom: '1px solid var(--ps-table-row)' }}>
+                  <tr key={idx} className="group hover:bg-[var(--ps-bg-secondary)]/50" style={{ borderBottom: '1px solid var(--ps-table-row)' }}>
                     <td
                       className="py-3 pr-4 text-[13px] font-medium align-top"
                       style={{ color: 'var(--ps-text)' }}
@@ -189,10 +192,10 @@ export default function ServiceMaintenance() {
                       {spec.item}
                     </td>
                     <td
-                      className="py-3 pr-4 text-[13px] align-top"
+                      className="py-3 pr-4 text-[13px] align-top flex items-center"
                       style={{ color: 'var(--ps-text)' }}
                     >
-                      {spec.value}
+                      <span>{spec.value}</span>
                       <CopyButton text={spec.value} />
                     </td>
                     <td
@@ -220,7 +223,7 @@ export default function ServiceMaintenance() {
             {fluidSpecs.map((fluid) => (
               <div
                 key={fluid.item}
-                className="rounded-lg p-4"
+                className="rounded-none p-4 border border-[var(--ps-border)]"
                 style={{ backgroundColor: 'var(--ps-bg-info)' }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
@@ -272,7 +275,7 @@ export default function ServiceMaintenance() {
             </table>
           </div>
           <div
-            className="mt-3 rounded-lg p-4"
+            className="mt-3 rounded-none p-4 border border-[var(--ps-border)]"
             style={{ backgroundColor: 'var(--ps-bg-info)' }}
           >
             <p className="text-[12px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
@@ -329,7 +332,7 @@ export default function ServiceMaintenance() {
                     <td key={i} className="text-center py-3 px-1 align-middle">
                       {due ? (
                         <span
-                          className="inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold"
+                          className="inline-flex items-center justify-center w-5 h-5 rounded-none text-[10px] font-bold"
                           style={{
                             backgroundColor: 'var(--ps-standard)',
                             color: 'var(--ps-bg)',
@@ -339,7 +342,7 @@ export default function ServiceMaintenance() {
                         </span>
                       ) : (
                         <span
-                          className="inline-block w-1.5 h-1.5 rounded-full"
+                          className="inline-block w-1.5 h-1.5 rounded-none"
                           style={{ backgroundColor: 'var(--ps-unavailable)' }}
                         />
                       )}

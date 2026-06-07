@@ -156,7 +156,7 @@ export default function KnownIssues() {
         </div>
       ))}
 
-      <div className="mt-6 rounded-lg p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+      <div className="mt-6 rounded-none p-4 border border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
         <h4 className="text-[13px] font-medium mb-2" style={{ color: 'var(--ps-text)' }}>
           {t('disclaimerTitle')}
         </h4>

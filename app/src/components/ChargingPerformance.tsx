@@ -176,7 +176,7 @@ export default function ChargingPerformance() {
           {t('chargingCurveIntro')}
         </p>
 
-        <div className="mb-6 rounded-lg p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+        <div className="mb-6 rounded-none p-4 border border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
           <ChargingCurveChart />
         </div>
 
@@ -184,10 +184,11 @@ export default function ChargingPerformance() {
           {curvePhases.map((phase) => (
             <div
               key={phase.range}
-              className="rounded-lg p-4 border-l-[3px]"
+              className="rounded-none p-4 border border-l-[3px]"
               style={{
                 backgroundColor: 'var(--ps-bg-info)',
-                borderColor: 'var(--ps-gold)',
+                borderColor: 'var(--ps-border)',
+                borderLeftColor: 'var(--ps-gold)',
               }}
             >
               <h5 className="text-[12px] font-medium mb-1 uppercase tracking-wide" style={{ color: 'var(--ps-gold)' }}>
@@ -283,17 +284,17 @@ export default function ChargingPerformance() {
         </p>
 
         <div className="space-y-3">
-          <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+          <div className="rounded-none p-4 border border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
             <p className="text-[12px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
               {t('preconditioningNativeMaps')}
             </p>
           </div>
-          <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+          <div className="rounded-none p-4 border border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
             <p className="text-[12px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
               {t('preconditioningAutoPrepare')}
             </p>
           </div>
-          <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+          <div className="rounded-none p-4 border border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
             <p className="text-[12px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
               {t('preconditioningThirdParty')}
             </p>
@@ -736,7 +737,7 @@ export default function ChargingPerformance() {
       </div>
 
       {/* Key Takeaways */}
-      <div className="rounded-lg p-5" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+      <div className="rounded-none p-5 border border-[var(--ps-border)]" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
         <h3
           className="text-[16px] font-medium mb-4"
           style={{ color: 'var(--ps-text)', letterSpacing: '-0.01em' }}
