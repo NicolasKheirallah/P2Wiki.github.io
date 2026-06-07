@@ -8,8 +8,8 @@ interface IssueItem {
   id: string;
   category: 'software' | 'drivetrain' | 'electrical' | 'body';
   issue: Record<'en' | 'sv', string>;
-  affectedYears: Record<'en' | 'sv', string>;
-  severity: 'critical' | 'moderate' | 'minor';
+  affectedYearsList: string[]; // e.g. ['MY21', 'MY22', 'MY23'] or ['All']
+  resolution: Record<'en' | 'sv', string>; // e.g. 'Resolved in MY24+ via upgraded hardware'
   symptoms: Record<'en' | 'sv', string>;
   diy: Record<'en' | 'sv', string>;
   dealer: Record<'en' | 'sv', string>;
@@ -23,11 +23,11 @@ const issueData: IssueItem[] = [
       en: 'Infotainment (IHU) Instability',
       sv: 'Infotainmentsystem (IHU) instabilitet',
     },
-    affectedYears: {
-      en: 'MY21–MY25 (Resolved in MY26 via Qualcomm Snapdragon processor)',
-      sv: 'MY21–MY25 (Åtgärdat i MY26 via Qualcomm Snapdragon-processor)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23', 'MY24', 'MY25'],
+    resolution: {
+      en: 'Resolved in MY26 (Qualcomm Snapdragon processor)',
+      sv: 'Åtgärdat i MY26 (Qualcomm Snapdragon-processor)',
     },
-    severity: 'minor',
     symptoms: {
       en: 'UI lag, boot loops, system crashes due to Android Automotive OS memory leaks.',
       sv: 'Fördröjning i gränssnittet, loopande omstarter, systemkrascher på grund av minnesläckor i Android Automotive OS.',
@@ -48,11 +48,11 @@ const issueData: IssueItem[] = [
       en: 'TCAM Module Failure',
       sv: 'TCAM-modul haveri',
     },
-    affectedYears: {
-      en: 'MY21–MY23 (Resolved in MY24+ via upgraded hardware and software integration)',
-      sv: 'MY21–MY23 (Åtgärdat i MY24+ via uppgraderad hårdvara och mjukvaruintegration)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23'],
+    resolution: {
+      en: 'Resolved in MY24+ (Upgraded hardware/software integration)',
+      sv: 'Åtgärdat i MY24+ (Uppgraderad hårdvara/mjukvaruintegration)',
     },
-    severity: 'critical',
     symptoms: {
       en: 'Total loss of LTE, GPS, eCall, and Phone-as-Key (PAK) connection.',
       sv: 'Total förlust av LTE, GPS, eCall och Mobil som nyckel (PAK)-anslutning.',
@@ -73,11 +73,11 @@ const issueData: IssueItem[] = [
       en: 'Rear Axle "Clicking" (Dual Motor)',
       sv: 'Bakaxel "klickande" (Dual Motor)',
     },
-    affectedYears: {
-      en: 'MY21–MY23 (Resolved in MY24+ with updated rear drive units/splines/axles)',
-      sv: 'MY21–MY23 (Åtgärdat i MY24+ med uppdaterade bakre drivenheter/splines/axlar)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23'],
+    resolution: {
+      en: 'Resolved in MY24+ (Updated rear drive units/splines/axles)',
+      sv: 'Åtgärdat i MY24+ (Uppdaterade bakre drivenheter/splines/axlar)',
     },
-    severity: 'moderate',
     symptoms: {
       en: 'Low-speed clicking/ticking from rear. Often misdiagnosed as CV joints; root cause is often ERAD internal wear.',
       sv: 'Klickande/tickande ljud från bakaxeln vid låga hastigheter. Feldiagnostiseras ofta som drivknutar; den bakomliggande orsaken är ofta internt slitage i ERAD.',
@@ -98,11 +98,11 @@ const issueData: IssueItem[] = [
       en: 'Front Suspension Knocking',
       sv: 'Knackande framhjulsupphängning',
     },
-    affectedYears: {
-      en: 'MY21–MY23 (Resolved in MY24+ via updated strut top mounts and bearing design)',
-      sv: 'MY21–MY23 (Åtgärdat i MY24+ via uppdaterade fjäderbensfästen och lagerdesign)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23'],
+    resolution: {
+      en: 'Resolved in MY24+ (Updated strut top mounts/bearings)',
+      sv: 'Åtgärdat i MY24+ (Uppdaterade fjäderbensfästen/lager)',
     },
-    severity: 'moderate',
     symptoms: {
       en: 'Popping/grinding during low-speed steering over uneven surfaces. Premature strut top bearing wear.',
       sv: 'Knackande/knarrande ljud vid styrning i låg fart över ojämna underlag. Förtida slitage på övre fjäderbenslager.',
@@ -123,11 +123,11 @@ const issueData: IssueItem[] = [
       en: 'AWD Propeller Shaft Vibration',
       sv: 'AWD Kardanaxel vibration',
     },
-    affectedYears: {
-      en: 'MY21–MY23 (Dual Motor) (Resolved in MY24+ with updated drivetrain layout)',
-      sv: 'MY21–MY23 (Dual Motor) (Åtgärdat i MY24+ med uppdaterad drivlinekonfiguration)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23'],
+    resolution: {
+      en: 'Resolved in MY24+ (Re-indexed shaft & updated motor mounts)',
+      sv: 'Åtgärdat i MY24+ (Omindexerad axel & uppdaterade motorfästen)',
     },
-    severity: 'moderate',
     symptoms: {
       en: 'Vibration/shudder felt through the cabin or steering wheel during moderate acceleration between 50 and 70 km/h.',
       sv: 'Vibrationer/skakningar som känns i kupén eller ratten vid måttlig acceleration mellan 50 och 70 km/h.',
@@ -148,11 +148,11 @@ const issueData: IssueItem[] = [
       en: '12V Auxiliary Battery Drain',
       sv: '12V-hjälpbatteri urladdning',
     },
-    affectedYears: {
-      en: 'MY21–MY23 (Improved in MY24+ via battery sensor and software power-saving improvements)',
-      sv: 'MY21–MY23 (Förbättrat i MY24+ via batterigivare och mjukvaruförbättringar för strömsparande)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23'],
+    resolution: {
+      en: 'Improved in MY24+ (Updated battery sensor & power management)',
+      sv: 'Förbättrat i MY24+ (Uppdaterad batterigivare & strömhantering)',
     },
-    severity: 'critical',
     symptoms: {
       en: 'Total vehicle immobilization. Contactor fails to close regardless of high-voltage pack state of charge.',
       sv: 'Total fordonstillstånd. Kontaktorn stängs inte oavsett högspänningsbatteriets laddningstillstånd.',
@@ -173,11 +173,11 @@ const issueData: IssueItem[] = [
       en: 'HVCH (High Voltage Coolant Heater) Failure',
       sv: 'HVCH (högspänningsvärmare) haveri',
     },
-    affectedYears: {
-      en: 'MY21–MY23 (Resolved in MY24+ via next-generation Webasto heater units)',
-      sv: 'MY21–MY23 (Åtgärdat i MY24+ via nästa generations Webasto-värmare)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23'],
+    resolution: {
+      en: 'Resolved in MY24+ (Next-generation Webasto heater units)',
+      sv: 'Åtgärdat i MY24+ (Nästa generations Webasto-värmare)',
     },
-    severity: 'critical',
     symptoms: {
       en: 'Loss of cabin heat, "Parking Climate Temporarily Unavailable" error. Blown 15A inverter fuse.',
       sv: 'Förlust av kupévärme, felmeddelande "Parkeringsklimat tillfälligt otillgängligt". Säkring för växelriktare (15A) har gått.',
@@ -198,11 +198,11 @@ const issueData: IssueItem[] = [
       en: 'HVAC Blend Door Actuator Failure',
       sv: 'HVAC Spjällmotor ställdon haveri',
     },
-    affectedYears: {
-      en: 'MY21–MY23 (Resolved in MY24+ via updated actuator design)',
-      sv: 'MY21–MY23 (Åtgärdat i MY24+ med uppdaterad ställdonsdesign)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23'],
+    resolution: {
+      en: 'Resolved in MY24+ (Updated blend door actuator design)',
+      sv: 'Åtgärdat i MY24+ (Uppdaterad ställdonsdesign)',
     },
-    severity: 'moderate',
     symptoms: {
       en: 'Extreme temperature delta across zones (e.g., hot driver, cold passenger), rapid dashboard clicking.',
       sv: 'Extrema temperaturskillnader mellan zoner (t.ex. varmt för föraren, kallt för passageraren), snabbt klickande ljud från instrumentpanelen.',
@@ -223,11 +223,11 @@ const issueData: IssueItem[] = [
       en: 'Frozen Rear Door Latches',
       sv: 'Frysta bakdörrslås',
     },
-    affectedYears: {
-      en: 'MY21–MY23 (Resolved in MY24+ with updated latch design featuring improved seals)',
-      sv: 'MY21–MY23 (Åtgärdat i MY24+ med uppdaterad låsdesign och förbättrade tätningar)',
+    affectedYearsList: ['MY21', 'MY22', 'MY23'],
+    resolution: {
+      en: 'Resolved in MY24+ (Updated latch design with improved seals)',
+      sv: 'Åtgärdat i MY24+ (Uppdaterad låsdesign och förbättrade tätningar)',
     },
-    severity: 'moderate',
     symptoms: {
       en: 'Rear exterior/interior handles freeze shut or fail to latch below -10 °C. Factory grease inadequacy.',
       sv: 'Bakre yttre/inre handtag fryser fast eller låser inte vid temperaturer under -10 °C. Otillräckligt fabriksfett.',
@@ -248,11 +248,11 @@ const issueData: IssueItem[] = [
       en: 'Headlamp & Taillight Condensation',
       sv: 'Strålkastare & Bakljus kondens',
     },
-    affectedYears: {
-      en: 'All Years (MY21–MY26)',
-      sv: 'Alla modellår (MY21–MY26)',
+    affectedYearsList: ['All'],
+    resolution: {
+      en: 'Normal characteristic across all model years (MY21–MY26)',
+      sv: 'Normal egenskap för alla modellår (MY21–MY26)',
     },
-    severity: 'minor',
     symptoms: {
       en: 'Visible moisture build-up, misting, or water droplets inside the front headlamps or rear light bar.',
       sv: 'Synlig fuktansamling, imma eller vattendroppar inuti främre strålkastare eller bakre ljusramp.',
@@ -338,17 +338,18 @@ export default function KnownIssues() {
     if (!query) return matchesTab;
 
     const title = (isSv ? item.issue.sv : item.issue.en).toLowerCase();
-    const affected = (isSv ? item.affectedYears.sv : item.affectedYears.en).toLowerCase();
+    const resolutionText = (isSv ? item.resolution.sv : item.resolution.en).toLowerCase();
     const symptoms = (isSv ? item.symptoms.sv : item.symptoms.en).toLowerCase();
     const diyText = (isSv ? item.diy.sv : item.diy.en).toLowerCase();
     const dealerText = (isSv ? item.dealer.sv : item.dealer.en).toLowerCase();
 
     const matchesSearch =
       title.includes(query) ||
-      affected.includes(query) ||
+      resolutionText.includes(query) ||
       symptoms.includes(query) ||
       diyText.includes(query) ||
-      dealerText.includes(query);
+      dealerText.includes(query) ||
+      item.affectedYearsList.some((y) => y.toLowerCase().includes(query));
 
     return matchesTab && matchesSearch;
   });
@@ -375,33 +376,6 @@ export default function KnownIssues() {
       }
       return next;
     });
-  };
-
-  const getSeverityBadge = (severity: 'critical' | 'moderate' | 'minor') => {
-    let colorClass = '';
-    let label = '';
-
-    switch (severity) {
-      case 'critical':
-        colorClass = 'border-[var(--ps-error)] text-[var(--ps-error)] bg-[var(--ps-error)]/5';
-        label = t('severityCritical');
-        break;
-      case 'moderate':
-        colorClass = 'border-[var(--ps-gold)] text-[var(--ps-gold)] bg-[var(--ps-gold)]/5';
-        label = t('severityModerate');
-        break;
-      case 'minor':
-        colorClass = 'border-[var(--ps-success)] text-[var(--ps-success)] bg-[var(--ps-success)]/5';
-        label = t('severityMinor');
-        break;
-    }
-
-    return (
-      <span className={`inline-flex items-center gap-1 px-2 py-0.5 border text-[10px] tracking-wider uppercase font-medium rounded-none ${colorClass}`}>
-        <span className="w-1.5 h-1.5 rounded-full bg-current" />
-        {label}
-      </span>
-    );
   };
 
   return (
@@ -476,7 +450,7 @@ export default function KnownIssues() {
           filteredIssues.map((item) => {
             const isExpanded = expandedIds.has(item.id);
             const title = isSv ? item.issue.sv : item.issue.en;
-            const affected = isSv ? item.affectedYears.sv : item.affectedYears.en;
+            const resolution = isSv ? item.resolution.sv : item.resolution.en;
             const symptoms = isSv ? item.symptoms.sv : item.symptoms.en;
             const diyText = isSv ? item.diy.sv : item.diy.en;
             const dealerText = isSv ? item.dealer.sv : item.dealer.en;
@@ -494,24 +468,47 @@ export default function KnownIssues() {
                   onClick={() => toggleExpand(item.id)}
                   className="w-full text-left px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-[var(--ps-bg-secondary)]/20 transition-colors duration-150 rounded-none cursor-pointer"
                 >
-                  <div className="space-y-1">
+                  <div className="space-y-2">
                     <h4 className="text-[15px] font-medium leading-snug" style={{ color: 'var(--ps-text)' }}>
                       {title}
                     </h4>
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px]" style={{ color: 'var(--ps-text-secondary)' }}>
                       <span className="font-light">{categoryLabel}</span>
-                      <span className="text-[var(--ps-text-tertiary)] font-light">•</span>
-                      <span className="font-light">
-                        {t('affectedYears')}: {affected}
-                      </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 shrink-0 self-end sm:self-center">
-                    {getSeverityBadge(item.severity)}
+                  <div className="flex flex-wrap items-center gap-2 shrink-0 self-start sm:self-center">
+                    {/* Model Year Badges */}
+                    <div className="flex items-center gap-1">
+                      <span className="text-[10px] text-[var(--ps-text-tertiary)] uppercase tracking-wider font-normal mr-1">
+                        {t('affectedYears')}:
+                      </span>
+                      {item.affectedYearsList.map((yr) => {
+                        const isAll = yr === 'All';
+                        const displayYr = isAll ? (isSv ? 'Alla år' : 'All Years') : yr;
+                        return (
+                          <span
+                            key={yr}
+                            className={`px-1.5 py-0.5 border text-[10px] font-semibold tracking-wide uppercase rounded-none ${
+                              isAll
+                                ? 'border-[var(--ps-text)] bg-[var(--ps-text)] text-[var(--ps-bg)]'
+                                : 'border-[var(--ps-border)] bg-[var(--ps-bg-secondary)] text-[var(--ps-text)]'
+                            }`}
+                          >
+                            {displayYr}
+                          </span>
+                        );
+                      })}
+                    </div>
+
+                    {/* Resolution status badge */}
+                    <span className="border border-[var(--ps-gold)]/40 text-[var(--ps-gold)] bg-[var(--ps-gold)]/5 text-[10px] tracking-wider uppercase font-medium px-2 py-0.5 inline-flex items-center rounded-none">
+                      {resolution}
+                    </span>
+
                     <ChevronDown
                       size={16}
-                      className="text-[var(--ps-text-tertiary)] transition-transform duration-250"
+                      className="text-[var(--ps-text-tertiary)] transition-transform duration-250 ml-1"
                       style={{
                         transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
                       }}
