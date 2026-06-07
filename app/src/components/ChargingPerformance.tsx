@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
+import { useMarket } from '@/contexts/MarketContext';
 import ChargingCurveChart from './ChargingCurveChart';
+import { BatteryCharging, Clock, Zap, Gauge } from 'lucide-react';
 
 interface DcVariant {
   generation: string;
@@ -19,7 +22,13 @@ interface Takeaway {
 
 const dcVariants: DcVariant[] = [
   {
-    generation: 'Pre-Facelift Long Range',
+    generation: 'Standard Range (2022+)',
+    gross: '69 kWh',
+    usable: '67 kWh',
+    peak: '130 - 135 kW',
+  },
+  {
+    generation: 'Pre-Facelift Long Range (2021-2023)',
     gross: '78 kWh',
     usable: '~75 kWh',
     peak: '150 kW',
@@ -31,6 +40,84 @@ const dcVariants: DcVariant[] = [
     peak: '205 kW',
   },
 ];
+
+const batteryUsableCapacities = {
+  standard: 67,
+  lrPre2024: 75,
+  lrSiC: 79,
+};
+
+const chargingCurvesData = {
+  standard: [
+    { soc: 0, power: 20 },
+    { soc: 5, power: 80 },
+    { soc: 10, power: 120 },
+    { soc: 15, power: 130 },
+    { soc: 20, power: 135 },
+    { soc: 25, power: 135 },
+    { soc: 30, power: 135 },
+    { soc: 35, power: 125 },
+    { soc: 40, power: 115 },
+    { soc: 45, power: 105 },
+    { soc: 50, power: 95 },
+    { soc: 55, power: 88 },
+    { soc: 60, power: 82 },
+    { soc: 65, power: 78 },
+    { soc: 70, power: 72 },
+    { soc: 75, power: 58 },
+    { soc: 80, power: 45 },
+    { soc: 85, power: 32 },
+    { soc: 90, power: 22 },
+    { soc: 95, power: 14 },
+    { soc: 100, power: 8 },
+  ],
+  lrPre2024: [
+    { soc: 0, power: 30 },
+    { soc: 5, power: 100 },
+    { soc: 10, power: 140 },
+    { soc: 15, power: 148 },
+    { soc: 20, power: 150 },
+    { soc: 25, power: 150 },
+    { soc: 30, power: 150 },
+    { soc: 35, power: 140 },
+    { soc: 40, power: 130 },
+    { soc: 45, power: 120 },
+    { soc: 50, power: 110 },
+    { soc: 55, power: 100 },
+    { soc: 60, power: 92 },
+    { soc: 65, power: 84 },
+    { soc: 70, power: 76 },
+    { soc: 75, power: 62 },
+    { soc: 80, power: 48 },
+    { soc: 85, power: 35 },
+    { soc: 90, power: 24 },
+    { soc: 95, power: 15 },
+    { soc: 100, power: 8 },
+  ],
+  lrSiC: [
+    { soc: 0, power: 40 },
+    { soc: 5, power: 140 },
+    { soc: 10, power: 195 },
+    { soc: 15, power: 203 },
+    { soc: 20, power: 205 },
+    { soc: 25, power: 205 },
+    { soc: 30, power: 205 },
+    { soc: 35, power: 190 },
+    { soc: 40, power: 175 },
+    { soc: 45, power: 160 },
+    { soc: 50, power: 145 },
+    { soc: 55, power: 130 },
+    { soc: 60, power: 115 },
+    { soc: 65, power: 100 },
+    { soc: 70, power: 85 },
+    { soc: 75, power: 68 },
+    { soc: 80, power: 52 },
+    { soc: 85, power: 38 },
+    { soc: 90, power: 26 },
+    { soc: 95, power: 16 },
+    { soc: 100, power: 9 },
+  ],
+};
 
 const acSpecs: AcSpec[] = [
   {
@@ -79,6 +166,54 @@ const takeaways: Takeaway[] = [
 
 export default function ChargingPerformance() {
   const { t } = useLocale();
+  const { market } = useMarket();
+  const useKm = market === 'se';
+
+  const [batteryVariant, setBatteryVariant] = useState<'standard' | 'lrPre2024' | 'lrSiC'>('lrSiC');
+  const [chargerPowerLimit, setChargerPowerLimit] = useState<number>(350);
+  const [startSoc, setStartSoc] = useState<number>(10);
+  const [targetSoc, setTargetSoc] = useState<number>(80);
+
+  const handleStartSocChange = (val: number) => {
+    setStartSoc(val);
+    if (val >= targetSoc) {
+      setTargetSoc(Math.min(100, val + 5));
+    }
+  };
+
+  const handleTargetSocChange = (val: number) => {
+    setTargetSoc(val);
+    if (val <= startSoc) {
+      setStartSoc(Math.max(0, val - 5));
+    }
+  };
+
+  // Estimator math
+  const usableCap = batteryUsableCapacities[batteryVariant];
+  const curve = chargingCurvesData[batteryVariant];
+
+  let totalMinutes = 0;
+  let totalEnergyAdded = 0;
+  let totalPowerSum = 0;
+  let stepCount = 0;
+
+  for (let s = startSoc; s < targetSoc; s += 5) {
+    const dp = curve.find((point) => point.soc === s) || curve[0];
+    const actualPower = Math.min(chargerPowerLimit, dp.power);
+    const energyStep = usableCap * 0.05;
+    const timeStepMinutes = (energyStep / actualPower) * 60;
+
+    totalMinutes += timeStepMinutes;
+    totalEnergyAdded += energyStep;
+    totalPowerSum += actualPower;
+    stepCount++;
+  }
+
+  const avgPower = stepCount > 0 ? totalPowerSum / stepCount : 0;
+  
+  const consumptionRate = batteryVariant === 'standard' ? 17.0 : 18.0;
+  const rangeAddedKm = (totalEnergyAdded / consumptionRate) * 100;
+  const rangeAddedMiles = rangeAddedKm * 0.621371;
 
   return (
     <div className="space-y-10">
@@ -201,9 +336,143 @@ export default function ChargingPerformance() {
           ))}
         </div>
 
-        <p className="text-[13px] leading-relaxed mt-4" style={{ color: 'var(--ps-text-secondary)' }}>
+        <p className="text-[13px] leading-relaxed mt-4 mb-6" style={{ color: 'var(--ps-text-secondary)' }}>
           {t('dcChargingOutro')}
         </p>
+
+        {/* Interactive Estimator Container */}
+        <div className="border border-[var(--ps-border)] bg-[var(--ps-bg)] p-5 rounded-none relative mb-6">
+          <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-[var(--ps-border)] opacity-35" />
+          <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-[var(--ps-border)] opacity-35" />
+
+          <div className="flex items-center gap-2 mb-3">
+            <Zap size={16} className="text-[var(--ps-gold)] font-semibold" />
+            <h4 className="text-[13px] font-semibold uppercase tracking-wider" style={{ color: 'var(--ps-text)' }}>
+              {t('estimatorTitle')}
+            </h4>
+          </div>
+
+          <p className="text-[12.5px] text-[var(--ps-text-secondary)] leading-relaxed mb-5">
+            {t('estimatorIntro')}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
+            {/* Left Column: Controls */}
+            <div className="space-y-4">
+              {/* Battery Variant Select */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-semibold block">
+                  {t('selectBattery')}
+                </label>
+                <select
+                  value={batteryVariant}
+                  onChange={(e) => setBatteryVariant(e.target.value as 'standard' | 'lrPre2024' | 'lrSiC')}
+                  className="w-full bg-[var(--ps-bg-secondary)] border border-[var(--ps-border)] hover:border-[var(--ps-text-secondary)] focus:border-[var(--ps-text)] p-2 text-[12px] text-[var(--ps-text)] outline-none rounded-none cursor-pointer"
+                >
+                  <option value="standard">Standard Range (69 kWh)</option>
+                  <option value="lrPre2024">Long Range Pre-Facelift (78 kWh)</option>
+                  <option value="lrSiC">Long Range Facelift (82 kWh)</option>
+                </select>
+              </div>
+
+              {/* Charger Power Select */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-semibold block">
+                  {t('selectChargerPower')}
+                </label>
+                <select
+                  value={chargerPowerLimit}
+                  onChange={(e) => setChargerPowerLimit(Number(e.target.value))}
+                  className="w-full bg-[var(--ps-bg-secondary)] border border-[var(--ps-border)] hover:border-[var(--ps-text-secondary)] focus:border-[var(--ps-text)] p-2 text-[12px] text-[var(--ps-text)] outline-none rounded-none cursor-pointer"
+                >
+                  <option value="50">50 kW (Standard DC Charger)</option>
+                  <option value="150">150 kW (Fast Charger)</option>
+                  <option value="350">350 kW (Ultra-Fast Charger)</option>
+                </select>
+              </div>
+
+              {/* Start SoC Slider */}
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-semibold">
+                  <span>{t('startSocLabel')}</span>
+                  <span className="text-[var(--ps-text)] font-bold">{startSoc}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="95"
+                  step="5"
+                  value={startSoc}
+                  onChange={(e) => handleStartSocChange(Number(e.target.value))}
+                  className="w-full h-1 bg-[var(--ps-border)] accent-[var(--ps-gold)] outline-none appearance-none cursor-pointer rounded-none"
+                />
+              </div>
+
+              {/* Target SoC Slider */}
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-semibold">
+                  <span>{t('targetSocLabel')}</span>
+                  <span className="text-[var(--ps-text)] font-bold">{targetSoc}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="5"
+                  max="100"
+                  step="5"
+                  value={targetSoc}
+                  onChange={(e) => handleTargetSocChange(Number(e.target.value))}
+                  className="w-full h-1 bg-[var(--ps-border)] accent-[var(--ps-gold)] outline-none appearance-none cursor-pointer rounded-none"
+                />
+              </div>
+            </div>
+
+            {/* Right Column: Output Metrics */}
+            <div className="grid grid-cols-2 gap-4 border border-[var(--ps-border)] bg-[var(--ps-bg-secondary)]/10 p-4 rounded-none relative">
+              <div className="space-y-1">
+                <div className="flex items-center gap-1.5 text-[var(--ps-text-tertiary)]">
+                  <Clock size={12} />
+                  <span className="text-[10px] uppercase tracking-wider font-semibold">{t('timeToCharge')}</span>
+                </div>
+                <p className="text-[18px] font-medium" style={{ color: 'var(--ps-text)' }}>
+                  {Math.round(totalMinutes)} <span className="text-[11px] font-normal text-[var(--ps-text-secondary)]">{t('minutes')}</span>
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-1.5 text-[var(--ps-text-tertiary)]">
+                  <BatteryCharging size={12} />
+                  <span className="text-[10px] uppercase tracking-wider font-semibold">{t('energyAdded')}</span>
+                </div>
+                <p className="text-[18px] font-medium" style={{ color: 'var(--ps-text)' }}>
+                  {totalEnergyAdded.toFixed(1)} <span className="text-[11px] font-normal text-[var(--ps-text-secondary)]">kWh</span>
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-1.5 text-[var(--ps-text-tertiary)]">
+                  <Gauge size={12} />
+                  <span className="text-[10px] uppercase tracking-wider font-semibold">{t('rangeAdded')}</span>
+                </div>
+                <p className="text-[18px] font-medium" style={{ color: 'var(--ps-text)' }}>
+                  {useKm ? Math.round(rangeAddedKm) : Math.round(rangeAddedMiles)}{' '}
+                  <span className="text-[11px] font-normal text-[var(--ps-text-secondary)]">
+                    {useKm ? t('rangeKm') : t('rangeMiles')}
+                  </span>
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-1.5 text-[var(--ps-text-tertiary)]">
+                  <Zap size={12} />
+                  <span className="text-[10px] uppercase tracking-wider font-semibold">{t('avgChargingPower')}</span>
+                </div>
+                <p className="text-[18px] font-medium" style={{ color: 'var(--ps-text)' }}>
+                  {Math.round(avgPower)} <span className="text-[11px] font-normal text-[var(--ps-text-secondary)]">kW</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* AC Charging */}
@@ -429,144 +698,62 @@ export default function ChargingPerformance() {
         </div>
       </div>
 
-      {/* NMC Battery Care */}
+      {/* Battery Chemistry Guides (LFP vs. NMC) */}
       <div>
         <h3
           className="text-[16px] font-medium mb-4"
           style={{ color: 'var(--ps-text)', letterSpacing: '-0.01em' }}
         >
-          {t('nmcMaintenanceTitle')}
+          {t('batteryChemistryTitle')}
         </h3>
 
-        <p className="text-[13px] leading-relaxed mb-4" style={{ color: 'var(--ps-text-secondary)' }}>
-          {t('nmcIntro')}
+        <p className="text-[13px] leading-relaxed mb-6" style={{ color: 'var(--ps-text-secondary)' }}>
+          {t('batteryChemistryIntro')}
         </p>
 
-        <div className="space-y-6">
-          <div>
-            <h4
-              className="text-[13px] font-medium mb-3"
-              style={{ color: 'var(--ps-text)' }}
-            >
-              {t('dailyUseTitle')}
-            </h4>
-            <ul className="space-y-2">
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('dailyUse1')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('dailyUse2')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('dailyUse3')}
-              </li>
-            </ul>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* LFP Battery Guide */}
+          <div className="border border-[var(--ps-border)] bg-[var(--ps-bg)] p-5 rounded-none relative">
+            <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-[var(--ps-border)] opacity-35" />
+            <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-[var(--ps-border)] opacity-35" />
 
-          <div>
-            <h4
-              className="text-[13px] font-medium mb-3"
-              style={{ color: 'var(--ps-text)' }}
-            >
-              {t('deepDischargeTitle')}
+            <h4 className="text-[14px] font-semibold mb-2" style={{ color: 'var(--ps-text)' }}>
+              {t('lfpTitle')}
             </h4>
-            <ul className="space-y-2">
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('deepDischarge1')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('deepDischarge2')}
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4
-              className="text-[13px] font-medium mb-3"
-              style={{ color: 'var(--ps-text)' }}
-            >
-              {t('chargingStrategyTitle')}
-            </h4>
-            <ul className="space-y-2">
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('chargingStrategy1')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('chargingStrategy2')}
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4
-              className="text-[13px] font-medium mb-3"
-              style={{ color: 'var(--ps-text)' }}
-            >
-              {t('longTermStorageTitle')}
-            </h4>
-            <p className="text-[13px] font-medium mb-2" style={{ color: 'var(--ps-text)' }}>
-              {t('storageOneToThreeMonths')}:
+            <p className="text-[12.5px] leading-relaxed mb-4 text-[var(--ps-text-secondary)]">
+              {t('lfpDesc')}
             </p>
-            <ul className="space-y-2 mb-4">
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('storageShort1')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('storageShort2')}
-              </li>
-            </ul>
-            <p className="text-[13px] font-medium mb-2" style={{ color: 'var(--ps-text)' }}>
-              {t('storageOverThreeMonths')}:
-            </p>
-            <ul className="space-y-2">
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('storageLong1')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('storageLong2')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('storageLong3')}
-              </li>
-            </ul>
+
+            <div className="p-4 border-l-[3px] border-[var(--ps-gold)] bg-[var(--ps-bg-secondary)]/5">
+              <h5 className="text-[11.5px] font-bold uppercase tracking-wider mb-1" style={{ color: 'var(--ps-gold)' }}>
+                {t('lfpRecTitle')}
+              </h5>
+              <p className="text-[12px] leading-relaxed text-[var(--ps-text-secondary)]">
+                {t('lfpRecDesc')}
+              </p>
+            </div>
           </div>
 
-          <div>
-            <h4
-              className="text-[13px] font-medium mb-3"
-              style={{ color: 'var(--ps-text)' }}
-            >
-              {t('environmentalTitle')}
+          {/* NMC Battery Guide */}
+          <div className="border border-[var(--ps-border)] bg-[var(--ps-bg)] p-5 rounded-none relative">
+            <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-[var(--ps-border)] opacity-35" />
+            <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-[var(--ps-border)] opacity-35" />
+
+            <h4 className="text-[14px] font-semibold mb-2" style={{ color: 'var(--ps-text)' }}>
+              {t('nmcTitle')}
             </h4>
-            <p className="text-[13px] leading-relaxed mb-3" style={{ color: 'var(--ps-text-secondary)' }}>
-              {t('environmentalIntro')}
+            <p className="text-[12.5px] leading-relaxed mb-4 text-[var(--ps-text-secondary)]">
+              {t('nmcDesc')}
             </p>
-            <ul className="space-y-2">
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('environmental1')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('environmental2')}
-              </li>
-              <li className="flex items-start gap-2 text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
-                <span className="mt-1.5 inline-block w-1 h-1 rounded-full shrink-0" style={{ backgroundColor: 'var(--ps-text-tertiary)' }} />
-                {t('environmental3')}
-              </li>
-            </ul>
+
+            <div className="p-4 border-l-[3px] border-[var(--ps-text-tertiary)] bg-[var(--ps-bg-secondary)]/5">
+              <h5 className="text-[11.5px] font-bold uppercase tracking-wider mb-1" style={{ color: 'var(--ps-text-tertiary)' }}>
+                {t('nmcRecTitle')}
+              </h5>
+              <p className="text-[12px] leading-relaxed text-[var(--ps-text-secondary)]">
+                {t('nmcRecDesc')}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -594,7 +781,7 @@ export default function ChargingPerformance() {
 
         <div className="space-y-3 mb-6">
           <div
-            className="rounded-lg p-4 border-l-[3px]"
+            className="rounded-none p-4 border-l-[3px]"
             style={{
               backgroundColor: 'var(--ps-bg-info)',
               borderColor: 'var(--ps-gold)',
@@ -608,7 +795,7 @@ export default function ChargingPerformance() {
             </p>
           </div>
           <div
-            className="rounded-lg p-4 border-l-[3px]"
+            className="rounded-none p-4 border-l-[3px]"
             style={{
               backgroundColor: 'var(--ps-bg-info)',
               borderColor: 'var(--ps-text-tertiary)',
@@ -622,7 +809,7 @@ export default function ChargingPerformance() {
             </p>
           </div>
           <div
-            className="rounded-lg p-4 border-l-[3px]"
+            className="rounded-none p-4 border-l-[3px]"
             style={{
               backgroundColor: 'var(--ps-bg-info)',
               borderColor: 'var(--ps-error)',
@@ -636,7 +823,7 @@ export default function ChargingPerformance() {
             </p>
           </div>
           <div
-            className="rounded-lg p-4 border-l-[3px]"
+            className="rounded-none p-4 border-l-[3px]"
             style={{
               backgroundColor: 'var(--ps-bg-info)',
               borderColor: 'var(--ps-success)',
@@ -652,7 +839,7 @@ export default function ChargingPerformance() {
         </div>
 
         {/* AC vs DC */}
-        <div className="rounded-lg p-4 mb-6" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+        <div className="rounded-none p-4 mb-6" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
           <h4
             className="text-[13px] font-medium mb-2"
             style={{ color: 'var(--ps-text)' }}
@@ -673,7 +860,7 @@ export default function ChargingPerformance() {
         </h4>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+          <div className="rounded-none p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
             <h5 className="text-[13px] font-medium mb-2" style={{ color: 'var(--ps-text)' }}>
               {t('extremeTempHotTitle')}
             </h5>
@@ -692,7 +879,7 @@ export default function ChargingPerformance() {
               </li>
             </ul>
           </div>
-          <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
+          <div className="rounded-none p-4" style={{ backgroundColor: 'var(--ps-bg-info)' }}>
             <h5 className="text-[13px] font-medium mb-2" style={{ color: 'var(--ps-text)' }}>
               {t('extremeTempColdTitle')}
             </h5>
