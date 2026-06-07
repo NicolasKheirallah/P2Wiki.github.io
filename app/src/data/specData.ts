@@ -2,7 +2,7 @@ import type { Category, PaintColor } from '@/types/spec';
 
 export const modelYearLabels = [
   'MY21',
-  'MY21\npre-Mar',
+  'MY22\npre-Mar',
   'MY22\npost-Mar',
   'MY23',
   'MY24',
@@ -19,17 +19,18 @@ export const categories: Category[] = [
     features: [
       {
         name: 'Standard key',
-        values: ['2', '1', '1', '1', '2 / 1', '2 / 1', '2'],
-        notes: 'MY26: 2 keys standard. Earlier years varied between 1-2 keys.',
+        values: ['2', '2', '1', '1', '1', '1', '2'],
+        notes: 'MY21–MY22 pre-March and MY26 models came standard with 2 key fobs. Other years came with 1 key fob (plus key tag).',
       },
       {
         name: 'Key tag (activity key)',
-        values: ['1', '1', '1', '1', '\u25CB / 1', '\u25CB / 1', '\u25CB'],
+        values: ['1', '1', '1', '1', '1', '\u25CB', '\u25CB'],
+        notes: 'Phased out as standard equipment starting in MY25.',
       },
       {
         name: 'Polestar Digital key',
-        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', 'Plus', 'Plus', '\u25CF'],
-        notes: 'MY24 Digital key was added in error on early cars, later corrected.',
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        notes: 'Standard on all trims; enabled via Bluetooth and the Polestar app.',
       },
       {
         name: 'Power-operated tailgate',
@@ -57,27 +58,25 @@ export const categories: Category[] = [
       },
       {
         name: '11.2" centre display',
-        values: ['\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
         name: '12.3" digital driver display',
-        values: ['\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
-        name: 'Built-in Google apps & services',
-        values: ['\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        name: 'Native Google Automotive OS',
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        notes: 'Includes built-in Google Maps, Google Assistant, and Google Play Store.',
       },
       {
         name: 'Over-the-air (OTA) updates',
-        values: ['\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
         name: 'Apple CarPlay (wired)',
-        values: ['\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
-      },
-      {
-        name: 'Android Auto (wired)',
-        values: ['\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        notes: 'Enabled via software update on all model years.',
       },
     ],
   },
