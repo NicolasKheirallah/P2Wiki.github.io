@@ -65,7 +65,7 @@ export default function Header() {
             className="text-[20px] font-medium tracking-[-0.01em] select-none shrink-0 transition-opacity duration-150 hover:opacity-70"
             style={{ color: 'var(--ps-text)' }}
           >
-            P2 Guide
+            Polestar 2 Buying Guide
           </Link>
 
           {/* Tabs */}
