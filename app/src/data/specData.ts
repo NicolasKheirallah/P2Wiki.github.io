@@ -148,7 +148,7 @@ export const categories: Category[] = [
       {
         name: 'Perf. software upgrade 350 kW',
         values: ['\u25CB', '\u25CB', '\u25CB', '\u25CB / Perf', '\u25CB / Perf', '\u25CB / Perf', '\u25CB / Perf'],
-        notes: 'Requires dual motor.',
+        notes: 'Requires Long range Dual motor. For MY21–MY22, this was available only as a post-purchase OTA software upgrade. From MY23 onwards, it is bundled in the Performance Pack, but still available as a standalone OTA purchase for non-Performance Pack Dual motor cars.',
       },
     ],
   },
@@ -241,7 +241,8 @@ export const categories: Category[] = [
       },
       {
         name: 'Pixel LED adaptive headlights',
-        values: ['Pilot', 'Pilot', '\u2014', '\u2014', 'Pilot', '\u25CB', 'Pilot'],
+        values: ['Pilot', 'Pilot', '\u2014', '\u2014', 'Pilot', '\u25CB', '\u25CB'],
+        notes: 'MY21–MY22 pre-March and MY24: Included in Pilot pack. MY22 post-March and MY23: Not available due to chip shortages. MY25–MY26: Standalone option requiring Plus pack.',
       },
       {
         name: 'LED front fog lights with cornering',
@@ -403,22 +404,32 @@ export const categories: Category[] = [
       {
         name: 'Plus Pack',
         values: ['\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB'],
+        notes: 'Standard on MY21 Launch Edition. Optional extra for all subsequent model years and late-MY21 configurable versions.',
       },
       {
-        name: 'Pilot Pack',
-        values: ['\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB'],
+        name: 'Pilot Pack (with Pixel LED)',
+        values: ['\u25CB', '\u25CB', '\u2014', '\u2014', '\u25CB', '\u25CB', '\u25CB'],
+        notes: 'Standard on MY21 Launch Edition. Optional extra for other years. Temporarily suspended in mid-2022 (MY22 post-Mar and MY23) due to semiconductor shortages (replaced by Pilot Lite).',
+      },
+      {
+        name: 'Pilot Lite Pack',
+        values: ['\u2014', '\u2014', '\u25CB', '\u25CB', '\u2014', '\u2014', '\u2014'],
+        notes: 'Replaced the full Pilot pack during the chip shortage, omitting the Pixel LED headlights.',
       },
       {
         name: 'Performance Pack',
         values: ['\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB'],
+        notes: 'Available only on Long range Dual motor. Includes Öhlins DFV dampers, Brembo gold brakes, forged alloy wheels, and Swedish gold accents. Standard software power upgrade (350 kW / 476 hp) included from MY23 onwards.',
       },
       {
         name: 'Climate Pack',
-        values: ['\u2014', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB'],
+        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u25CB', '\u25CB'],
+        notes: 'Introduced as a separate package in MY25. For MY22–MY24, these cold-weather features (heat pump, heated steering wheel, heated rear seats, heated wiper nozzles) were bundled within the Plus Pack.',
       },
       {
         name: 'Pro Pack',
-        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u25CB', '\u25CB', '\u25CB'],
+        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u25CB', '\u25CB'],
+        notes: 'Introduced in MY25. Includes 20" Pro Graphite wheels, gold-striped seatbelts, and gold valve caps.',
       },
       {
         name: 'Nappa Upgrade',
