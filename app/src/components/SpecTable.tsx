@@ -76,7 +76,7 @@ export default function SpecTable({
               <thead className="z-30 border-b border-[var(--ps-table-border)]">
                 <tr>
                   <th
-                    className="sticky lg:top-14 left-0 bg-[var(--ps-bg)] text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[260px] min-w-[200px] z-40 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]"
+                    className="sticky lg:top-14 left-0 bg-[var(--ps-bg)] text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[260px] min-w-[260px] max-w-[260px] z-40 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]"
                     style={{ color: 'var(--ps-text-tertiary)' }}
                   >
                     {t('feature')}
@@ -102,7 +102,7 @@ export default function SpecTable({
                     );
                   })}
                   <th
-                    className="lg:sticky lg:top-14 text-left py-3 pl-4 text-[12px] font-normal w-[220px] min-w-[180px] bg-[var(--ps-bg)] z-30"
+                    className="lg:sticky lg:top-14 text-left py-3 pl-4 text-[12px] font-normal w-[220px] min-w-[220px] max-w-[220px] bg-[var(--ps-bg)] z-30"
                     style={{ color: 'var(--ps-text-tertiary)' }}
                   >
                     {t('notes')}
@@ -113,8 +113,9 @@ export default function SpecTable({
                 {category.features.map((feature, idx) => (
                   <tr key={idx} className="spec-row group hover:bg-[var(--ps-bg-secondary)]" style={{ borderBottom: '1px solid var(--ps-table-row)' }}>
                     <td
-                      className="sticky left-0 bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 text-[14px] z-10 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] transition-colors duration-150"
+                      className="sticky left-0 bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 text-[14px] z-10 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] transition-colors duration-150 w-[260px] min-w-[260px] max-w-[260px] truncate"
                       style={{ color: 'var(--ps-text)' }}
+                      title={feature.name}
                     >
                       {feature.name}
                     </td>
@@ -137,7 +138,7 @@ export default function SpecTable({
                         </td>
                       );
                     })}
-                    <td className="py-4 pl-4 text-[12px] leading-relaxed max-w-[220px]" style={{ color: 'var(--ps-text-tertiary)' }}>
+                    <td className="py-4 pl-4 text-[12px] leading-relaxed w-[220px] min-w-[220px] max-w-[220px]" style={{ color: 'var(--ps-text-tertiary)' }}>
                       {feature.notes}
                     </td>
                   </tr>

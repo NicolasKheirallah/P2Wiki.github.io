@@ -27,16 +27,16 @@ export default function PaintSection({
       <table className="w-full min-w-[900px] border-collapse">
         <thead className="z-30 border-b border-[var(--ps-table-border)]">
           <tr>
-            <th className="sticky lg:top-14 left-0 bg-[var(--ps-bg)] text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[40px] z-40" style={{ color: 'var(--ps-text-tertiary)' }}>
+            <th className="sticky lg:top-14 left-0 bg-[var(--ps-bg)] text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[40px] min-w-[40px] max-w-[40px] z-40" style={{ color: 'var(--ps-text-tertiary)' }}>
               {t('swatch')}
             </th>
-            <th className="sticky lg:top-14 left-[40px] bg-[var(--ps-bg)] text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[160px] z-40 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]" style={{ color: 'var(--ps-text-tertiary)' }}>
+            <th className="sticky lg:top-14 left-[40px] bg-[var(--ps-bg)] text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[160px] min-w-[160px] max-w-[160px] z-40 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]" style={{ color: 'var(--ps-text-tertiary)' }}>
               {t('colour')}
             </th>
-            <th className="lg:sticky lg:top-14 text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[180px] bg-[var(--ps-bg)] z-30" style={{ color: 'var(--ps-text-tertiary)' }}>
+            <th className="lg:sticky lg:top-14 text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[180px] min-w-[180px] max-w-[180px] bg-[var(--ps-bg)] z-30" style={{ color: 'var(--ps-text-tertiary)' }}>
               {t('volvoEquivalent')}
             </th>
-            <th className="lg:sticky lg:top-14 text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[100px] bg-[var(--ps-bg)] z-30" style={{ color: 'var(--ps-text-tertiary)' }}>
+            <th className="lg:sticky lg:top-14 text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[100px] min-w-[100px] max-w-[100px] bg-[var(--ps-bg)] z-30" style={{ color: 'var(--ps-text-tertiary)' }}>
               {t('code')}
             </th>
             {modelYearLabels.map((label, i) => {
@@ -68,7 +68,7 @@ export default function PaintSection({
               className="group transition-all duration-200 hover:bg-[var(--ps-bg-secondary)]"
               style={{ borderBottom: '1px solid var(--ps-table-row)', opacity: color.replacedBy ? 0.5 : 1 }}
             >
-              <td className="sticky left-0 bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 z-10 transition-colors duration-150">
+              <td className="sticky left-0 bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 z-10 transition-colors duration-150 w-[40px] min-w-[40px] max-w-[40px]">
                 <span
                   className="inline-block w-6 h-6 rounded-none shadow-sm"
                   style={{
@@ -80,23 +80,23 @@ export default function PaintSection({
                   title={`${color.name} (${color.polestarCode})`}
                 />
               </td>
-              <td className="sticky left-[40px] bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 z-10 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] transition-colors duration-150">
+              <td className="sticky left-[40px] bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 z-10 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] transition-colors duration-150 w-[160px] min-w-[160px] max-w-[160px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[14px]" style={{ color: 'var(--ps-text)' }}>{color.name}</span>
-                  <span className="text-[10px] uppercase tracking-wide" style={{ color: 'var(--ps-text-tertiary)' }}>
+                  <span className="text-[14px] truncate" style={{ color: 'var(--ps-text)' }}>{color.name}</span>
+                  <span className="text-[10px] uppercase tracking-wide flex-shrink-0" style={{ color: 'var(--ps-text-tertiary)' }}>
                     {color.isMetallic ? t('metallic') : t('solid')}
                   </span>
                 </div>
                 {color.replacedBy && (
-                  <span className="text-[11px]" style={{ color: 'var(--ps-text-secondary)' }}>
+                  <span className="text-[11px] block truncate" style={{ color: 'var(--ps-text-secondary)' }}>
                     {t('replacedBy')} {color.replacedBy} {t('inMY26')}
                   </span>
                 )}
               </td>
-              <td className="py-4 pr-4 text-[14px] transition-colors duration-150" style={{ color: 'var(--ps-text-secondary)' }}>
+              <td className="py-4 pr-4 text-[14px] transition-colors duration-150 w-[180px] min-w-[180px] max-w-[180px] truncate" style={{ color: 'var(--ps-text-secondary)' }}>
                 {color.volvoName}
               </td>
-              <td className="py-4 pr-4 transition-colors duration-150">
+              <td className="py-4 pr-4 transition-colors duration-150 w-[100px] min-w-[100px] max-w-[100px]">
                 <span className="text-[12px] font-mono px-2 py-0.5 rounded-none border border-[var(--ps-border-light)]" style={{ backgroundColor: 'var(--ps-pill-bg)', color: 'var(--ps-text-secondary)' }}>
                   {color.polestarCode}
                 </span>
