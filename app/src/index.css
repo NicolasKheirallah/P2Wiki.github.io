@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Polestar Brand Colours — Light (default) */
+    --ps-bg: #FFFFFF;
+    --ps-bg-secondary: #F7F7F7;
+    --ps-bg-elevated: #FFFFFF;
+    --ps-bg-info: #ECECE7;
+
+    --ps-text: #000000;
+    --ps-text-secondary: #75787B;
+    --ps-text-tertiary: #97999B;
+
+    --ps-border: #D9D9D6;
+    --ps-border-light: #ECECE7;
+
+    --ps-pill-bg: #ECECE7;
+    --ps-pill-bg-hover: #D9D9D6;
+    --ps-pill-active-bg: #000000;
+    --ps-pill-active-text: #FFFFFF;
+
+    --ps-table-border: #D9D9D6;
+    --ps-table-row: #ECECE7;
+    --ps-table-hover: #ECECE7;
+
+    --ps-standard: #000000;
+    --ps-optional: #75787B;
+    --ps-unavailable: #C8C9C7;
+
+    --ps-gold: #F6BE00;
+    --ps-error: #D32F2F;
+    --ps-success: #2E7D32;
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --radius: 0.25rem;
+  }
+
+  /* Dark mode — Polestar brand grey scale inverted */
+  .dark {
+    --ps-bg: #000000;
+    --ps-bg-secondary: #53565A;
+    --ps-bg-elevated: #53565A;
+    --ps-bg-info: #53565A;
+
+    --ps-text: #FFFFFF;
+    --ps-text-secondary: #C8C9C7;
+    --ps-text-tertiary: #97999B;
+
+    --ps-border: #53565A;
+    --ps-border-light: #53565A;
+
+    --ps-pill-bg: #53565A;
+    --ps-pill-bg-hover: #75787B;
+    --ps-pill-active-bg: #FFFFFF;
+    --ps-pill-active-text: #000000;
+
+    --ps-table-border: #53565A;
+    --ps-table-row: #3A3A3C;
+    --ps-table-hover: #53565A;
+
+    --ps-standard: #FFFFFF;
+    --ps-optional: #C8C9C7;
+    --ps-unavailable: #53565A;
+
+    --ps-gold: #F6BE00;
+    --ps-error: #EF5350;
+    --ps-success: #66BB6A;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--ps-bg);
+    color: var(--ps-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  * {
+    border-color: var(--ps-border);
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

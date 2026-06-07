@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+vendor/
+*.egg-info/
+venv/
+env/
+
+# Build outputs
+dist/
+build/
+*.pyc
+*.class
+*.o
+*.exe
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+.env.local
+*.key
+*.pem
+secrets/
+config/credentials.yml
+
+# Logs
+*.log
+logs/
+
+# Testing
+coverage/
+.coverage
+*.test
+.pytest_cache/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
