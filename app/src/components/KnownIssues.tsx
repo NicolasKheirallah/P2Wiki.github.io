@@ -12,7 +12,6 @@ interface IssueItem {
   affectedYearsList: string[]; // e.g. ['MY21', 'MY22', 'MY23'] or ['All']
   symptoms: Record<'en' | 'sv', string>;
   diy: Record<'en' | 'sv', string>;
-  dealer: Record<'en' | 'sv', string>;
 }
 
 const issueData: IssueItem[] = [
@@ -33,10 +32,6 @@ const issueData: IssueItem[] = [
       en: 'Soft Reset: Hold home button below screen for 20 seconds.\nHard Reset: Recovery menu factory reset (requires VIDA key re-pairing).',
       sv: 'Mjuk återställning: Håll hemknappen under skärmen intryckt i 20 sekunder.\nHård återställning: Fabriksåterställning via återställningsmenyn (kräver VIDA-nyckelparning).',
     },
-    dealer: {
-      en: 'Performs full software reload (re-flash). In rare, persistent hardware lockup cases, replaces IHU module under warranty.',
-      sv: 'Utför fullständig programvaruomladdning (omflasning). I sällsynta fall av ihållande hårdvarulåsning byts IHU-modulen ut under garanti.',
-    },
   },
   {
     id: 'tcam-failure',
@@ -54,10 +49,6 @@ const issueData: IssueItem[] = [
     diy: {
       en: 'Soft Reset: Hold front defroster button for 20 seconds.\nHard Reset: Disconnect TCAM 12V backup battery under rear roof trim.',
       sv: 'Mjuk återställning: Håll främre defrosterknappen intryckt i 20 sekunder.\nHård återställning: Koppla bort TCAM 12V-backuphissbatteriet under den bakre takklädseln.',
-    },
-    dealer: {
-      en: 'Performs TCAM battery replacement, software reload, or replaces module with updated hardware revision.',
-      sv: 'Utför byte av TCAM-batteri, programvaruomladdning eller byter ut modulen till en uppdaterad hårdvarurevision.',
     },
   },
   {
@@ -77,10 +68,6 @@ const issueData: IssueItem[] = [
       en: 'Verify camera lens is clean. If screen is black, perform IHU soft reset (hold Home button below screen for 20 seconds).',
       sv: 'Kontrollera att kameralinsen är ren. Om skärmen är svart, utför en mjuk återställning av IHU (håll hemknappen intryckt i 20 sekunder).',
     },
-    dealer: {
-      en: 'Applies safety-critical software update (Recall RP1069 / NHTSA 25V615000) to stabilize camera module communication.',
-      sv: 'Applicerar säkerhetskritisk mjukvaruuppdatering (Återkallelse RP1069) för att stabilisera kameramodulens kommunikation.',
-    },
   },
   {
     id: 'rear-axle-click',
@@ -98,10 +85,6 @@ const issueData: IssueItem[] = [
     diy: {
       en: 'Checks: Verify axle bolt torque. Note: Axle nut is single-use (45 Nm + 90 degrees).',
       sv: 'Kontroll: Verifiera åtdragningsmoment för axelbult. Obs: Axelmutter är av engångstyp (45 Nm + 90 grader).',
-    },
-    dealer: {
-      en: 'Applies specialized spline grease/adhesive to driveshaft splines and fits new axle bolts under service bulletin.',
-      sv: 'Applicerar specialanpassat spline-fett/lim på drivaxelns splines och monterar nya axelbultar enligt servicemeddelande.',
     },
   },
   {
@@ -121,10 +104,6 @@ const issueData: IssueItem[] = [
       en: 'Repair: Replace strut top mounts in pairs. Apply final torque (81 Nm) only when suspension is fully loaded on the ground.',
       sv: 'Reparation: Byt fjäderbensfästen parvis. Applicera slutmoment (81 Nm) endast när upphängningen är helt belastad på marken.',
     },
-    dealer: {
-      en: 'Replaces strut top mounts and bearings with updated, improved part numbers under warranty.',
-      sv: 'Byter ut fjäderbensfästen och lager till uppdaterade, förbättrade artikelnummer under garanti.',
-    },
   },
   {
     id: 'propeller-shaft-vibration',
@@ -142,10 +121,6 @@ const issueData: IssueItem[] = [
     diy: {
       en: 'Diagnostic check: Inspect motor mounts and driveshaft alignment for play.',
       sv: 'Diagnostisk kontroll: Inspektera motorfästen och drivaxelns inriktning för spel.',
-    },
-    dealer: {
-      en: 'Re-indexes the propeller shaft or replaces front motor mounts/driveshafts under warranty.',
-      sv: 'Omindexerar kardanaxeln eller byter ut främre motorfästen/drivaxlar under garanti.',
     },
   },
   {
@@ -165,10 +140,6 @@ const issueData: IssueItem[] = [
       en: 'Preventative: Replace 12V lead-acid battery every 36 months to prevent sudden failures.',
       sv: 'Förebyggande: Byt ut 12V blybatteriet var 36:e månad för att förhindra plötsliga fel.',
     },
-    dealer: {
-      en: 'Replaces 12V auxiliary battery and performs battery sensor calibration using VIDA.',
-      sv: 'Byter ut 12V-hjälpbatteriet och utför kalibrering av batterisensorn med VIDA.',
-    },
   },
   {
     id: 'hvch-failure',
@@ -186,10 +157,6 @@ const issueData: IssueItem[] = [
     diy: {
       en: 'Not recommended: High-voltage (400V) system hazard. Seek professional service.',
       sv: 'Rekommenderas ej: Fara relaterad till högspänningssystemet (400V). Sök professionell hjälp.',
-    },
-    dealer: {
-      en: 'Replaces the high-voltage coolant heating assembly and replaces the blown inverter fuse.',
-      sv: 'Byter ut högspänningsvärmeaggregatet för kylvätska och byter den trasiga säkringen.',
     },
   },
   {
@@ -209,10 +176,6 @@ const issueData: IssueItem[] = [
       en: 'No DIY action: High-voltage system hazard. Pull over safely and arrange towing to a service point.',
       sv: 'Ingen DIY-åtgärd: Fara relaterad till högspänningssystemet. Kör åt sidan på ett säkert sätt och ordna bärgning till verkstad.',
     },
-    dealer: {
-      en: 'Replaces the power inverter assembly under the safety recall campaign free of charge.',
-      sv: 'Byter ut växelriktarmodulen (invertern) under säkerhetsåterkallelsen kostnadsfritt.',
-    },
   },
   {
     id: 'blend-door-actuator',
@@ -230,10 +193,6 @@ const issueData: IssueItem[] = [
     diy: {
       en: 'Repair: Replace stripped damper motors (shared Volvo XC40 part). Requires VIDA for end-stop recalibration.',
       sv: 'Reparation: Byt ut utslitna spjällmotorer (delad Volvo XC40-del). Kräver VIDA för kalibrering av ändlägen.',
-    },
-    dealer: {
-      en: 'Replaces the faulty blend door actuator motor and performs calibration sweep via VIDA.',
-      sv: 'Byter ut den felaktiga spjällmotorn och utför kalibrering via VIDA.',
     },
   },
   {
@@ -253,10 +212,6 @@ const issueData: IssueItem[] = [
       en: 'Mitigation: Apply water-displacing silicone lubricant inside latch assembly (temporary fix).',
       sv: 'Åtgärd: Applicera fuktavvisande silikonsmörjmedel inuti låsmekanismen (tillfällig lösning).',
     },
-    dealer: {
-      en: 'Replaces latch assemblies with updated versions featuring improved moisture seals and low-temperature grease.',
-      sv: 'Byter ut låsmekanismerna till uppdaterade versioner med förbättrade fukt-tätningar och lågtemperaturfett.',
-    },
   },
   {
     id: 'lamp-condensation',
@@ -275,10 +230,6 @@ const issueData: IssueItem[] = [
       en: 'Inspect and clean ventilation caps on back of assemblies. Temporary misting is normal and should clear on drive.',
       sv: 'Inspektera och rengör ventilationslock på baksidan av enheterna. Tillfällig imma är normalt och bör försvinna under körning.',
     },
-    dealer: {
-      en: 'Replaces light assembly housings if water droplets pool or if internal LED drivers fail.',
-      sv: 'Byter ut strålkastarhusen om vattendroppar samlas eller om interna LED-drivrutiner går sönder.',
-    },
   },
   {
     id: 'tailgate-spindle-failure',
@@ -296,10 +247,6 @@ const issueData: IssueItem[] = [
     diy: {
       en: '1. Calibration: Manually open tailgate fully, press and hold the close button for 5 seconds until it beeps twice to reset.\n2. Inspection: Pull back the rubber boot at the top of the struts and check for pinched or broken wires (solder any breaks).\n3. Squeaks: Apply silicone-based lubricant to rubber weather seals.',
       sv: '1. Kalibrering: Öppna bakluckan helt manuellt, tryck och håll stängningsknappen i 5 sekunder tills det piper två gånger för att återställa.\n2. Inspektera: Dra tillbaka gummibälgen vid toppen av dämparna och leta efter klämda eller trasiga kablar (löd eventuella brott).\n3. Gnissel: Applicera silikonbaserat smörjmedel på tätningslisterna.',
-    },
-    dealer: {
-      en: 'Replaces the left and/or right power spindle drive struts as a pair. Diagnoses and repairs the rear wiring harness under a service bulletin if damaged.',
-      sv: 'Byter ut vänster och/eller höger elektrisk spindelmotor (dämpare) parvis. Diagnostiserar och reparerar det bakre kablaget vid skada.',
     },
   },
 ];
@@ -385,13 +332,11 @@ export default function KnownIssues() {
     const title = (isSv ? item.issue.sv : item.issue.en).toLowerCase();
     const symptoms = (isSv ? item.symptoms.sv : item.symptoms.en).toLowerCase();
     const diyText = (isSv ? item.diy.sv : item.diy.en).toLowerCase();
-    const dealerText = (isSv ? item.dealer.sv : item.dealer.en).toLowerCase();
 
     const matchesSearch =
       title.includes(query) ||
       symptoms.includes(query) ||
       diyText.includes(query) ||
-      dealerText.includes(query) ||
       item.affectedYearsList.some((y) => y.toLowerCase().includes(query));
 
     return matchesTab && matchesYear && matchesSearch;
@@ -532,7 +477,6 @@ export default function KnownIssues() {
             const title = isSv ? item.issue.sv : item.issue.en;
             const symptoms = isSv ? item.symptoms.sv : item.symptoms.en;
             const diyText = isSv ? item.diy.sv : item.diy.en;
-            const dealerText = isSv ? item.dealer.sv : item.dealer.en;
 
             // Get category display label
             const categoryLabel = t(categories.find((c) => c.id === item.category)?.labelKey || '');
@@ -617,9 +561,8 @@ export default function KnownIssues() {
                   </div>
                 </button>
 
-                {/* Details body */}
                 {isExpanded && (
-                  <div className="border-t border-[var(--ps-border-light)] p-5 bg-[var(--ps-bg-secondary)]/10 grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="border-t border-[var(--ps-border-light)] p-5 bg-[var(--ps-bg-secondary)]/10 grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Symptoms Column */}
                     <div className="space-y-2">
                       <h5 className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--ps-text-tertiary)' }}>
@@ -640,16 +583,6 @@ export default function KnownIssues() {
                       </div>
                       <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
                         {formatMultiline(diyText)}
-                      </p>
-                    </div>
-
-                    {/* Dealer Action Column */}
-                    <div className="space-y-2">
-                      <h5 className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--ps-text-tertiary)' }}>
-                        {t('dealerLabel')}
-                      </h5>
-                      <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
-                        {dealerText}
                       </p>
                     </div>
                   </div>
