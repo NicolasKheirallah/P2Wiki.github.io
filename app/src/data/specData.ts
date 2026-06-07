@@ -166,27 +166,28 @@ export const categories: Category[] = [
       },
       {
         name: 'WeaveTech seats with Black ash deco inlays',
-        values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus'],
+        values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', '\u2014'],
+        notes: 'MY21–MY25. Discontinued in MY26. Water- and dirt-resistant 100% vegan upholstery included in the Plus Pack.',
       },
       {
         name: 'Bio-attributed MicroTech Charcoal (quilted, Black Ash)',
-        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014', 'Plus'],
-        notes: 'MY26: New MicroTech upholstery with quilted design and Black Ash deco.',
+        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', 'Plus', 'Plus'],
+        notes: 'MY25–MY26. Introduced in MY25 as premium vegan upholstery option in the Plus Pack. Quilted design paired with Black Ash deco.',
       },
       {
         name: 'Nappa leather seats (Barley, band on doors)',
         values: ['Nappa', 'Nappa', 'Nappa', '\u2014', '\u2014', '\u2014', '\u2014'],
-        notes: 'Requires Plus pack.',
+        notes: 'MY21–MY22. Premium animal-welfare perforated Nappa leather. Requires Plus pack.',
       },
       {
         name: 'Nappa leather seats (Zinc, band on doors)',
-        values: ['\u2014', '\u2014', '\u2014', 'Nappa', 'Nappa', '\u2014', '\u2014'],
-        notes: 'Requires Plus pack.',
+        values: ['\u2014', '\u2014', '\u2014', 'Nappa', '\u2014', '\u2014', '\u2014'],
+        notes: 'MY23. Replaced Barley color. Requires Plus pack.',
       },
       {
         name: 'Nappa leather seats (Zinc or Charcoal, band on doors)',
-        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', 'Nappa', 'Nappa'],
-        notes: 'Requires Plus pack.',
+        values: ['\u2014', '\u2014', '\u2014', '\u2014', 'Nappa', 'Nappa', 'Nappa'],
+        notes: 'MY24–MY26. Adds Charcoal color option. Requires Plus pack.',
       },
       {
         name: 'Ventilated front seats',
@@ -290,6 +291,7 @@ export const categories: Category[] = [
       {
         name: 'Rear view camera',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u2014', '\u2014', '\u2014'],
+        notes: 'Standard on MY21–MY23. Standalone camera replaced by the standard 360° camera from MY24 onwards.',
       },
       {
         name: '360\u00B0 camera',
@@ -345,8 +347,8 @@ export const categories: Category[] = [
       },
       {
         name: 'Tinted rear window',
-        values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', '\u25CF', '\u25CF'],
-        notes: 'MY26+: Tint now applied to rear side windows and tailgate.',
+        values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', '\u25CB'],
+        notes: 'MY21–MY25: Included in Plus pack (applies only to the rear windscreen). MY26: Standalone option (applied to both rear side windows and tailgate).',
       },
       {
         name: 'High gloss black roof segment',
@@ -355,6 +357,7 @@ export const categories: Category[] = [
       {
         name: 'Homelink integration',
         values: ['\u25CF', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014'],
+        notes: 'Standard on MY21 Launch Edition. Removed for MY22+ in UK/EU (still available as a standalone option in US models).',
       },
     ],
   },

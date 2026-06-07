@@ -149,8 +149,8 @@ const usOverrides: Record<string, Partial<Category>> = {
       },
       {
         name: 'Rear privacy glass',
-        values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', '\u25CF', '\u25CF'],
-        notes: 'US: Tint laws vary by state.',
+        values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', '\u25CB'],
+        notes: 'US: Tint laws vary by state. Standalone option for MY26.',
       },
       {
         name: 'High gloss black roof segment',
