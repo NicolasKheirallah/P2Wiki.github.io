@@ -20,27 +20,27 @@ interface Takeaway {
   text: string;
 }
 
-const getDcVariants = (locale: string): DcVariant[] => [
+const dcVariants: DcVariant[] = [
   {
-    generation: locale === 'sv' ? 'Standard Range (Tidig 2022)' : 'Standard Range (Early 2022)',
+    generation: 'charging_stdRangeEarly2022',
     gross: '64 kWh',
     usable: '61 kWh',
     peak: '116 kW',
   },
   {
-    generation: locale === 'sv' ? 'Standard Range (Sent 2022–2025)' : 'Standard Range (Late 2022–2025)',
+    generation: 'charging_stdRangeLate2022',
     gross: '69 kWh',
     usable: '67 kWh',
     peak: '130–135 kW',
   },
   {
-    generation: locale === 'sv' ? 'Long Range Före Facelift (2021–2023)' : 'Pre-Facelift Long Range (2021–2023)',
+    generation: 'charging_lrPreFacelift',
     gross: '78 kWh',
     usable: '~75 kWh',
     peak: '150 kW',
   },
   {
-    generation: locale === 'sv' ? 'Long Range Facelift (2024+)' : '2024+ Facelift Long Range',
+    generation: 'charging_lrFacelift',
     gross: '82 kWh',
     usable: '79 kWh',
     peak: '205 kW',
@@ -151,51 +151,49 @@ const chargingCurvesData = {
 
 const acSpecs: AcSpec[] = [
   {
-    configuration: 'Three-Phase AC (400 V, 3 × 16 A)',
+    configuration: 'charging_acThreePhase',
     power: '11 kW',
   },
   {
-    configuration: 'Single-Phase AC (230 V, 1 × 32 A)',
+    configuration: 'charging_acSinglePhase',
     power: '7.4 kW',
   },
 ];
 
 const curvePhases = [
   {
-    range: '10–30% SoC',
-    description:
-      'Highest charging rates are typically available when battery temperature is within the optimal range.',
+    range: 'charging_phaseRange1',
+    description: 'charging_phaseDesc1',
   },
   {
-    range: '30–70% SoC',
-    description: 'Charging power gradually tapers as SoC increases.',
+    range: 'charging_phaseRange2',
+    description: 'charging_phaseDesc2',
   },
   {
-    range: '70–80% SoC',
-    description: 'Charging rates reduce more noticeably.',
+    range: 'charging_phaseRange3',
+    description: 'charging_phaseDesc3',
   },
   {
-    range: '80–100% SoC',
-    description:
-      'Charging power decreases significantly to protect battery longevity and minimize cell stress.',
+    range: 'charging_phaseRange4',
+    description: 'charging_phaseDesc4',
   },
 ];
 
 const takeaways: Takeaway[] = [
-  { text: 'Long Range Polestar 2 models support up to 150 kW or 205 kW DC charging depending on generation.' },
-  { text: 'AC charging supports up to 11 kW on a three-phase connection.' },
-  { text: "Battery preconditioning requires navigation to a DC charger using the vehicle's native Google Maps system." },
-  { text: 'Charging speed naturally tapers as battery state of charge increases.' },
-  { text: 'Polestar officially recommends a 90% charge limit for daily use; charge to 100% only when full range is needed.' },
-  { text: 'Avoid letting SoC fall below 20% — deep discharge can cause serious battery damage.' },
-  { text: 'AC charging is preferred for daily use; reserve DC fast charging for long-distance travel.' },
-  { text: 'Long-term storage is best performed with the battery maintained around 40–60% state of charge.' },
-  { text: 'The 8-year / 160,000 km battery warranty guarantees at least 70% of original capacity.' },
-  { text: 'The emergency charging cable release is located beneath the cargo floor on the left side.' },
+  { text: 'charging_takeaway0' },
+  { text: 'charging_takeaway1' },
+  { text: 'charging_takeaway2' },
+  { text: 'charging_takeaway3' },
+  { text: 'charging_takeaway4' },
+  { text: 'charging_takeaway5' },
+  { text: 'charging_takeaway6' },
+  { text: 'charging_takeaway7' },
+  { text: 'charging_takeaway8' },
+  { text: 'charging_takeaway9' },
 ];
 
 export default function ChargingPerformance() {
-  const { locale, t } = useLocale();
+  const { t } = useLocale();
   const { market } = useMarket();
   const useKm = market === 'se';
 
@@ -316,13 +314,13 @@ export default function ChargingPerformance() {
               </tr>
             </thead>
             <tbody>
-              {getDcVariants(locale).map((variant, idx) => (
+              {dcVariants.map((variant, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--ps-table-row)' }}>
                   <td
                     className="py-3 pr-4 text-[13px] font-medium align-top"
                     style={{ color: 'var(--ps-text)' }}
                   >
-                    {variant.generation}
+                    {t(variant.generation)}
                   </td>
                   <td
                     className="py-3 pr-4 text-[13px] align-top"
@@ -375,10 +373,10 @@ export default function ChargingPerformance() {
               }}
             >
               <h5 className="text-[12px] font-medium mb-1 uppercase tracking-wide" style={{ color: 'var(--ps-gold)' }}>
-                {phase.range}
+                {t(phase.range)}
               </h5>
               <p className="text-[12px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
-                {phase.description}
+                {t(phase.description)}
               </p>
             </div>
           ))}
@@ -418,16 +416,16 @@ export default function ChargingPerformance() {
                   className="w-full bg-[var(--ps-bg-secondary)] border border-[var(--ps-border)] hover:border-[var(--ps-text-secondary)] focus:border-[var(--ps-text)] p-2 text-[12px] text-[var(--ps-text)] outline-none rounded-none cursor-pointer"
                 >
                   <option value="standard64">
-                    {locale === 'sv' ? 'Standard Range Tidig 2022 (64 kWh)' : 'Standard Range Early 2022 (64 kWh)'}
+                    {t('charging_selectStd64')}
                   </option>
                   <option value="standard">
-                    {locale === 'sv' ? 'Standard Range 2022–2025 (69 kWh)' : 'Standard Range 2022–2025 (69 kWh)'}
+                    {t('charging_selectStd69')}
                   </option>
                   <option value="lrPre2024">
-                    {locale === 'sv' ? 'Long Range Före Facelift (78 kWh)' : 'Long Range Pre-Facelift (78 kWh)'}
+                    {t('charging_selectLr78')}
                   </option>
                   <option value="lrSiC">
-                    {locale === 'sv' ? 'Long Range Facelift (82 kWh)' : 'Long Range Facelift (82 kWh)'}
+                    {t('charging_selectLr82')}
                   </option>
                 </select>
               </div>
@@ -442,9 +440,9 @@ export default function ChargingPerformance() {
                   onChange={(e) => handleChargerPowerChange(Number(e.target.value))}
                   className="w-full bg-[var(--ps-bg-secondary)] border border-[var(--ps-border)] hover:border-[var(--ps-text-secondary)] focus:border-[var(--ps-text)] p-2 text-[12px] text-[var(--ps-text)] outline-none rounded-none cursor-pointer"
                 >
-                  <option value="50">50 kW (Standard DC Charger)</option>
-                  <option value="150">150 kW (Fast Charger)</option>
-                  <option value="350">350 kW (Ultra-Fast Charger)</option>
+                  <option value="50">{t('charging_charger50kw')}</option>
+                  <option value="150">{t('charging_charger150kw')}</option>
+                  <option value="350">{t('charging_charger350kw')}</option>
                 </select>
               </div>
 
@@ -616,7 +614,7 @@ export default function ChargingPerformance() {
                     className="py-3 pr-4 text-[13px] align-top"
                     style={{ color: 'var(--ps-text)' }}
                   >
-                    {spec.configuration}
+                    {t(spec.configuration)}
                   </td>
                   <td
                     className="py-3 pr-4 text-[13px] font-medium align-top"
@@ -1035,7 +1033,7 @@ export default function ChargingPerformance() {
                 style={{ backgroundColor: 'var(--ps-gold)' }}
               />
               <span className="text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
-                {item.text}
+                {t(item.text)}
               </span>
             </li>
           ))}

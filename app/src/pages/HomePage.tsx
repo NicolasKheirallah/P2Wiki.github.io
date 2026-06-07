@@ -49,13 +49,13 @@ export default function HomePage() {
       <section className="max-w-[700px] space-y-6">
         <div className="space-y-1">
           <span className="text-[10px] font-medium tracking-[0.25em] uppercase text-[var(--ps-text-tertiary)]">
-            01 / OVERVIEW
+            {t('sectionOverview')}
           </span>
           <h1 className="text-[54px] sm:text-[64px] font-extralight tracking-[-0.03em] leading-[1.05]" style={{ color: 'var(--ps-text)' }}>
             Polestar 2
           </h1>
           <span className="text-[11px] font-normal tracking-[0.3em] uppercase text-[var(--ps-gold)] block">
-            Specifications & Buying Guide
+            {t('siteSubtitle')}
           </span>
         </div>
 
@@ -108,7 +108,7 @@ export default function HomePage() {
                 </p>
 
                 <div className="mt-8 flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[var(--ps-text-tertiary)] group-hover:text-[var(--ps-text)] transition-colors duration-300">
-                  <span>Explore</span>
+                  <span>{t('explore')}</span>
                   <ArrowRight
                     size={10}
                     className="transform transition-transform duration-300 group-hover:translate-x-1"

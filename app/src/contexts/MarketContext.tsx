@@ -12,9 +12,9 @@ interface MarketInfo {
 }
 
 export const markets: MarketInfo[] = [
-  { id: 'uk', label: 'United Kingdom', flag: '\uD83C\uDDEC\uD83C\uDDE7', currency: 'GBP', rangeStandard: '344 mi', rangeLong: '409 mi' },
-  { id: 'se', label: 'Sweden', flag: '\uD83C\uDDF8\uD83C\uDDEA', currency: 'SEK', rangeStandard: '550 km', rangeLong: '655 km' },
-  { id: 'us', label: 'United States', flag: '\uD83C\uDDFA\uD83C\uDDF8', currency: 'USD', rangeStandard: '270 mi', rangeLong: '320 mi' },
+  { id: 'uk', label: 'marketUk', flag: '\uD83C\uDDEC\uD83C\uDDE7', currency: 'GBP', rangeStandard: '344 mi', rangeLong: '409 mi' },
+  { id: 'se', label: 'marketSe', flag: '\uD83C\uDDF8\uD83C\uDDEA', currency: 'SEK', rangeStandard: '550 km', rangeLong: '655 km' },
+  { id: 'us', label: 'marketUs', flag: '\uD83C\uDDFA\uD83C\uDDF8', currency: 'USD', rangeStandard: '270 mi', rangeLong: '320 mi' },
 ];
 
 interface MarketContextValue {

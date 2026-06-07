@@ -155,7 +155,7 @@ export default function SpecsPage() {
             style={{ color: 'var(--ps-text-secondary)' }}
           >
             <Globe size={11} className="mr-0.5" />
-            {marketInfo.label}
+            {t(marketInfo.label)}
           </span>
         </div>
         <h1 className="text-[36px] font-light tracking-[-0.02em] leading-[1.2]" style={{ color: 'var(--ps-text)' }}>

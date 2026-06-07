@@ -39,85 +39,85 @@ interface PartReference {
 
 const torqueSpecs: TorqueSpec[] = [
   {
-    item: 'Wheel Lug Bolts',
+    item: 'service_wheelLugBolts',
     value: '140 Nm',
-    note: 'Strictly dry threads; do not lubricate.',
+    note: 'service_wheelLugBoltsNote',
   },
   {
-    item: 'Strut Top Center Nut',
+    item: 'service_strutTopCenterNut',
     value: '81 Nm',
-    note: 'Must be torqued at ride height.',
+    note: 'service_strutTopCenterNutNote',
   },
   {
-    item: 'Hub / Axle Bolt',
+    item: 'service_hubAxleBolt',
     value: '45 Nm + 90°',
-    note: 'Single-use torque-to-yield item; replace every removal.',
+    note: 'service_hubAxleBoltNote',
   },
 ];
 
 const drivetrainSpecs: DrivetrainSpec[] = [
   {
-    item: 'Wheel Bolt Pattern',
+    item: 'service_wheelBoltPattern',
     value: '5 x 108 mm',
-    note: 'Standard Volvo/Polestar fitment.',
+    note: 'service_wheelBoltPatternNote',
   },
   {
-    item: 'Hub Center Bore',
+    item: 'service_hubCenterBore',
     value: '63.4 mm',
-    note: 'Requires hub-centric wheels or hub rings for aftermarket wheels.',
+    note: 'service_hubCenterBoreNote',
   },
   {
-    item: 'Lug Bolt Size',
+    item: 'service_lugBoltSize',
     value: 'M14 x 1.5',
-    note: 'Thread length: 28 mm, Conical seat.',
+    note: 'service_lugBoltSizeNote',
   },
   {
-    item: 'Transmission Oil (ERAD/Front)',
+    item: 'service_transmissionOil',
     value: '1.6 Litres per motor',
-    note: 'Use Volvo/Polestar Transmission Oil (SAE 75W-90 / API GL-5). Change every 80k-100k km for longevity.',
+    note: 'service_transmissionOilNote',
   },
   {
-    item: 'Coolant System Capacity',
+    item: 'service_coolantSystemCapacity',
     value: '15 Litres',
-    note: 'Use 50/50 ready-mixed Volvo Green Coolant (type VCS). Flush requires air bleeding via VIDA.',
+    note: 'service_coolantSystemCapacityNote',
   },
 ];
 
 const fluidSpecs: FluidSpec[] = [
   {
-    item: 'Brake Fluid',
+    item: 'service_brakeFluid',
     value: 'DOT 4 / DOT 4 LV',
-    note: 'Low Viscosity variant preferred for enhanced ABS/stability control response in cold climates.',
+    note: 'service_brakeFluidNote',
   },
   {
-    item: 'A/C Refrigerant',
+    item: 'service_acRefrigerant',
     value: 'R1234yf or R134a',
-    note: 'Varies strictly by regional production destination; check the specification label located on the underside of the front hood.',
+    note: 'service_acRefrigerantNote',
   },
 ];
 
 const batterySpecs: BatterySpec[] = [
-  { item: 'Group Size Designation', value: 'H6 (LN3) AGM' },
-  { item: 'Capacity', value: '70 Ah' },
-  { item: 'Cold Cranking Amps (CCA)', value: '760 A' },
-  { item: 'Dimensions', value: '277.7 × 174.4 × 188.5 mm' },
+  { item: 'service_groupSize', value: 'H6 (LN3) AGM' },
+  { item: 'service_capacity', value: '70 Ah' },
+  { item: 'service_cca', value: '760 A' },
+  { item: 'service_dimensions', value: '277.7 × 174.4 × 188.5 mm' },
 ];
 
 const partReferences: PartReference[] = [
   {
-    name: 'Cabin Air Filter',
+    name: 'service_cabinAirFilter',
     number: 'Volvo 31497285',
-    purpose: 'Multi-filter with active carbon; recommended replacement every 2 years.',
+    purpose: 'service_cabinAirFilterPurpose',
   },
   {
-    name: 'Wiper Blade Set (Front)',
+    name: 'service_wiperBladeSet',
     number: 'Volvo 31693568',
-    purpose: 'Dual integrated heated windshield washer jets.',
+    purpose: 'service_wiperBladeSetPurpose',
   },
   {
-    name: '12V Auxiliary AGM Battery',
+    name: 'service_12vAuxBattery',
     number: 'Volvo 31652063',
-    purpose: 'Standard LN3 H6 AGM; required replacement every 36 months to prevent TCAM/12V drains.',
+    purpose: 'service_12vAuxBatteryPurpose',
   },
 ];
 
@@ -142,23 +142,24 @@ const serviceIntervalsMi = [
 ];
 
 const serviceRows: ServiceRow[] = [
-  { operation: 'Service Reminder Indicator (SRI), reset', intervals: [true, true, true, true, true, true, true] },
-  { operation: 'Coolant check & adjust antifreeze/anti-corrosion', intervals: [true, true, true, true, true, true, true] },
-  { operation: 'Cabin air filter, replace', intervals: [true, true, true, true, true, true, true] },
-  { operation: 'Clean inside windshield in front of camera', intervals: [true, false, false, false, false, false, false] },
-  { operation: 'Seatbelts, check function', intervals: [true, true, true, true, true, true, true] },
-  { operation: 'Washer fluid & wiper blades/washers, check', intervals: [true, true, true, true, true, true, true] },
-  { operation: 'External lighting & horn, check/align', intervals: [true, true, true, true, true, true, true] },
-  { operation: 'Brake fluid level, pads, discs & parking brake, check', intervals: [true, true, true, true, true, true, true] },
-  { operation: 'Wheels and tires, check wear & pressure', intervals: [true, true, true, true, true, true, true] },
-  { operation: 'Brake fluid, replace', intervals: [false, true, false, true, false, true, false] },
-  { operation: 'Brake hoses and lines, check for leaks', intervals: [false, true, false, true, false, true, false] },
-  { operation: 'Front & rear suspension/steering wear check', intervals: [false, true, false, true, false, true, false] },
-  { operation: 'Driveshaft joints & rubber boots, check', intervals: [false, true, false, true, false, true, false] },
+  { operation: 'service_sriReset', intervals: [true, true, true, true, true, true, true] },
+  { operation: 'service_coolantCheck', intervals: [true, true, true, true, true, true, true] },
+  { operation: 'service_cabinAirFilterReplace', intervals: [true, true, true, true, true, true, true] },
+  { operation: 'service_cleanWindshield', intervals: [true, false, false, false, false, false, false] },
+  { operation: 'service_seatbeltsCheck', intervals: [true, true, true, true, true, true, true] },
+  { operation: 'service_washerFluidCheck', intervals: [true, true, true, true, true, true, true] },
+  { operation: 'service_externalLightingCheck', intervals: [true, true, true, true, true, true, true] },
+  { operation: 'service_brakeFluidCheck', intervals: [true, true, true, true, true, true, true] },
+  { operation: 'service_wheelsTiresCheck', intervals: [true, true, true, true, true, true, true] },
+  { operation: 'service_brakeFluidReplace', intervals: [false, true, false, true, false, true, false] },
+  { operation: 'service_brakeHosesCheck', intervals: [false, true, false, true, false, true, false] },
+  { operation: 'service_suspensionCheck', intervals: [false, true, false, true, false, true, false] },
+  { operation: 'service_driveshaftCheck', intervals: [false, true, false, true, false, true, false] },
 ];
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
+  const { t } = useLocale();
 
   const handleCopy = async () => {
     try {
@@ -177,7 +178,7 @@ function CopyButton({ text }: { text: string }) {
       style={{
         transform: copied ? 'scale(1.1)' : 'scale(1)',
       }}
-      title="Copy to clipboard"
+      title={t('service_copyToClipboard')}
     >
       {copied ? <Check size={12} className="text-[var(--ps-gold)]" /> : <Copy size={12} />}
     </button>
@@ -185,19 +186,16 @@ function CopyButton({ text }: { text: string }) {
 }
 
 export default function ServiceMaintenance() {
-  const { locale, t } = useLocale();
+  const { t } = useLocale();
   const { market } = useMarket();
   const useKm = market === 'uk' || market === 'se';
-  const isSv = locale === 'sv';
 
   const serviceIntervals = useKm ? serviceIntervalsKm : serviceIntervalsMi;
   const [selectedIntervalIndex, setSelectedIntervalIndex] = useState<number>(0);
   const [expandedSRI, setExpandedSRI] = useState(false);
 
   // Manual reset steps text
-  const sriResetText = isSv
-    ? '1. Sätt dig i förarsätet och stäng alla dörrar.\n2. Spänn fast förarbältet för att undvika bältesvarningssignaler.\n3. Håll in farthållarens minusknapp (-) på vänster sida av ratten.\n4. Tryck på bromspedalen medan du håller minusknappen intryckt, och lägg i växeln D (Drive).\n5. Släpp omedelbart bromspedalen, men fortsätt hålla minusknappen (-) intryckt.\n6. Vänta i ca 10 sekunder tills den orangea informationssymbolen (i) på förardisplayen börjar blinka. Släpp minusknappen direkt.\n7. Tryck på OK/Mittenknappen på höger sida av ratten för att bekräfta återställningen.'
-    : '1. Sit in the driver\'s seat and close all doors.\n2. Buckle the driver\'s seatbelt to prevent warning chime interference.\n3. Press and hold the cruise control minus button (-) on the left side of the steering wheel.\n4. While holding the minus button, press the brake pedal and move the gear selector to D (Drive).\n5. Immediately release the brake pedal (do not drive!), but keep the minus button (-) held down.\n6. Wait for approximately 10 seconds until the orange "i" (information) symbol on the driver display starts blinking. Release the minus button immediately.\n7. Press the OK/Center button on the right side of the steering wheel to confirm the reset.';
+  const sriResetText = t('service_sriResetSteps');
 
   const handleCopySRI = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -261,7 +259,7 @@ export default function ServiceMaintenance() {
                       className="py-3 pr-4 text-[13px] font-medium align-top"
                       style={{ color: 'var(--ps-text)' }}
                     >
-                      {spec.item}
+                      {t(spec.item)}
                     </td>
                     <td
                       className="py-3 pr-4 text-[13px] align-top flex items-center"
@@ -274,7 +272,7 @@ export default function ServiceMaintenance() {
                       className="py-3 pr-4 text-[12px] leading-relaxed align-top"
                       style={{ color: 'var(--ps-text-secondary)' }}
                     >
-                      {spec.note}
+                      {spec.note ? t(spec.note) : null}
                     </td>
                   </tr>
                 ))}
@@ -289,7 +287,7 @@ export default function ServiceMaintenance() {
             className="text-[13px] font-medium mb-3 uppercase tracking-wider"
             style={{ color: 'var(--ps-text-tertiary)' }}
           >
-            {isSv ? 'Drivlina & Hjulspecifikationer' : 'Drivetrain & Wheel Specifications'}
+            {t('service_drivetrainWheelSpecs')}
           </h4>
           <div className="overflow-x-auto scrollbar-hide -mx-2 px-2">
             <table className="w-full min-w-[600px] border-collapse">
@@ -322,7 +320,7 @@ export default function ServiceMaintenance() {
                       className="py-3 pr-4 text-[13px] font-medium align-top"
                       style={{ color: 'var(--ps-text)' }}
                     >
-                      {spec.item}
+                      {t(spec.item)}
                     </td>
                     <td
                       className="py-3 pr-4 text-[13px] align-top flex items-center"
@@ -335,7 +333,7 @@ export default function ServiceMaintenance() {
                       className="py-3 pr-4 text-[12px] leading-relaxed align-top"
                       style={{ color: 'var(--ps-text-secondary)' }}
                     >
-                      {spec.note}
+                      {spec.note ? t(spec.note) : null}
                     </td>
                   </tr>
                 ))}
@@ -362,14 +360,14 @@ export default function ServiceMaintenance() {
                 <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-[var(--ps-border)] opacity-35" />
                 <div className="space-y-1">
                   <span className="text-[13px] font-semibold block" style={{ color: 'var(--ps-text)' }}>
-                    {fluid.item}
+                    {t(fluid.item)}
                   </span>
                   <span className="text-[13.5px] font-medium block text-[var(--ps-gold)]">
                     {fluid.value}
                   </span>
                   {fluid.note && (
                     <p className="text-[12px] leading-relaxed pt-1" style={{ color: 'var(--ps-text-secondary)' }}>
-                      {fluid.note}
+                      {t(fluid.note)}
                     </p>
                   )}
                 </div>
@@ -392,7 +390,7 @@ export default function ServiceMaintenance() {
               <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-[var(--ps-border)] opacity-35" />
               {batterySpecs.map((spec, idx) => (
                 <div key={idx} className="flex justify-between border-b border-[var(--ps-border-light)] pb-1.5 last:border-b-0 last:pb-0 text-[12.5px]">
-                  <span className="font-semibold text-[var(--ps-text-secondary)]">{spec.item}</span>
+                  <span className="font-semibold text-[var(--ps-text-secondary)]">{t(spec.item)}</span>
                   <span className="text-[var(--ps-text)]">{spec.value}</span>
                 </div>
               ))}
@@ -414,17 +412,17 @@ export default function ServiceMaintenance() {
               className="text-[13px] font-medium uppercase tracking-wider"
               style={{ color: 'var(--ps-text-tertiary)' }}
             >
-              {isSv ? 'OEM Artikelnummer Referens' : 'OEM Parts Reference'}
+              {t('service_oemPartsReference')}
             </h4>
             <div className="border border-[var(--ps-border)] bg-[var(--ps-bg)] p-4 rounded-none space-y-3 relative">
               <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-[var(--ps-border)] opacity-35" />
               {partReferences.map((part, idx) => (
                 <div key={idx} className="space-y-0.5 border-b border-[var(--ps-border-light)] pb-2 last:border-b-0 last:pb-0 text-[12.5px]">
                   <div className="flex justify-between">
-                    <span className="font-semibold text-[var(--ps-text)]">{part.name}</span>
+                    <span className="font-semibold text-[var(--ps-text)]">{t(part.name)}</span>
                     <span className="font-mono text-[var(--ps-gold)]">{part.number}</span>
                   </div>
-                  <p className="text-[11.5px] text-[var(--ps-text-secondary)] leading-relaxed">{part.purpose}</p>
+                  <p className="text-[11.5px] text-[var(--ps-text-secondary)] leading-relaxed">{t(part.purpose)}</p>
                 </div>
               ))}
             </div>
@@ -441,7 +439,7 @@ export default function ServiceMaintenance() {
           <div className="flex items-center gap-2">
             <ShieldAlert size={16} className="text-[var(--ps-gold)]" />
             <h4 className="text-[13.5px] font-medium tracking-wide uppercase" style={{ color: 'var(--ps-text)' }}>
-              {isSv ? 'DIY-Guide: Manuell Återställning av Servicepåminnare (SRI)' : 'DIY Guide: Manual Service Reminder Reset (SRI)'}
+              {t('service_sriResetTitle')}
             </h4>
           </div>
           <div className="flex items-center gap-3">
@@ -450,7 +448,7 @@ export default function ServiceMaintenance() {
               className="inline-flex items-center gap-1.5 px-2 py-0.5 border border-[var(--ps-border)] hover:border-[var(--ps-text)] bg-[var(--ps-bg-secondary)] hover:bg-[var(--ps-bg-elevated)] transition-colors rounded-none text-[10px] font-semibold tracking-wider uppercase text-[var(--ps-text-secondary)] hover:text-[var(--ps-text)]"
             >
               <Copy size={10} />
-              <span>{isSv ? 'Kopiera' : 'Copy'}</span>
+              <span>{t('service_copy')}</span>
             </button>
             <ChevronDown
               size={16}
@@ -488,7 +486,7 @@ export default function ServiceMaintenance() {
         {/* Milestone interval selector calculator */}
         <div className="space-y-3">
           <label className="text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-semibold block">
-            {isSv ? 'Välj Serviceintervall (Kalkylator):' : 'Select Service Interval (Calculator):'}
+            {t('service_selectInterval')}
           </label>
           <div className="flex flex-wrap gap-2">
             {serviceIntervals.map((label, idx) => {
@@ -558,7 +556,7 @@ export default function ServiceMaintenance() {
                     className="py-3 pr-4 text-[13px] align-top"
                     style={{ color: 'var(--ps-text)' }}
                   >
-                    {row.operation}
+                    {t(row.operation)}
                   </td>
                   {row.intervals.map((due, i) => {
                     const isHighlighted = selectedIntervalIndex === i;
@@ -603,7 +601,7 @@ export default function ServiceMaintenance() {
           <div className="flex items-center gap-2 mb-3">
             <ClipboardList size={16} className="text-[var(--ps-gold)]" />
             <h4 className="text-[13px] font-semibold uppercase tracking-wider" style={{ color: 'var(--ps-text)' }}>
-              {isSv ? `Utförs vid: ${serviceIntervals[selectedIntervalIndex]}` : `Due Operations at: ${serviceIntervals[selectedIntervalIndex]}`}
+              {t('service_dueOperationsAt')} {serviceIntervals[selectedIntervalIndex]}
             </h4>
           </div>
 
@@ -611,7 +609,7 @@ export default function ServiceMaintenance() {
             {dueOperations.map((op, idx) => (
               <li key={idx} className="flex items-start gap-2 text-[12.5px] text-[var(--ps-text-secondary)] leading-relaxed">
                 <span className="w-1.5 h-1.5 rounded-full bg-[var(--ps-gold)] mt-2 shrink-0" />
-                <span>{op.operation}</span>
+                <span>{t(op.operation)}</span>
               </li>
             ))}
           </ul>

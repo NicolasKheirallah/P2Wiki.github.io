@@ -65,7 +65,7 @@ export default function Header() {
             className="text-[20px] font-medium tracking-[-0.01em] select-none shrink-0 transition-opacity duration-150 hover:opacity-70"
             style={{ color: 'var(--ps-text)' }}
           >
-            Polestar 2 Buying Guide
+            {t('siteTitle')}
           </Link>
 
           {/* Tabs */}
@@ -133,7 +133,7 @@ export default function Header() {
                 }}
               >
                 <span className="text-[16px] leading-none">{currentMarket.flag}</span>
-                <span className="hidden md:inline">{currentMarket.label}</span>
+                <span className="hidden md:inline">{t(currentMarket.label)}</span>
                 <ChevronDown size={12} className={`transition-transform duration-150 ${marketOpen ? 'rotate-180' : ''}`} />
               </button>
 
@@ -168,7 +168,7 @@ export default function Header() {
                       }}
                     >
                       <span className="text-[16px]">{m.flag}</span>
-                      <span className="flex-1 text-left">{m.label}</span>
+                      <span className="flex-1 text-left">{t(m.label)}</span>
                     </button>
                   ))}
                 </div>
@@ -235,7 +235,7 @@ export default function Header() {
                       }}
                     >
                       <span className="text-[11px] font-medium uppercase w-5">{l}</span>
-                      <span>{l === 'en' ? 'English' : 'Svenska'}</span>
+                      <span>{t(l === 'en' ? 'langEnglish' : 'langSwedish')}</span>
                     </button>
                   ))}
                 </div>
@@ -264,7 +264,7 @@ export default function Header() {
                 e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
                 e.currentTarget.style.borderColor = 'var(--ps-border)';
               }}
-              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={t(theme === 'dark' ? 'switchToLight' : 'switchToDark')}
             >
               {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
             </button>
