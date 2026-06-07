@@ -245,8 +245,8 @@ const issueData: IssueItem[] = [
       sv: 'Bakluckan låter mycket (gnisslande, malande eller gnällande) under drift. Den kan öppnas halvvägs och sedan vända, eller helt sluta fungera elektriskt.',
     },
     diy: {
-      en: '1. Calibration: Manually open tailgate fully, press and hold the close button for 5 seconds until it beeps twice to reset.\n2. Inspection: Pull back the rubber boot at the top of the struts and check for pinched or broken wires (solder any breaks).\n3. Squeaks: Apply silicone-based lubricant to rubber weather seals.',
-      sv: '1. Kalibrering: Öppna bakluckan helt manuellt, tryck och håll stängningsknappen i 5 sekunder tills det piper två gånger för att återställa.\n2. Inspektera: Dra tillbaka gummibälgen vid toppen av dämparna och leta efter klämda eller trasiga kablar (löd eventuella brott).\n3. Gnissel: Applicera silikonbaserat smörjmedel på tätningslisterna.',
+      en: '1. Calibration: Manually open tailgate fully, press and hold the close button for 5 seconds until it beeps twice to reset.\n2. Inspection: Pull back the rubber boot at the top of the struts and check for pinched or broken wires (solder any breaks).\n3. Squeaks: Apply silicone-based lubricant to rubber weather seals.\n4. Replacement: If internal motor/gears have failed (grinding/stalling persists), replace both left and right motorized spindle struts as a pair (Left: 31690370, Right: 31690371).',
+      sv: '1. Kalibrering: Öppna bakluckan helt manuellt, tryck och håll stängningsknappen i 5 sekunder tills det piper två gånger för att återställa.\n2. Inspektera: Dra tillbaka gummibälgen vid toppen av dämparna och leta efter klämda eller trasiga kablar (löd eventuella brott).\n3. Gnissel: Applicera silikonbaserat smörjmedel på tätningslisterna.\n4. Byte: Om den interna motorn/kuggarna har gått sönder (malande ljud/stopp kvarstår), byt ut båda elektriska dämparna som ett par (Vänster: 31690370, Höger: 31690371).',
     },
   },
 ];
