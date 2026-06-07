@@ -105,8 +105,8 @@ src/
 
 ## License
 
-This is an independent community resource and is **not affiliated with Polestar Automotive**.
+This is an independent community resource and is **not affiliated with Polestar**.
 
-Polestar and all related marks are trademarks of Polestar Automotive.
+Polestar and all related marks are trademarks of Polestar.
 
 Data is compiled for educational purposes. Always consult an authorised Polestar service centre for diagnosis and repair.

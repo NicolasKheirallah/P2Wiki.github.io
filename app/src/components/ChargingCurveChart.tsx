@@ -12,39 +12,41 @@ import {
 
 interface DataPoint {
   soc: number;
+  standard64: number;
   standard: number;
   lrPre2024: number;
   lrSiC: number;
 }
 
 const data: DataPoint[] = [
-  { soc: 0, standard: 20, lrPre2024: 30, lrSiC: 40 },
-  { soc: 5, standard: 80, lrPre2024: 100, lrSiC: 140 },
-  { soc: 10, standard: 120, lrPre2024: 140, lrSiC: 195 },
-  { soc: 15, standard: 130, lrPre2024: 148, lrSiC: 203 },
-  { soc: 20, standard: 135, lrPre2024: 150, lrSiC: 205 },
-  { soc: 25, standard: 135, lrPre2024: 150, lrSiC: 205 },
-  { soc: 30, standard: 135, lrPre2024: 150, lrSiC: 205 },
-  { soc: 35, standard: 125, lrPre2024: 140, lrSiC: 190 },
-  { soc: 40, standard: 115, lrPre2024: 130, lrSiC: 175 },
-  { soc: 45, standard: 105, lrPre2024: 120, lrSiC: 160 },
-  { soc: 50, standard: 95, lrPre2024: 110, lrSiC: 145 },
-  { soc: 55, standard: 88, lrPre2024: 100, lrSiC: 130 },
-  { soc: 60, standard: 82, lrPre2024: 92, lrSiC: 115 },
-  { soc: 65, standard: 78, lrPre2024: 84, lrSiC: 100 },
-  { soc: 70, standard: 72, lrPre2024: 76, lrSiC: 85 },
-  { soc: 75, standard: 58, lrPre2024: 62, lrSiC: 68 },
-  { soc: 80, standard: 45, lrPre2024: 48, lrSiC: 52 },
-  { soc: 85, standard: 32, lrPre2024: 35, lrSiC: 38 },
-  { soc: 90, standard: 22, lrPre2024: 24, lrSiC: 26 },
-  { soc: 95, standard: 14, lrPre2024: 15, lrSiC: 16 },
-  { soc: 100, standard: 8, lrPre2024: 8, lrSiC: 9 },
+  { soc: 0, standard64: 15, standard: 20, lrPre2024: 30, lrSiC: 40 },
+  { soc: 5, standard64: 70, standard: 80, lrPre2024: 100, lrSiC: 140 },
+  { soc: 10, standard64: 100, standard: 120, lrPre2024: 140, lrSiC: 195 },
+  { soc: 15, standard64: 110, standard: 130, lrPre2024: 148, lrSiC: 203 },
+  { soc: 20, standard64: 116, standard: 135, lrPre2024: 150, lrSiC: 205 },
+  { soc: 25, standard64: 116, standard: 135, lrPre2024: 150, lrSiC: 205 },
+  { soc: 30, standard64: 116, standard: 135, lrPre2024: 150, lrSiC: 205 },
+  { soc: 35, standard64: 110, standard: 125, lrPre2024: 140, lrSiC: 190 },
+  { soc: 40, standard64: 102, standard: 115, lrPre2024: 130, lrSiC: 175 },
+  { soc: 45, standard64: 94, standard: 105, lrPre2024: 120, lrSiC: 160 },
+  { soc: 50, standard64: 86, standard: 95, lrPre2024: 110, lrSiC: 145 },
+  { soc: 55, standard64: 78, standard: 88, lrPre2024: 100, lrSiC: 130 },
+  { soc: 60, standard64: 72, standard: 82, lrPre2024: 92, lrSiC: 115 },
+  { soc: 65, standard64: 66, standard: 78, lrPre2024: 84, lrSiC: 100 },
+  { soc: 70, standard64: 60, standard: 72, lrPre2024: 76, lrSiC: 85 },
+  { soc: 75, standard64: 50, standard: 58, lrPre2024: 62, lrSiC: 68 },
+  { soc: 80, standard64: 38, standard: 45, lrPre2024: 48, lrSiC: 52 },
+  { soc: 85, standard64: 28, standard: 32, lrPre2024: 35, lrSiC: 38 },
+  { soc: 90, standard64: 18, standard: 22, lrPre2024: 24, lrSiC: 26 },
+  { soc: 95, standard64: 12, standard: 14, lrPre2024: 15, lrSiC: 16 },
+  { soc: 100, standard64: 7, standard: 8, lrPre2024: 8, lrSiC: 9 },
 ];
 
-type VariantKey = 'all' | 'standard' | 'lrPre2024' | 'lrSiC';
+type VariantKey = 'all' | 'standard64' | 'standard' | 'lrPre2024' | 'lrSiC';
 
 const variants: { key: VariantKey; label: string; color: string }[] = [
   { key: 'all', label: 'All Variants', color: '' },
+  { key: 'standard64', label: 'Standard Range (64 kWh)', color: '#4A4C4D' },
   { key: 'standard', label: 'Standard Range (69 kWh)', color: '#75787B' },
   { key: 'lrPre2024', label: 'Long Range Pre-2024 (78 kWh)', color: '#97999B' },
   { key: 'lrSiC', label: 'Long Range 2024+ SiC (82 kWh)', color: '#F6BE00' },
@@ -87,7 +89,8 @@ export default function ChargingCurveChart() {
   const [activeVariant, setActiveVariant] = useState<VariantKey>('all');
 
   const lines = [
-    { key: 'standard', dataKey: 'standard' as const, name: 'Standard Range', color: '#75787B', strokeWidth: 2 },
+    { key: 'standard64', dataKey: 'standard64' as const, name: 'Standard Range (64 kWh)', color: '#4A4C4D', strokeWidth: 2 },
+    { key: 'standard', dataKey: 'standard' as const, name: 'Standard Range (69 kWh)', color: '#75787B', strokeWidth: 2 },
     { key: 'lrPre2024', dataKey: 'lrPre2024' as const, name: 'Long Range Pre-2024', color: '#97999B', strokeWidth: 2 },
     { key: 'lrSiC', dataKey: 'lrSiC' as const, name: 'Long Range 2024+ SiC', color: '#F6BE00', strokeWidth: 2.5 },
   ];

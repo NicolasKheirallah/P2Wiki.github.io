@@ -20,25 +20,27 @@ export const categories: Category[] = [
       {
         name: 'Standard key',
         values: ['2', '2', '1', '1', '1', '1', '2'],
-        notes: 'MY21–MY22 pre-March and MY26 models came standard with 2 key fobs. Other years came with 1 key fob (plus key tag).',
+        notes: 'MY21–MY22 pre-March and MY26 came with 2 standard key fobs. MY22 post-March through MY25 came with 1 standard key fob. All years include a buttonless key tag (activity key) as standard.',
       },
       {
-        name: 'Key tag (activity key)',
-        values: ['1', '1', '1', '1', '1', '\u25CB', '\u25CB'],
-        notes: 'Phased out as standard equipment starting in MY25.',
+        name: 'Key tag (activity key / buttonless key)',
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        notes: 'Waterproof to 10m for 60 minutes. Battery is not user-replaceable. Included as standard on all model years per Polestar owner\'s manual.',
       },
       {
         name: 'Polestar Digital key',
-        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
-        notes: 'Standard on all trims; enabled via Bluetooth and the Polestar app.',
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', 'Plus', 'Plus', 'Plus'],
+        notes: 'Enabled via Bluetooth and the Polestar app. Added to all cars via OTA update from May 2021. Standard on all trims for MY21–MY23. Moved to Plus pack from MY24 onwards.',
       },
       {
         name: 'Power-operated tailgate',
-        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF'],
+        values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        notes: 'Power-operated tailgate with soft close has been standard on all trims since launch. Never offered with a manual tailgate.',
       },
       {
-        name: 'Power-operated tailgate with handsfree opening',
+        name: 'Handsfree tailgate opening (foot sensor)',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', 'Plus', 'Plus', 'Plus'],
+        notes: 'Kick-to-open foot sensor was standard on all trims for MY21–MY23. Some MY22 cars omitted the sensor due to semiconductor shortages (retrofittable free of charge). Moved to Plus pack from MY24 onwards.',
       },
     ],
   },
@@ -49,12 +51,7 @@ export const categories: Category[] = [
       {
         name: 'Qualcomm Snapdragon processor',
         values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u25CF'],
-        notes: 'MY26: New Snapdragon chip improves app load times and display responsiveness.',
-      },
-      {
-        name: 'Plug & Charge',
-        values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u25CF'],
-        notes: 'MY26: Plug & Charge enabled via Polestar Charge app.',
+        notes: 'MY26: Upgraded from Intel Atom A3960 to Snapdragon. Faster app loads, smoother UI, quicker downloads.',
       },
       {
         name: '11.2" centre display',
@@ -67,7 +64,7 @@ export const categories: Category[] = [
       {
         name: 'Native Google Automotive OS',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
-        notes: 'Includes built-in Google Maps, Google Assistant, and Google Play Store.',
+        notes: 'Includes built-in Google Maps, Google Assistant, and Google Play Store. Polestar 2 was the world\'s first car with Android Automotive OS.',
       },
       {
         name: 'Over-the-air (OTA) updates',
@@ -76,7 +73,12 @@ export const categories: Category[] = [
       {
         name: 'Apple CarPlay (wired)',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
-        notes: 'Enabled via software update on all model years.',
+        notes: 'Added via P2.9 OTA update in July 2022. Retroactively available on all model years. Wired connection only.',
+      },
+      {
+        name: 'Android Auto (wired)',
+        values: ['\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
+        notes: 'Added via P3.3.16 OTA update in late 2023. MY23+ had it from factory; earlier cars received it via update. Wired connection only.',
       },
     ],
   },
@@ -371,16 +373,16 @@ export const categories: Category[] = [
       },
       {
         name: 'Standard Range battery',
-        values: ['69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '70 kWh CATL'],
+        values: ['\u2014', '64 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '70 kWh CATL'],
         notes: 'MY26: New 70 kWh CATL battery replaces 69 kWh LG Chem.',
       },
       {
         name: 'Long Range battery',
-        values: ['78 kWh', '78 kWh', '78 kWh', '82 kWh', '82 kWh', '82 kWh', '82 kWh'],
+        values: ['78 kWh', '78 kWh', '78 kWh', '78 kWh', '82 kWh', '82 kWh', '82 kWh'],
       },
       {
         name: 'DC fast charging (max)',
-        values: ['150 kW', '150 kW', '150 kW', '205 kW', '205 kW', '205 kW', '180/205 kW'],
+        values: ['150 kW', '150 kW', '150 kW', '150 kW', '205 kW', '205 kW', '180/205 kW'],
         notes: 'MY26: Standard Range now 180 kW (up from 135 kW). Long Range 205 kW.',
       },
     ],

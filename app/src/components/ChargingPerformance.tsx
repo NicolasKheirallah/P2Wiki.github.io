@@ -20,21 +20,27 @@ interface Takeaway {
   text: string;
 }
 
-const dcVariants: DcVariant[] = [
+const getDcVariants = (locale: string): DcVariant[] => [
   {
-    generation: 'Standard Range (2022+)',
-    gross: '69 kWh',
-    usable: '67 kWh',
-    peak: '130 - 135 kW',
+    generation: locale === 'sv' ? 'Standard Range (Tidig 2022)' : 'Standard Range (Early 2022)',
+    gross: '64 kWh',
+    usable: '61 kWh',
+    peak: '116 kW',
   },
   {
-    generation: 'Pre-Facelift Long Range (2021-2023)',
+    generation: locale === 'sv' ? 'Standard Range (Sent 2022–2025)' : 'Standard Range (Late 2022–2025)',
+    gross: '69 kWh',
+    usable: '67 kWh',
+    peak: '130–135 kW',
+  },
+  {
+    generation: locale === 'sv' ? 'Long Range Före Facelift (2021–2023)' : 'Pre-Facelift Long Range (2021–2023)',
     gross: '78 kWh',
     usable: '~75 kWh',
     peak: '150 kW',
   },
   {
-    generation: '2024+ Facelift Long Range',
+    generation: locale === 'sv' ? 'Long Range Facelift (2024+)' : '2024+ Facelift Long Range',
     gross: '82 kWh',
     usable: '79 kWh',
     peak: '205 kW',
@@ -42,12 +48,36 @@ const dcVariants: DcVariant[] = [
 ];
 
 const batteryUsableCapacities = {
+  standard64: 61,
   standard: 67,
   lrPre2024: 75,
   lrSiC: 79,
 };
 
 const chargingCurvesData = {
+  standard64: [
+    { soc: 0, power: 15 },
+    { soc: 5, power: 70 },
+    { soc: 10, power: 100 },
+    { soc: 15, power: 110 },
+    { soc: 20, power: 116 },
+    { soc: 25, power: 116 },
+    { soc: 30, power: 116 },
+    { soc: 35, power: 110 },
+    { soc: 40, power: 102 },
+    { soc: 45, power: 94 },
+    { soc: 50, power: 86 },
+    { soc: 55, power: 78 },
+    { soc: 60, power: 72 },
+    { soc: 65, power: 66 },
+    { soc: 70, power: 60 },
+    { soc: 75, power: 50 },
+    { soc: 80, power: 38 },
+    { soc: 85, power: 28 },
+    { soc: 90, power: 18 },
+    { soc: 95, power: 12 },
+    { soc: 100, power: 7 },
+  ],
   standard: [
     { soc: 0, power: 20 },
     { soc: 5, power: 80 },
@@ -165,11 +195,11 @@ const takeaways: Takeaway[] = [
 ];
 
 export default function ChargingPerformance() {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const { market } = useMarket();
   const useKm = market === 'se';
 
-  const [batteryVariant, setBatteryVariant] = useState<'standard' | 'lrPre2024' | 'lrSiC'>('lrSiC');
+  const [batteryVariant, setBatteryVariant] = useState<'standard64' | 'standard' | 'lrPre2024' | 'lrSiC'>('lrSiC');
   const [chargerPowerLimit, setChargerPowerLimit] = useState<number>(350);
   const [startSoc, setStartSoc] = useState<number>(10);
   const [targetSoc, setTargetSoc] = useState<number>(80);
@@ -196,7 +226,7 @@ export default function ChargingPerformance() {
     }
   };
 
-  const handleBatteryVariantChange = (val: 'standard' | 'lrPre2024' | 'lrSiC') => {
+  const handleBatteryVariantChange = (val: 'standard64' | 'standard' | 'lrPre2024' | 'lrSiC') => {
     setBatteryVariant(val);
     triggerCalculateAnimation();
   };
@@ -229,7 +259,7 @@ export default function ChargingPerformance() {
 
   const avgPower = stepCount > 0 ? totalPowerSum / stepCount : 0;
   
-  const consumptionRate = batteryVariant === 'standard' ? 17.0 : 18.0;
+  const consumptionRate = batteryVariant.startsWith('standard') ? 17.0 : 18.0;
   const rangeAddedKm = (totalEnergyAdded / consumptionRate) * 100;
   const rangeAddedMiles = rangeAddedKm * 0.621371;
 
@@ -286,7 +316,7 @@ export default function ChargingPerformance() {
               </tr>
             </thead>
             <tbody>
-              {dcVariants.map((variant, idx) => (
+              {getDcVariants(locale).map((variant, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid var(--ps-table-row)' }}>
                   <td
                     className="py-3 pr-4 text-[13px] font-medium align-top"
@@ -384,12 +414,21 @@ export default function ChargingPerformance() {
                 </label>
                 <select
                   value={batteryVariant}
-                  onChange={(e) => handleBatteryVariantChange(e.target.value as 'standard' | 'lrPre2024' | 'lrSiC')}
+                  onChange={(e) => handleBatteryVariantChange(e.target.value as 'standard64' | 'standard' | 'lrPre2024' | 'lrSiC')}
                   className="w-full bg-[var(--ps-bg-secondary)] border border-[var(--ps-border)] hover:border-[var(--ps-text-secondary)] focus:border-[var(--ps-text)] p-2 text-[12px] text-[var(--ps-text)] outline-none rounded-none cursor-pointer"
                 >
-                  <option value="standard">Standard Range (69 kWh)</option>
-                  <option value="lrPre2024">Long Range Pre-Facelift (78 kWh)</option>
-                  <option value="lrSiC">Long Range Facelift (82 kWh)</option>
+                  <option value="standard64">
+                    {locale === 'sv' ? 'Standard Range Tidig 2022 (64 kWh)' : 'Standard Range Early 2022 (64 kWh)'}
+                  </option>
+                  <option value="standard">
+                    {locale === 'sv' ? 'Standard Range 2022–2025 (69 kWh)' : 'Standard Range 2022–2025 (69 kWh)'}
+                  </option>
+                  <option value="lrPre2024">
+                    {locale === 'sv' ? 'Long Range Före Facelift (78 kWh)' : 'Long Range Pre-Facelift (78 kWh)'}
+                  </option>
+                  <option value="lrSiC">
+                    {locale === 'sv' ? 'Long Range Facelift (82 kWh)' : 'Long Range Facelift (82 kWh)'}
+                  </option>
                 </select>
               </div>
 

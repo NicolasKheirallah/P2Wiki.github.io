@@ -42,13 +42,13 @@ const milestoneData: MilestoneData[] = [
     },
     bullets: {
       en: [
-        'Launch of Standard Range (69 kWh) and Long Range (78 kWh) Single Motor FWD options.',
+        'Launch of Standard Range (initially 64 kWh, upgraded to 69 kWh in March 2022) and Long Range (78 kWh) Single Motor FWD options.',
         'Plus and Pilot packages separated into optional extras.',
         'Introduction of optional Performance pack and standalone ventilated Nappa leather upgrade.',
         'Heat pump introduced as part of the optional Plus pack.',
       ],
       sv: [
-        'Lansering av framhjulsdrivna Single Motor Standard Range (69 kWh) och Long Range (78 kWh).',
+        'Lansering av framhjulsdrivna Single Motor Standard Range (ursprungligen 64 kWh, uppgraderad till 69 kWh i mars 2022) och Long Range (78 kWh).',
         'Plus- och Pilot-paket separerades till separata tillval.',
         'Introduktion av valbart Performance-paket och ventilerat Nappa-läder.',
         'Värmepump introducerades som en del av det valbara Plus-paketet.',

@@ -45,15 +45,15 @@ const seOverrides: Record<string, Partial<Category>> = {
       },
       {
         name: 'Standard Range battery',
-        values: ['69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '70 kWh CATL'],
+        values: ['\u2014', '64 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '70 kWh CATL'],
       },
       {
         name: 'Long Range battery',
-        values: ['78 kWh', '78 kWh', '78 kWh', '82 kWh', '82 kWh', '82 kWh', '82 kWh'],
+        values: ['78 kWh', '78 kWh', '78 kWh', '78 kWh', '82 kWh', '82 kWh', '82 kWh'],
       },
       {
         name: 'DC fast charging (max)',
-        values: ['150 kW', '150 kW', '150 kW', '205 kW', '205 kW', '205 kW', '180/205 kW'],
+        values: ['150 kW', '150 kW', '150 kW', '150 kW', '205 kW', '205 kW', '180/205 kW'],
       },
     ] as Category['features'],
   },
@@ -98,17 +98,17 @@ const usOverrides: Record<string, Partial<Category>> = {
       },
       {
         name: 'Standard Range battery',
-        values: ['69 kWh', '69 kWh', '69 kWh', '69 kWh', '69 kWh', '69 kWh', '70 kWh CATL'],
+        values: ['\u2014', '64 kWh', '69 kWh', '69 kWh', '69 kWh', '69 kWh', '70 kWh CATL'],
         notes: 'EPA est. 270 mi range (MY26)',
       },
       {
         name: 'Long Range battery',
-        values: ['78 kWh', '78 kWh', '78 kWh', '82 kWh', '82 kWh', '82 kWh', '82 kWh'],
+        values: ['78 kWh', '78 kWh', '78 kWh', '78 kWh', '82 kWh', '82 kWh', '82 kWh'],
         notes: 'EPA est. 320 mi range (MY26)',
       },
       {
         name: 'DC fast charging (max)',
-        values: ['155 kW', '155 kW', '155 kW', '205 kW', '205 kW', '205 kW', '205 kW'],
+        values: ['155 kW', '155 kW', '155 kW', '155 kW', '205 kW', '205 kW', '205 kW'],
       },
     ] as Category['features'],
   },
