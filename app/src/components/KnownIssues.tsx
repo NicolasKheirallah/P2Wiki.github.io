@@ -1,8 +1,14 @@
 import { useState, useRef } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
-import { Search, ChevronDown, Check, Copy } from 'lucide-react';
+import { Search, ChevronDown, Check, Copy, Package } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+
+interface PartNumberEntry {
+  label: Record<'en' | 'sv', string>;
+  number: string;
+  note?: Record<'en' | 'sv', string>;
+}
 
 interface IssueItem {
   id: string;
@@ -12,6 +18,7 @@ interface IssueItem {
   affectedYearsList: string[]; // e.g. ['MY21', 'MY22', 'MY23'] or ['All']
   symptoms: Record<'en' | 'sv', string>;
   diy: Record<'en' | 'sv', string>;
+  partNumbers?: PartNumberEntry[];
 }
 
 const issueData: IssueItem[] = [
@@ -50,6 +57,16 @@ const issueData: IssueItem[] = [
       en: 'Soft Reset: Hold front defroster button for 20 seconds.\nHard Reset: Disconnect TCAM 12V backup battery under rear roof trim.',
       sv: 'Mjuk återställning: Håll främre defrosterknappen intryckt i 20 sekunder.\nHård återställning: Koppla bort TCAM 12V-backuphissbatteriet under den bakre takklädseln.',
     },
+    partNumbers: [
+      {
+        label: { en: 'TCAM Backup Battery (BUB)', sv: 'TCAM backupbatteri (BUB)' },
+        number: '32319770',
+        note: {
+          en: 'Rechargeable backup battery located under the rear headliner.',
+          sv: 'Laddningsbart reservbatteri placerat under det bakre innertaket.',
+        },
+      },
+    ],
   },
   {
     id: 'rearview-camera-glitch',
@@ -86,6 +103,16 @@ const issueData: IssueItem[] = [
       en: 'Checks: Verify axle bolt torque. Note: Axle nut is single-use (45 Nm + 90 degrees).',
       sv: 'Kontroll: Verifiera åtdragningsmoment för axelbult. Obs: Axelmutter är av engångstyp (45 Nm + 90 grader).',
     },
+    partNumbers: [
+      {
+        label: { en: 'Axle Bolt with Rubber Washer', sv: 'Axelbult med gummibricka' },
+        number: '30670602',
+        note: {
+          en: 'Torque-to-yield stretch bolt. Must be replaced whenever removed (single-use).',
+          sv: 'Sträckbult för engångsbruk. Måste bytas ut varje gång den lossas.',
+        },
+      },
+    ],
   },
   {
     id: 'front-suspension-knocking',
@@ -104,6 +131,16 @@ const issueData: IssueItem[] = [
       en: 'Repair: Replace strut top mounts in pairs. Apply final torque (81 Nm) only when suspension is fully loaded on the ground.',
       sv: 'Reparation: Byt fjäderbensfästen parvis. Applicera slutmoment (81 Nm) endast när upphängningen är helt belastad på marken.',
     },
+    partNumbers: [
+      {
+        label: { en: 'Strut Support Mount/Bearing', sv: 'Fjäderbensfäste/Lager' },
+        number: '32395175',
+        note: {
+          en: 'Front upper suspension bearing and mount assembly. Recommended to replace in pairs.',
+          sv: 'Främre övre fjäderbenslager och fäste. Rekommenderas att byta parvis.',
+        },
+      },
+    ],
   },
   {
     id: 'propeller-shaft-vibration',
@@ -140,6 +177,16 @@ const issueData: IssueItem[] = [
       en: 'Preventative: Replace 12V lead-acid battery every 36 months to prevent sudden failures.',
       sv: 'Förebyggande: Byt ut 12V blybatteriet var 36:e månad för att förhindra plötsliga fel.',
     },
+    partNumbers: [
+      {
+        label: { en: '12V Auxiliary AGM Battery (H5/Group 47)', sv: '12V AGM-hjälpbatteri (H5)' },
+        number: '31652494',
+        note: {
+          en: 'OEM H5 AGM battery. Can be replaced with premium aftermarket H5 AGM battery equivalents.',
+          sv: 'Original H5 AGM-batteri. Kan ersättas med likvärdiga eftermarknads H5 AGM-batterier.',
+        },
+      },
+    ],
   },
   {
     id: 'hvch-failure',
@@ -158,6 +205,16 @@ const issueData: IssueItem[] = [
       en: 'Not recommended: High-voltage (400V) system hazard. Seek professional service.',
       sv: 'Rekommenderas ej: Fara relaterad till högspänningssystemet (400V). Sök professionell hjälp.',
     },
+    partNumbers: [
+      {
+        label: { en: 'High Voltage Coolant Heater (HVCH)', sv: 'Högspänningsvärmare (HVCH)' },
+        number: '32275606',
+        note: {
+          en: 'Updated heater unit revision. Sourced to fix failure-prone initial 2021 parts.',
+          sv: 'Uppdaterad värmarenhet. Ersätter de felbenägna ursprungliga delarna från 2021.',
+        },
+      },
+    ],
   },
   {
     id: 'power-inverter-failure',
@@ -194,6 +251,16 @@ const issueData: IssueItem[] = [
       en: 'Repair: Replace stripped damper motors (shared Volvo XC40 part). Requires VIDA for end-stop recalibration.',
       sv: 'Reparation: Byt ut utslitna spjällmotorer (delad Volvo XC40-del). Kräver VIDA för kalibrering av ändlägen.',
     },
+    partNumbers: [
+      {
+        label: { en: 'HVAC Damper/Actuator Motor', sv: 'Ställdon/Spjällmotor för HVAC' },
+        number: '32226715',
+        note: {
+          en: 'Electric actuator motor controlling HVAC flaps (shared with Volvo XC40).',
+          sv: 'Elektrisk ställmotor för att reglera ventilationsspjäll (delas med Volvo XC40).',
+        },
+      },
+    ],
   },
   {
     id: 'door-latch-freezing',
@@ -212,6 +279,24 @@ const issueData: IssueItem[] = [
       en: 'Mitigation: Apply water-displacing silicone lubricant inside latch assembly (temporary fix).',
       sv: 'Åtgärd: Applicera fuktavvisande silikonsmörjmedel inuti låsmekanismen (tillfällig lösning).',
     },
+    partNumbers: [
+      {
+        label: { en: 'Rear Left Door Latch Assembly', sv: 'Bakdörrslås Vänster' },
+        number: '32131412',
+        note: {
+          en: 'Updated latch with improved moisture seals and low-temperature grease.',
+          sv: 'Uppdaterat lås med förbättrad fukt-tätning och lågtemperaturfett.',
+        },
+      },
+      {
+        label: { en: 'Rear Right Door Latch Assembly', sv: 'Bakdörrslås Höger' },
+        number: '32131413',
+        note: {
+          en: 'Updated latch with improved moisture seals and low-temperature grease.',
+          sv: 'Uppdaterat lås med förbättrad fukt-tätning och lågtemperaturfett.',
+        },
+      },
+    ],
   },
   {
     id: 'lamp-condensation',
@@ -248,6 +333,24 @@ const issueData: IssueItem[] = [
       en: '1. Calibration: Manually open tailgate fully, press and hold the close button for 5 seconds until it beeps twice to reset.\n2. Inspection: Pull back the rubber boot at the top of the struts and check for pinched or broken wires (solder any breaks).\n3. Squeaks: Apply silicone-based lubricant to rubber weather seals.\n4. Replacement: If internal motor/gears have failed (grinding/stalling persists), replace both left and right motorized spindle struts as a pair (Left: 31690370, Right: 31690371).',
       sv: '1. Kalibrering: Öppna bakluckan helt manuellt, tryck och håll stängningsknappen i 5 sekunder tills det piper två gånger för att återställa.\n2. Inspektera: Dra tillbaka gummibälgen vid toppen av dämparna och leta efter klämda eller trasiga kablar (löd eventuella brott).\n3. Gnissel: Applicera silikonbaserat smörjmedel på tätningslisterna.\n4. Byte: Om den interna motorn/kuggarna har gått sönder (malande ljud/stopp kvarstår), byt ut båda elektriska dämparna som ett par (Vänster: 31690370, Höger: 31690371).',
     },
+    partNumbers: [
+      {
+        label: { en: 'Power Spindle Drive Strut (Left)', sv: 'Elektrisk spindeldämpare (Vänster)' },
+        number: '31690370',
+        note: {
+          en: 'Driver side motorized lift strut. Replaced as a matched pair.',
+          sv: 'Motoriserad dämpare för förarsidan. Bör bytas parvis.',
+        },
+      },
+      {
+        label: { en: 'Power Spindle Drive Strut (Right)', sv: 'Elektrisk spindeldämpare (Höger)' },
+        number: '31690371',
+        note: {
+          en: 'Passenger side motorized lift strut. Replaced as a matched pair.',
+          sv: 'Motoriserad dämpare för passagerarsidan. Bör bytas parvis.',
+        },
+      },
+    ],
   },
 ];
 
@@ -337,7 +440,8 @@ export default function KnownIssues() {
       title.includes(query) ||
       symptoms.includes(query) ||
       diyText.includes(query) ||
-      item.affectedYearsList.some((y) => y.toLowerCase().includes(query));
+      item.affectedYearsList.some((y) => y.toLowerCase().includes(query)) ||
+      (item.partNumbers && item.partNumbers.some((pn) => pn.number.toLowerCase().includes(query)));
 
     return matchesTab && matchesYear && matchesSearch;
   });
@@ -562,29 +666,73 @@ export default function KnownIssues() {
                 </button>
 
                 {isExpanded && (
-                  <div className="border-t border-[var(--ps-border-light)] p-5 bg-[var(--ps-bg-secondary)]/10 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Symptoms Column */}
-                    <div className="space-y-2">
-                      <h5 className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--ps-text-tertiary)' }}>
-                        {t('symptomsLabel')}
-                      </h5>
-                      <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
-                        {symptoms}
-                      </p>
+                  <div className="border-t border-[var(--ps-border-light)] p-5 bg-[var(--ps-bg-secondary)]/10 space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Symptoms Column */}
+                      <div className="space-y-2">
+                        <h5 className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--ps-text-tertiary)' }}>
+                          {t('symptomsLabel')}
+                        </h5>
+                        <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
+                          {symptoms}
+                        </p>
+                      </div>
+
+                      {/* DIY Remediation Column */}
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <h5 className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--ps-text-tertiary)' }}>
+                            {t('diyLabel')}
+                          </h5>
+                          <CopyButton text={diyText} />
+                        </div>
+                        <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
+                          {formatMultiline(diyText)}
+                        </p>
+                      </div>
                     </div>
 
-                    {/* DIY Remediation Column */}
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <h5 className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--ps-text-tertiary)' }}>
-                          {t('diyLabel')}
-                        </h5>
-                        <CopyButton text={diyText} />
+                    {/* Part Numbers Table */}
+                    {item.partNumbers && item.partNumbers.length > 0 && (
+                      <div className="pt-4 border-t border-[var(--ps-border-light)] space-y-3">
+                        <div className="flex items-center gap-1.5">
+                          <Package size={13} className="text-[var(--ps-text-tertiary)]" />
+                          <h5 className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'var(--ps-text-tertiary)' }}>
+                            {isSv ? 'Referensartikelnummer' : 'Reference Part Numbers'}
+                          </h5>
+                        </div>
+                        <div className="space-y-2">
+                          {item.partNumbers.map((pn, idx) => (
+                            <div
+                              key={idx}
+                              className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 p-2.5 bg-[var(--ps-bg-secondary)]/20 border border-[var(--ps-border)] rounded-none"
+                            >
+                              <div className="flex-1 min-w-0">
+                                <span className="text-[12px] font-medium block" style={{ color: 'var(--ps-text)' }}>
+                                  {isSv ? pn.label.sv : pn.label.en}
+                                </span>
+                                {pn.note && (
+                                  <span className="text-[10.5px] leading-snug block mt-0.5" style={{ color: 'var(--ps-text-tertiary)' }}>
+                                    {isSv ? pn.note.sv : pn.note.en}
+                                  </span>
+                                )}
+                              </div>
+                              <code
+                                className="text-[12px] font-mono font-semibold shrink-0 px-2 py-0.5 border border-[var(--ps-border)] bg-[var(--ps-bg)] select-all"
+                                style={{ color: 'var(--ps-gold)' }}
+                              >
+                                {pn.number}
+                              </code>
+                            </div>
+                          ))}
+                        </div>
+                        <p className="text-[10px] leading-relaxed italic" style={{ color: 'var(--ps-text-tertiary)' }}>
+                          {isSv
+                            ? '⚠ Artikelnummer kan ersättas av nyare versioner utan förvarning. Bekräfta alltid korrekt nummer genom att uppge ditt VIN hos en auktoriserad Polestar-verkstad eller Volvo Parts-portal.'
+                            : '⚠ Part numbers may be superseded without notice. Always confirm the correct number by providing your VIN to an authorized Polestar Service Point or Volvo Parts portal.'}
+                        </p>
                       </div>
-                      <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ps-text-secondary)' }}>
-                        {formatMultiline(diyText)}
-                      </p>
-                    </div>
+                    )}
                   </div>
                 )}
               </div>
