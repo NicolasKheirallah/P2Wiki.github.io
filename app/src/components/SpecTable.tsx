@@ -71,12 +71,12 @@ export default function SpecTable({
             {category.title}
           </h2>
 
-          <div className="overflow-x-auto overflow-y-clip scrollbar-hide -mx-2 px-2">
+          <div className="overflow-x-auto overflow-y-clip lg:overflow-x-visible scrollbar-hide -mx-2 px-2">
             <table className="w-full min-w-[800px] border-collapse">
               <thead className="z-30 border-b border-[var(--ps-table-border)]">
                 <tr>
                   <th
-                    className="sticky top-14 left-0 bg-[var(--ps-bg)] text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[260px] min-w-[200px] z-40 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]"
+                    className="sticky lg:top-14 left-0 bg-[var(--ps-bg)] text-left py-3 pr-4 text-[12px] font-normal uppercase tracking-wider w-[260px] min-w-[200px] z-40 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]"
                     style={{ color: 'var(--ps-text-tertiary)' }}
                   >
                     {t('feature')}
@@ -87,7 +87,7 @@ export default function SpecTable({
                     return (
                       <th
                         key={i}
-                        className="sticky top-14 text-center py-3 px-1 text-[12px] font-normal uppercase tracking-wider cursor-pointer transition-colors duration-150 min-w-[70px] bg-[var(--ps-bg)] hover:bg-[var(--ps-bg-secondary)] z-30"
+                        className="lg:sticky lg:top-14 text-center py-3 px-1 text-[12px] font-normal uppercase tracking-wider cursor-pointer transition-colors duration-150 min-w-[70px] bg-[var(--ps-bg)] hover:bg-[var(--ps-bg-secondary)] z-30"
                         style={{
                           color: isPinned || hoveredColumn === i ? 'var(--ps-text)' : 'var(--ps-text-tertiary)',
                           borderBottom: isPinned ? '2px solid var(--ps-gold)' : 'none',
@@ -102,7 +102,7 @@ export default function SpecTable({
                     );
                   })}
                   <th
-                    className="sticky top-14 text-left py-3 pl-4 text-[12px] font-normal w-[220px] min-w-[180px] bg-[var(--ps-bg)] z-30"
+                    className="lg:sticky lg:top-14 text-left py-3 pl-4 text-[12px] font-normal w-[220px] min-w-[180px] bg-[var(--ps-bg)] z-30"
                     style={{ color: 'var(--ps-text-tertiary)' }}
                   >
                     {t('notes')}
