@@ -7,24 +7,24 @@ const seOverrides: Record<string, Partial<Category>> = {
   keys: {
     features: [
       {
-        name: 'spec_feature_0',
+        name: 'Standard key',
         values: ['2', '1', '1', '1', '2 / 1', '2 / 1', '2'],
-        notes: 'market_note_0',
+        notes: 'Standard: 2 nycklar',
       },
       {
-        name: 'market_feature_0',
+        name: 'Key tag (activity key)',
         values: ['1', '1', '1', '1', '\u25CB / 1', '\u25CB / 1', '\u25CB'],
       },
       {
-        name: 'spec_feature_2',
+        name: 'Polestar Digital key',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', 'Plus', 'Plus', '\u25CF'],
       },
       {
-        name: 'spec_feature_3',
+        name: 'Power-operated tailgate',
         values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
-        name: 'market_feature_1',
+        name: 'Power-operated tailgate with handsfree opening',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', 'Plus', 'Plus', 'Plus'],
       },
     ] as Category['features'],
@@ -32,27 +32,27 @@ const seOverrides: Record<string, Partial<Category>> = {
   charging: {
     features: [
       {
-        name: 'market_feature_2',
+        name: 'AC charging cable (22 kW), 6m (32A 3-phase)',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
-        name: 'market_feature_3',
+        name: 'Home charging cable (Schuko/CEE), 7m',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CB', '\u25CB', '\u25CB'],
       },
       {
-        name: 'spec_feature_71',
+        name: 'Plug & Charge (ISO 15118)',
         values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u25CF'],
       },
       {
-        name: 'spec_feature_72',
+        name: 'Standard Range battery',
         values: ['\u2014', '64 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '69 kWh LG', '70 kWh CATL'],
       },
       {
-        name: 'spec_feature_73',
+        name: 'Long Range battery',
         values: ['78 kWh', '78 kWh', '78 kWh', '78 kWh', '82 kWh', '82 kWh', '82 kWh'],
       },
       {
-        name: 'spec_feature_74',
+        name: 'DC fast charging (max)',
         values: ['150 kW', '150 kW', '150 kW', '150 kW', '205 kW', '205 kW', '180/205 kW'],
       },
     ] as Category['features'],
@@ -64,20 +64,20 @@ const usOverrides: Record<string, Partial<Category>> = {
   keys: {
     features: [
       {
-        name: 'market_feature_4',
+        name: 'Standard key fob',
         values: ['2', '1', '1', '1', '2 / 1', '2 / 1', '2'],
-        notes: 'market_note_1',
+        notes: 'US models: Key fob standard',
       },
       {
-        name: 'spec_feature_2',
+        name: 'Polestar Digital key',
         values: ['\u25CB', '\u25CB', '\u25CB', '\u25CB', 'Plus', 'Plus', '\u25CF'],
       },
       {
-        name: 'spec_feature_3',
+        name: 'Power-operated tailgate',
         values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
-        name: 'market_feature_5',
+        name: 'Hands-free power tailgate',
         values: ['\u25CB', '\u25CB', '\u25CB', '\u25CB', 'Plus', 'Plus', 'Plus'],
       },
     ] as Category['features'],
@@ -85,29 +85,29 @@ const usOverrides: Record<string, Partial<Category>> = {
   charging: {
     features: [
       {
-        name: 'market_feature_6',
+        name: 'Level 2 charging cable (240V), 6m',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
-        name: 'market_feature_7',
+        name: 'Level 1 charging cable (120V), 7m',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CB', '\u25CB', '\u25CB'],
       },
       {
-        name: 'spec_feature_71',
+        name: 'Plug & Charge (ISO 15118)',
         values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u25CF'],
       },
       {
-        name: 'spec_feature_72',
+        name: 'Standard Range battery',
         values: ['\u2014', '64 kWh', '69 kWh', '69 kWh', '69 kWh', '69 kWh', '70 kWh CATL'],
-        notes: 'market_note_2',
+        notes: 'EPA est. 270 mi range (MY26)',
       },
       {
-        name: 'spec_feature_73',
+        name: 'Long Range battery',
         values: ['78 kWh', '78 kWh', '78 kWh', '78 kWh', '82 kWh', '82 kWh', '82 kWh'],
-        notes: 'market_note_3',
+        notes: 'EPA est. 320 mi range (MY26)',
       },
       {
-        name: 'spec_feature_74',
+        name: 'DC fast charging (max)',
         values: ['155 kW', '155 kW', '155 kW', '155 kW', '205 kW', '205 kW', '205 kW'],
       },
     ] as Category['features'],
@@ -115,51 +115,51 @@ const usOverrides: Record<string, Partial<Category>> = {
   comfort: {
     features: [
       {
-        name: 'spec_feature_58',
+        name: 'Fixed panoramic sunroof (projected Polestar symbol)',
         values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus'],
       },
       {
-        name: 'spec_feature_59',
+        name: 'Interior high-level illumination',
         values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus'],
       },
       {
-        name: 'spec_feature_60',
+        name: '15W wireless smartphone charging',
         values: ['Plus', 'Plus', 'Plus', 'Plus', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
-        name: 'spec_feature_61',
+        name: 'Rear floor "lid in lid" with bag holder',
         values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus'],
       },
       {
-        name: 'spec_feature_62',
+        name: 'Air Quality (PM2.5 sensor & filter)',
         values: ['\u2014', '\u2014', '\u2014', 'Plus', 'Plus', 'Plus', 'Plus'],
       },
       {
-        name: 'spec_feature_63',
+        name: '8-speaker audio system (250W)',
         values: ['\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF', '\u25CF'],
       },
       {
-        name: 'spec_feature_64',
+        name: 'Harman Kardon Premium Sound (13 spk, 600W)',
         values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', '\u25CB', '\u25CB'],
       },
       {
-        name: 'spec_feature_65',
+        name: 'Bowers & Wilkins (14 spk, 1350W)',
         values: ['\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u2014', '\u25CB'],
-        notes: 'market_note_4',
+        notes: 'MY26: New option. $2,200 in US.',
       },
       {
-        name: 'market_feature_8',
+        name: 'Rear privacy glass',
         values: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', '\u25CB'],
-        notes: 'market_note_5',
+        notes: 'US: Tint laws vary by state. Standalone option for MY26.',
       },
       {
-        name: 'spec_feature_67',
+        name: 'High gloss black roof segment',
         values: ['Plus + Perf', 'Plus + Perf', 'Plus + Perf', 'Plus + Perf', '\u2014', '\u2014', '\u2014'],
       },
       {
         name: 'Homelink',
         values: ['\u25CF', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB', '\u25CB'],
-        notes: 'market_note_6',
+        notes: 'US: Homelink more common than UK.',
       },
     ] as Category['features'],
   },
@@ -181,22 +181,39 @@ export function getPaintColorsForMarket(_market: 'uk' | 'se' | 'us'): PaintColor
   return ukPaintColors;
 }
 
-// Section labels (translation keys)
-export const sectionLabels: Record<string, string> = {
-  keys: 'keysAccess',
-  infotainment: 'infotainment',
-  wheels: 'wheelsTyres',
-  performance: 'performance',
-  seats: 'seatsInterior',
-  lights: 'lights',
-  safety: 'safetyAssist',
-  comfort: 'comfort',
-  charging: 'charging',
-  packs: 'optionalPacks',
-  paint: 'paintColours',
-  knownIssues: 'knownIssues',
-  printing: 'printing3d',
-  service: 'serviceMaintenance',
-  chargingPerf: 'chargingThermal',
+// Section labels per locale
+export const sectionLabelsEn: Record<string, string> = {
+  keys: 'Keys & Access',
+  infotainment: 'Infotainment',
+  wheels: 'Wheels & Tyres',
+  performance: 'Performance',
+  seats: 'Seats & Interior',
+  lights: 'Lights',
+  safety: 'Safety & Assist',
+  comfort: 'Comfort',
+  charging: 'Charging',
+  packs: 'Optional Packs',
+  paint: 'Paint Colours',
+  knownIssues: 'Known Issues',
+  printing: '3D Printing',
+  service: 'Service & Maintenance',
+  chargingPerf: 'Charging & Thermal',
 };
 
+export const sectionLabelsSv: Record<string, string> = {
+  keys: 'Nycklar & tillträde',
+  infotainment: 'Infotainment',
+  wheels: 'Hjul & däck',
+  performance: 'Prestanda',
+  seats: 'Säten & interiör',
+  lights: 'Belysning',
+  safety: 'Säkerhet & assistans',
+  comfort: 'Komfort',
+  charging: 'Laddning',
+  packs: 'Tillvalspaket',
+  paint: 'Lackfärger',
+  knownIssues: 'Kända problem',
+  printing: '3D-utskrifter',
+  service: 'Service & underhåll',
+  chargingPerf: 'Laddning & temperaturhantering',
+};

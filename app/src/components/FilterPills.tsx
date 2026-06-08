@@ -1,5 +1,4 @@
 import { filterCategories } from '@/data/specData';
-import { useLocale } from '@/contexts/LocaleContext';
 
 interface FilterPillsProps {
   activeFilter: string;
@@ -7,7 +6,6 @@ interface FilterPillsProps {
 }
 
 export default function FilterPills({ activeFilter, onFilterChange }: FilterPillsProps) {
-  const { t } = useLocale();
   return (
     <div className="flex flex-wrap gap-2">
       {filterCategories.map((cat) => {
@@ -35,7 +33,7 @@ export default function FilterPills({ activeFilter, onFilterChange }: FilterPill
               }
             }}
           >
-            {t(cat.label)}
+            {cat.label}
           </button>
         );
       })}

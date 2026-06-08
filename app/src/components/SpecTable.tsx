@@ -68,7 +68,7 @@ export default function SpecTable({
             className="text-[24px] font-normal mt-4 mb-6"
             style={{ color: 'var(--ps-text)', letterSpacing: '-0.01em' }}
           >
-            {t(category.title)}
+            {category.title}
           </h2>
 
           <div className="overflow-x-auto overflow-y-clip lg:overflow-x-visible scrollbar-hide -mx-2 px-2">
@@ -117,7 +117,7 @@ export default function SpecTable({
                       style={{ color: 'var(--ps-text)' }}
                       title={feature.name}
                     >
-                      {t(feature.name)}
+                      {feature.name}
                     </td>
                     {feature.values.map((value, i) => {
                       if (!visibleColumns.has(i)) return null;
@@ -139,7 +139,7 @@ export default function SpecTable({
                       );
                     })}
                     <td className="py-4 pl-4 text-[12px] leading-relaxed w-[220px] min-w-[220px] max-w-[220px]" style={{ color: 'var(--ps-text-tertiary)' }}>
-                      {feature.notes ? t(feature.notes) : ''}
+                      {feature.notes}
                     </td>
                   </tr>
                 ))}
