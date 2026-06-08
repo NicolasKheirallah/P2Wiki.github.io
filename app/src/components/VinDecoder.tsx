@@ -11,6 +11,18 @@ interface DecodedField {
   isCustomValue?: boolean;
 }
 
+const blockSegments = [
+  { name: 'WMI', range: [0, 1, 2], fieldIdx: 0 },
+  { name: 'SER', range: [3], fieldIdx: 1 },
+  { name: 'BDY', range: [4], fieldIdx: 2 },
+  { name: 'MTR', range: [5, 6], fieldIdx: 3 },
+  { name: 'SFT', range: [7], fieldIdx: 4 },
+  { name: 'CHK', range: [8], fieldIdx: 5 },
+  { name: 'MY', range: [9], fieldIdx: 6 },
+  { name: 'PLT', range: [10], fieldIdx: 7 },
+  { name: 'SRL', range: [11, 12, 13, 14, 15, 16], fieldIdx: 8 },
+];
+
 export default function VinDecoder() {
   const { t, locale } = useLocale();
   const isSv = locale === 'sv';
@@ -19,6 +31,7 @@ export default function VinDecoder() {
   const [error, setError] = useState<string | null>(null);
   const [decodedData, setDecodedData] = useState<DecodedField[] | null>(null);
   const [checkDigitStatus, setCheckDigitStatus] = useState<{ type: 'us_pass' | 'eu_pass' | 'fail'; expected?: string; got?: string } | null>(null);
+  const [hoveredBlockIndex, setHoveredBlockIndex] = useState<number | null>(null);
   
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -221,7 +234,7 @@ export default function VinDecoder() {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Input & Samples Panel */}
+        {/* Input panel */}
         <div className="flex-1 space-y-4">
           <div className="relative">
             <input
@@ -247,7 +260,7 @@ export default function VinDecoder() {
 
         {/* Decoder Breakdown results */}
         {decodedData && (
-          <div ref={resultsRef} className="flex-1 space-y-4">
+          <div ref={resultsRef} className="flex-1 space-y-6">
             <div className="flex items-center justify-between border-b border-[var(--ps-border-light)] pb-2">
               <span className="text-[13px] font-semibold text-[var(--ps-gold)] flex items-center gap-1.5">
                 <Sparkles size={13} />
@@ -283,12 +296,59 @@ export default function VinDecoder() {
               </div>
             )}
 
+            {/* Interactive Character Strip (17-Character Map) */}
+            <div className="overflow-x-auto scrollbar-hide py-2 border-y border-[var(--ps-border-light)] bg-[var(--ps-bg-secondary)]/5">
+              <div className="flex gap-1.5 min-w-max px-2 justify-center sm:justify-start">
+                {blockSegments.map((seg, idx) => {
+                  const isHovered = hoveredBlockIndex === seg.fieldIdx;
+                  return (
+                    <div
+                      key={idx}
+                      onMouseEnter={() => setHoveredBlockIndex(seg.fieldIdx)}
+                      onMouseLeave={() => setHoveredBlockIndex(null)}
+                      className={`flex flex-col items-center p-1.5 border transition-all duration-200 cursor-pointer rounded-none ${
+                        isHovered 
+                          ? 'border-[var(--ps-gold)] bg-[var(--ps-gold)]/5 shadow-[0_0_8px_rgba(246,190,0,0.12)]' 
+                          : 'border-[var(--ps-border)] bg-[var(--ps-bg)] hover:border-[var(--ps-text-secondary)]'
+                      }`}
+                    >
+                      <span className={`text-[8px] font-mono tracking-wider font-bold mb-1 ${
+                        isHovered ? 'text-[var(--ps-gold)]' : 'text-[var(--ps-text-tertiary)]'
+                      }`}>
+                        {seg.name}
+                      </span>
+                      <div className="flex gap-0.5">
+                        {seg.range.map((charIdx) => (
+                          <span
+                            key={charIdx}
+                            className={`w-5 h-6 flex items-center justify-center font-mono text-[13px] font-bold border transition-colors duration-150 ${
+                              isHovered 
+                                ? 'border-[var(--ps-gold)] text-[var(--ps-gold)] bg-[var(--ps-bg-secondary)]/10' 
+                                : 'border-[var(--ps-border-light)] text-[var(--ps-text)]'
+                            }`}
+                          >
+                            {vin[charIdx]}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* Fields List */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto scrollbar-hide pr-1">
               {decodedData.map((f, idx) => (
                 <div 
                   key={idx} 
-                  className="vin-card-animate p-3 border border-[var(--ps-border)] bg-[var(--ps-bg)]/80 flex flex-col justify-between rounded-none"
+                  onMouseEnter={() => setHoveredBlockIndex(idx)}
+                  onMouseLeave={() => setHoveredBlockIndex(null)}
+                  className={`vin-card-animate p-3 border transition-all duration-200 flex flex-col justify-between rounded-none cursor-pointer ${
+                    hoveredBlockIndex === idx 
+                      ? 'border-[var(--ps-gold)] bg-[var(--ps-bg-secondary)]/5 shadow-[0_0_6px_rgba(246,190,0,0.08)]' 
+                      : 'border-[var(--ps-border)] bg-[var(--ps-bg)]/80'
+                  }`}
                 >
                   <div className="flex justify-between items-start gap-2 mb-1.5">
                     <span className="text-[11px] font-medium tracking-wide text-[var(--ps-text-tertiary)] uppercase">
@@ -301,7 +361,7 @@ export default function VinDecoder() {
                   <span 
                     className="text-[13px] font-semibold tracking-normal" 
                     style={{ 
-                      color: f.isCustomValue ? 'var(--ps-gold)' : 'var(--ps-text)',
+                      color: f.isCustomValue || hoveredBlockIndex === idx ? 'var(--ps-gold)' : 'var(--ps-text)',
                       fontFamily: f.isCustomValue ? 'monospace' : 'inherit'
                     }}
                   >

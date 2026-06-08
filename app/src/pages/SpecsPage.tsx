@@ -11,7 +11,7 @@ import SpecTable from '@/components/SpecTable';
 import PaintSection from '@/components/PaintSection';
 import MilestoneHighlights from '@/components/MilestoneHighlights';
 import VinDecoder from '@/components/VinDecoder';
-import { Globe, Search, X } from 'lucide-react';
+import { Globe, Search, X, ChevronDown } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -32,6 +32,7 @@ export default function SpecsPage() {
   const [pinnedColumns, setPinnedColumns] = useState<Set<number>>(new Set());
   const [activeSection, setActiveSection] = useState('keys');
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
+  const [vinDecoderOpen, setVinDecoderOpen] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
 
   /* Market-aware data */
@@ -180,19 +181,30 @@ export default function SpecsPage() {
         <MilestoneHighlights />
       </section>
 
-      {/* Interactive VIN Decoder */}
-      <section className="space-y-3">
-        <p className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: 'var(--ps-text-tertiary)' }}>
-          02.5 / {t('vinDecoderTitle')}
-        </p>
-        <VinDecoder />
-      </section>
-
       {/* Main Table Content View */}
-      <section className="space-y-3">
-        <p className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: 'var(--ps-text-tertiary)' }}>
-          03 / Technical Specifications
-        </p>
+      <section className="space-y-4">
+        <div className="flex items-center justify-between border-b border-[var(--ps-border)] pb-2 flex-wrap gap-4">
+          <p className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: 'var(--ps-text-tertiary)' }}>
+            03 / Technical Specifications
+          </p>
+          <button
+            onClick={() => setVinDecoderOpen(!vinDecoderOpen)}
+            className="flex items-center gap-2 px-3 py-1.5 border border-[var(--ps-border)] hover:border-[var(--ps-text)] transition-colors duration-150 text-[11px] font-semibold uppercase tracking-wider text-[var(--ps-text-secondary)] hover:text-[var(--ps-text)] rounded-none cursor-pointer"
+          >
+            <span>{t('vinDecoderTitle')}</span>
+            <ChevronDown
+              size={12}
+              className="transition-transform duration-250"
+              style={{ transform: vinDecoderOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+            />
+          </button>
+        </div>
+
+        {vinDecoderOpen && (
+          <div className="mb-4">
+            <VinDecoder />
+          </div>
+        )}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 pt-6">
           <Sidebar sections={visibleSidebarSections} activeSection={activeSection} onSectionClick={handleSectionClick} />
 
