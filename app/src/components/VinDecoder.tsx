@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
-import { HelpCircle, Sparkles, Check, Copy } from 'lucide-react';
+import { HelpCircle, Sparkles } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -10,13 +10,6 @@ interface DecodedField {
   charRange: string;
   isCustomValue?: boolean;
 }
-
-const sampleVins = [
-  { vin: 'YSMVSFER3TL413340', desc: 'MY26 RWD Long Range (Sweden WMI)' },
-  { vin: 'YSMVSEDE6PL147228', desc: 'MY23 AWD Dual Motor (Sweden WMI)' },
-  { vin: 'LPSVSEDEEML003974', desc: 'MY21 AWD Dual Motor (China WMI, EU Spec)' },
-  { vin: 'YSMVSEGE3PL161258', desc: 'MY23 FWD Single Motor' },
-];
 
 export default function VinDecoder() {
   const { t, locale } = useLocale();
@@ -28,7 +21,6 @@ export default function VinDecoder() {
   const [checkDigitStatus, setCheckDigitStatus] = useState<{ type: 'us_pass' | 'eu_pass' | 'fail'; expected?: string; got?: string } | null>(null);
   
   const resultsRef = useRef<HTMLDivElement>(null);
-  const [copiedSample, setCopiedSample] = useState<string | null>(null);
 
   // Math check digit
   const calculateCheckDigit = (vin17: string): string => {
@@ -207,21 +199,6 @@ export default function VinDecoder() {
     setDecodedData(fields);
   };
 
-  const handleSampleClick = (sampleVin: string) => {
-    handleDecode(sampleVin);
-  };
-
-  const handleCopySample = async (sampleVin: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    try {
-      await navigator.clipboard.writeText(sampleVin);
-      setCopiedSample(sampleVin);
-      setTimeout(() => setCopiedSample(null), 1500);
-    } catch {
-      // ignore
-    }
-  };
-
   useGSAP(() => {
     if (decodedData && resultsRef.current) {
       gsap.fromTo(
@@ -266,33 +243,6 @@ export default function VinDecoder() {
               {error}
             </p>
           )}
-
-          {/* Sample VIN buttons */}
-          <div className="space-y-2">
-            <p className="text-[11px] uppercase tracking-wider text-[var(--ps-text-tertiary)] font-semibold">
-              {t('vinDecoderSampleLabel')}
-            </p>
-            <div className="flex flex-col gap-2">
-              {sampleVins.map((s, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleSampleClick(s.vin)}
-                  className="flex items-center justify-between text-left p-2.5 border border-[var(--ps-border)] hover:border-[var(--ps-text)] bg-[var(--ps-bg)]/50 hover:bg-[var(--ps-bg)] transition-colors group text-[12px] rounded-none font-mono cursor-pointer"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-[var(--ps-text)] font-semibold tracking-wider">{s.vin}</span>
-                    <span className="text-[var(--ps-text-secondary)] font-sans text-[11px]">({s.desc})</span>
-                  </div>
-                  <button
-                    onClick={(e) => handleCopySample(s.vin, e)}
-                    className="p-1 border border-[var(--ps-border)] hover:border-[var(--ps-text)] bg-[var(--ps-bg-secondary)] hover:bg-[var(--ps-bg-elevated)] transition-colors text-[10px] uppercase font-sans font-semibold text-[var(--ps-text-secondary)] hover:text-[var(--ps-text)]"
-                  >
-                    {copiedSample === s.vin ? <Check size={11} className="text-[var(--ps-gold)]" /> : <Copy size={11} />}
-                  </button>
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Decoder Breakdown results */}
