@@ -491,9 +491,9 @@ export default function ChargingPerformance() {
               {/* Visual charging window bar */}
               <div className="space-y-1.5 pt-2">
                 <div className="flex justify-between text-[9px] text-[var(--ps-text-tertiary)] uppercase tracking-wider font-semibold">
-                  <span>0% SoC</span>
-                  <span>50%</span>
-                  <span>100% SoC</span>
+                  <span>{t('soc0')}</span>
+                  <span>{t('soc50')}</span>
+                  <span>{t('soc100')}</span>
                 </div>
                 <div className="flex gap-[2px] h-[6px] w-full bg-[var(--ps-border-light)]/20">
                   {Array.from({ length: 20 }).map((_, i) => {

@@ -959,5 +959,8 @@
   "volvo_name_7": "Storm Metallic",
   "volvo_name_8": "Denim Blue Metallic",
   "volvo_name_9": "Black Stone",
-  "volvo_name_10": "Onyx Black Pearl Metallic"
+  "volvo_name_10": "Onyx Black Pearl Metallic",
+  "soc0": "0% SoC",
+  "soc50": "50%",
+  "soc100": "100% SoC"
 }
