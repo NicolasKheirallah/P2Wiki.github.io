@@ -49,8 +49,8 @@ export default function SpecsPage() {
           ...cat,
           features: cat.features.filter(
             (f) =>
-              f.name.toLowerCase().includes(term) ||
-              (f.notes && f.notes.toLowerCase().includes(term))
+              t(f.name).toLowerCase().includes(term) ||
+              (f.notes && t(f.notes).toLowerCase().includes(term))
           ),
         }))
         .filter((cat) => cat.features.length > 0);
@@ -74,7 +74,7 @@ export default function SpecsPage() {
     }
 
     return result;
-  }, [activeFilter, activePackage, searchTerm, marketCategories]);
+  }, [activeFilter, activePackage, searchTerm, marketCategories, t]);
 
   /* Dynamically update Sidebar sections list to match only visible sections */
   const visibleSidebarSections = useMemo(() => {

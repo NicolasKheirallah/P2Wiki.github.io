@@ -1,5 +1,5 @@
 import { useLocale } from '@/contexts/LocaleContext';
-import { sectionLabelsEn, sectionLabelsSv } from '@/data/marketData';
+import { sectionLabels } from '@/data/marketData';
 
 interface SidebarProps {
   sections: string[];
@@ -8,8 +8,7 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ sections, activeSection, onSectionClick }: SidebarProps) {
-  const { locale } = useLocale();
-  const labels = locale === 'sv' ? sectionLabelsSv : sectionLabelsEn;
+  const { t } = useLocale();
 
   return (
     <aside className="hidden lg:block w-[200px] flex-shrink-0">
@@ -31,7 +30,7 @@ export default function Sidebar({ sections, activeSection, onSectionClick }: Sid
                   if (activeSection !== id) e.currentTarget.style.color = 'var(--ps-text-secondary)';
                 }}
               >
-                {labels[id] || id}
+                {sectionLabels[id] ? t(sectionLabels[id]) : id}
               </button>
             </li>
           ))}

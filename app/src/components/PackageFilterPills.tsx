@@ -1,4 +1,5 @@
 import { packageFilters } from '@/data/specData';
+import { useLocale } from '@/contexts/LocaleContext';
 
 interface PackageFilterPillsProps {
   activePackage: string;
@@ -6,6 +7,7 @@ interface PackageFilterPillsProps {
 }
 
 export default function PackageFilterPills({ activePackage, onPackageChange }: PackageFilterPillsProps) {
+  const { t } = useLocale();
   return (
     <div className="flex flex-wrap gap-2">
       {packageFilters.map((pkg) => {
@@ -41,7 +43,7 @@ export default function PackageFilterPills({ activePackage, onPackageChange }: P
                 }}
               />
             )}
-            {pkg.label}
+            {t(pkg.label)}
           </button>
         );
       })}

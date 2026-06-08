@@ -77,24 +77,24 @@ export default function PaintSection({
                       ? '1px solid var(--ps-border)'
                       : 'none',
                   }}
-                  title={`${color.name} (${color.polestarCode})`}
+                  title={`${t(color.name)} (${color.polestarCode})`}
                 />
               </td>
               <td className="sticky left-[40px] bg-[var(--ps-bg)] group-hover:bg-[var(--ps-bg-secondary)] py-4 pr-4 z-10 border-r border-[var(--ps-border-light)] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] transition-colors duration-150 w-[160px] min-w-[160px] max-w-[160px]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[14px] truncate" style={{ color: 'var(--ps-text)' }}>{color.name}</span>
+                  <span className="text-[14px] truncate" style={{ color: 'var(--ps-text)' }}>{t(color.name)}</span>
                   <span className="text-[10px] uppercase tracking-wide flex-shrink-0" style={{ color: 'var(--ps-text-tertiary)' }}>
                     {color.isMetallic ? t('metallic') : t('solid')}
                   </span>
                 </div>
                 {color.replacedBy && (
                   <span className="text-[11px] block truncate" style={{ color: 'var(--ps-text-secondary)' }}>
-                    {t('replacedBy')} {color.replacedBy} {t('inMY26')}
+                    {t('replacedBy')} {color.replacedBy ? t(color.replacedBy) : ''} {t('inMY26')}
                   </span>
                 )}
               </td>
               <td className="py-4 pr-4 text-[14px] transition-colors duration-150 w-[180px] min-w-[180px] max-w-[180px] truncate" style={{ color: 'var(--ps-text-secondary)' }}>
-                {color.volvoName}
+                {t(color.volvoName)}
               </td>
               <td className="py-4 pr-4 transition-colors duration-150 w-[100px] min-w-[100px] max-w-[100px]">
                 <span className="text-[12px] font-mono px-2 py-0.5 rounded-none border border-[var(--ps-border-light)]" style={{ backgroundColor: 'var(--ps-pill-bg)', color: 'var(--ps-text-secondary)' }}>
