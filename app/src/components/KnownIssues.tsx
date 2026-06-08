@@ -143,6 +143,7 @@ const issueData: IssueItem[] = [
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
+  const { t } = useLocale();
 
   const handleCopy = async (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent accordion from toggling when copying
@@ -498,7 +499,7 @@ export default function KnownIssues() {
                                 <span className="text-[12px] font-medium block" style={{ color: 'var(--ps-text)' }}>
                                   {t(pn.labelKey)}
                                 </span>
-                                {pn.note && (
+                                {pn.noteKey && (
                                   <span className="text-[10.5px] leading-snug block mt-0.5" style={{ color: 'var(--ps-text-tertiary)' }}>
                                     {t(pn.noteKey)}
                                   </span>

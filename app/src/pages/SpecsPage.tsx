@@ -10,6 +10,7 @@ import PackageFilterPills from '@/components/PackageFilterPills';
 import SpecTable from '@/components/SpecTable';
 import PaintSection from '@/components/PaintSection';
 import MilestoneHighlights from '@/components/MilestoneHighlights';
+import VinDecoder from '@/components/VinDecoder';
 import { Globe, Search, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -177,6 +178,14 @@ export default function SpecsPage() {
           02 / Evolution Milestones
         </p>
         <MilestoneHighlights />
+      </section>
+
+      {/* Interactive VIN Decoder */}
+      <section className="space-y-3">
+        <p className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: 'var(--ps-text-tertiary)' }}>
+          02.5 / {t('vinDecoderTitle')}
+        </p>
+        <VinDecoder />
       </section>
 
       {/* Main Table Content View */}

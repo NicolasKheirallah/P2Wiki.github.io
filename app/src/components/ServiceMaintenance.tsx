@@ -5,25 +5,25 @@ import { Check, Copy, ChevronDown, ShieldAlert, ClipboardList } from 'lucide-rea
 
 interface TorqueSpec {
   item: string;
-  value: string;
+  value: string | { en: string; sv: string };
   note?: string;
 }
 
 interface DrivetrainSpec {
   item: string;
-  value: string;
+  value: string | { en: string; sv: string };
   note?: string;
 }
 
 interface FluidSpec {
   item: string;
-  value: string;
+  value: string | { en: string; sv: string };
   note?: string;
 }
 
 interface BatterySpec {
   item: string;
-  value: string;
+  value: string | { en: string; sv: string };
 }
 
 interface ServiceRow {
@@ -73,12 +73,18 @@ const drivetrainSpecs: DrivetrainSpec[] = [
   },
   {
     item: 'service_transmissionOil',
-    value: '1.6 Litres per motor',
+    value: {
+      en: '1.6 Litres per motor',
+      sv: '1,6 liter per motor',
+    },
     note: 'service_transmissionOilNote',
   },
   {
     item: 'service_coolantSystemCapacity',
-    value: '15 Litres',
+    value: {
+      en: '15 Litres',
+      sv: '15 liter',
+    },
     note: 'service_coolantSystemCapacityNote',
   },
 ];
@@ -91,7 +97,10 @@ const fluidSpecs: FluidSpec[] = [
   },
   {
     item: 'service_acRefrigerant',
-    value: 'R1234yf or R134a',
+    value: {
+      en: 'R1234yf or R134a',
+      sv: 'R1234yf eller R134a',
+    },
     note: 'service_acRefrigerantNote',
   },
 ];
@@ -186,9 +195,14 @@ function CopyButton({ text }: { text: string }) {
 }
 
 export default function ServiceMaintenance() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const isSv = locale === 'sv';
   const { market } = useMarket();
   const useKm = market === 'uk' || market === 'se';
+
+  const resolveVal = (val: string | { en: string; sv: string }) => {
+    return typeof val === 'string' ? val : (isSv ? val.sv : val.en);
+  };
 
   const serviceIntervals = useKm ? serviceIntervalsKm : serviceIntervalsMi;
   const [selectedIntervalIndex, setSelectedIntervalIndex] = useState<number>(0);
@@ -265,8 +279,8 @@ export default function ServiceMaintenance() {
                       className="py-3 pr-4 text-[13px] align-top flex items-center"
                       style={{ color: 'var(--ps-text)' }}
                     >
-                      <span>{spec.value}</span>
-                      <CopyButton text={spec.value} />
+                      <span>{resolveVal(spec.value)}</span>
+                      <CopyButton text={resolveVal(spec.value)} />
                     </td>
                     <td
                       className="py-3 pr-4 text-[12px] leading-relaxed align-top"
@@ -326,8 +340,8 @@ export default function ServiceMaintenance() {
                       className="py-3 pr-4 text-[13px] align-top flex items-center"
                       style={{ color: 'var(--ps-text)' }}
                     >
-                      <span>{spec.value}</span>
-                      <CopyButton text={spec.value} />
+                      <span>{resolveVal(spec.value)}</span>
+                      <CopyButton text={resolveVal(spec.value)} />
                     </td>
                     <td
                       className="py-3 pr-4 text-[12px] leading-relaxed align-top"
@@ -363,7 +377,7 @@ export default function ServiceMaintenance() {
                     {t(fluid.item)}
                   </span>
                   <span className="text-[13.5px] font-medium block text-[var(--ps-gold)]">
-                    {fluid.value}
+                    {resolveVal(fluid.value)}
                   </span>
                   {fluid.note && (
                     <p className="text-[12px] leading-relaxed pt-1" style={{ color: 'var(--ps-text-secondary)' }}>
@@ -391,7 +405,7 @@ export default function ServiceMaintenance() {
               {batterySpecs.map((spec, idx) => (
                 <div key={idx} className="flex justify-between border-b border-[var(--ps-border-light)] pb-1.5 last:border-b-0 last:pb-0 text-[12.5px]">
                   <span className="font-semibold text-[var(--ps-text-secondary)]">{t(spec.item)}</span>
-                  <span className="text-[var(--ps-text)]">{spec.value}</span>
+                  <span className="text-[var(--ps-text)]">{resolveVal(spec.value)}</span>
                 </div>
               ))}
             </div>
