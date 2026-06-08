@@ -223,9 +223,10 @@ export default function VinDecoder() {
   }, [decodedData]);
 
   return (
-    <div className="border border-[var(--ps-border)] bg-[var(--ps-bg-secondary)]/10 p-6 space-y-6">
-      <div className="space-y-1">
-        <h3 className="text-[18px] font-normal tracking-wide" style={{ color: 'var(--ps-text)' }}>
+    <div className="border border-[var(--ps-border)] bg-[var(--ps-bg-secondary)]/10 p-8 space-y-8">
+      {/* Title & Subtitle */}
+      <div className="text-center space-y-1.5 max-w-2xl mx-auto">
+        <h3 className="text-[20px] font-normal tracking-wide" style={{ color: 'var(--ps-text)' }}>
           {t('vinDecoderTitle')}
         </h3>
         <p className="text-[13px]" style={{ color: 'var(--ps-text-secondary)' }}>
@@ -233,150 +234,149 @@ export default function VinDecoder() {
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* Input panel */}
-        <div className="flex-1 space-y-4">
-          <div className="relative">
-            <input
-              type="text"
-              maxLength={17}
-              value={vin}
-              onChange={(e) => handleDecode(e.target.value)}
-              placeholder={t('vinDecoderPlaceholder')}
-              className="w-full px-4 py-3 font-mono text-[16px] tracking-[0.2em] uppercase border bg-[var(--ps-bg)] text-[var(--ps-text)] focus:outline-none focus:border-[var(--ps-text)] transition-colors duration-150 rounded-none placeholder:text-[var(--ps-text-tertiary)] placeholder:tracking-normal placeholder:font-sans placeholder:text-[13px]"
-              style={{ borderColor: 'var(--ps-border)' }}
-            />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[var(--ps-text-tertiary)]">
-              {vin.length} / 17
-            </span>
-          </div>
-
-          {error && (
-            <p className="text-[12px] text-red-500 font-medium leading-relaxed">
-              {error}
-            </p>
-          )}
+      {/* Centered Input Area */}
+      <div className="max-w-xl mx-auto space-y-3">
+        <div className="relative">
+          <input
+            type="text"
+            maxLength={17}
+            value={vin}
+            onChange={(e) => handleDecode(e.target.value)}
+            placeholder={t('vinDecoderPlaceholder')}
+            className="w-full px-6 py-4 text-center font-mono text-[18px] tracking-[0.25em] uppercase border bg-[var(--ps-bg)] text-[var(--ps-text)] focus:outline-none focus:border-[var(--ps-text)] transition-colors duration-150 rounded-none placeholder:text-[var(--ps-text-tertiary)] placeholder:tracking-normal placeholder:font-sans placeholder:text-[13px]"
+            style={{ borderColor: 'var(--ps-border)' }}
+          />
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[var(--ps-text-tertiary)]">
+            {vin.length} / 17
+          </span>
         </div>
 
-        {/* Decoder Breakdown results */}
-        {decodedData && (
-          <div ref={resultsRef} className="flex-1 space-y-6">
-            <div className="flex items-center justify-between border-b border-[var(--ps-border-light)] pb-2">
-              <span className="text-[13px] font-semibold text-[var(--ps-gold)] flex items-center gap-1.5">
-                <Sparkles size={13} />
-                {t('vinDecoderSuccess')}
-              </span>
-              <span className="text-[11px] font-mono text-[var(--ps-text-tertiary)] tracking-wider">
-                {vin}
-              </span>
-            </div>
-
-            {/* Check Digit Status Banner */}
-            {checkDigitStatus && (
-              <div 
-                className="p-3 border text-[11.5px] leading-relaxed rounded-none"
-                style={{
-                  backgroundColor: checkDigitStatus.type === 'fail' ? 'rgba(239, 68, 68, 0.05)' : 'rgba(246, 190, 0, 0.03)',
-                  borderColor: checkDigitStatus.type === 'fail' ? '#ef4444' : 'var(--ps-border)',
-                }}
-              >
-                {checkDigitStatus.type === 'us_pass' && (
-                  <span className="text-[var(--ps-text)] font-medium">{t('vinDecoderUSCheckDigitPass')}</span>
-                )}
-                {checkDigitStatus.type === 'eu_pass' && (
-                  <span className="text-[var(--ps-text-secondary)]">{t('vinDecoderEUCheckDigitPass')}</span>
-                )}
-                {checkDigitStatus.type === 'fail' && (
-                  <span className="text-red-500 font-medium">
-                    {t('vinDecoderCheckDigitFail')
-                      .replace('{expected}', checkDigitStatus.expected || '')
-                      .replace('{got}', checkDigitStatus.got || '')}
-                  </span>
-                )}
-              </div>
-            )}
-
-            {/* Interactive Character Strip (17-Character Map) */}
-            <div className="overflow-x-auto scrollbar-hide py-2 border-y border-[var(--ps-border-light)] bg-[var(--ps-bg-secondary)]/5">
-              <div className="flex gap-1.5 min-w-max px-2 justify-center sm:justify-start">
-                {blockSegments.map((seg, idx) => {
-                  const isHovered = hoveredBlockIndex === seg.fieldIdx;
-                  return (
-                    <div
-                      key={idx}
-                      onMouseEnter={() => setHoveredBlockIndex(seg.fieldIdx)}
-                      onMouseLeave={() => setHoveredBlockIndex(null)}
-                      className={`flex flex-col items-center p-1.5 border transition-all duration-200 cursor-pointer rounded-none ${
-                        isHovered 
-                          ? 'border-[var(--ps-gold)] bg-[var(--ps-gold)]/5 shadow-[0_0_8px_rgba(246,190,0,0.12)]' 
-                          : 'border-[var(--ps-border)] bg-[var(--ps-bg)] hover:border-[var(--ps-text-secondary)]'
-                      }`}
-                    >
-                      <span className={`text-[8px] font-mono tracking-wider font-bold mb-1 ${
-                        isHovered ? 'text-[var(--ps-gold)]' : 'text-[var(--ps-text-tertiary)]'
-                      }`}>
-                        {seg.name}
-                      </span>
-                      <div className="flex gap-0.5">
-                        {seg.range.map((charIdx) => (
-                          <span
-                            key={charIdx}
-                            className={`w-5 h-6 flex items-center justify-center font-mono text-[13px] font-bold border transition-colors duration-150 ${
-                              isHovered 
-                                ? 'border-[var(--ps-gold)] text-[var(--ps-gold)] bg-[var(--ps-bg-secondary)]/10' 
-                                : 'border-[var(--ps-border-light)] text-[var(--ps-text)]'
-                            }`}
-                          >
-                            {vin[charIdx]}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Fields List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto scrollbar-hide pr-1">
-              {decodedData.map((f, idx) => (
-                <div 
-                  key={idx} 
-                  onMouseEnter={() => setHoveredBlockIndex(idx)}
-                  onMouseLeave={() => setHoveredBlockIndex(null)}
-                  className={`vin-card-animate p-3 border transition-all duration-200 flex flex-col justify-between rounded-none cursor-pointer ${
-                    hoveredBlockIndex === idx 
-                      ? 'border-[var(--ps-gold)] bg-[var(--ps-bg-secondary)]/5 shadow-[0_0_6px_rgba(246,190,0,0.08)]' 
-                      : 'border-[var(--ps-border)] bg-[var(--ps-bg)]/80'
-                  }`}
-                >
-                  <div className="flex justify-between items-start gap-2 mb-1.5">
-                    <span className="text-[11px] font-medium tracking-wide text-[var(--ps-text-tertiary)] uppercase">
-                      {f.label}
-                    </span>
-                    <span className="text-[9.5px] font-mono px-1 border border-[var(--ps-border)] text-[var(--ps-text-tertiary)] shrink-0">
-                      Pos {f.charRange}
-                    </span>
-                  </div>
-                  <span 
-                    className="text-[13px] font-semibold tracking-normal" 
-                    style={{ 
-                      color: f.isCustomValue || hoveredBlockIndex === idx ? 'var(--ps-gold)' : 'var(--ps-text)',
-                      fontFamily: f.isCustomValue ? 'monospace' : 'inherit'
-                    }}
-                  >
-                    {f.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+        {error && (
+          <p className="text-[12px] text-red-500 font-medium text-center leading-relaxed">
+            {error}
+          </p>
         )}
       </div>
 
+      {/* Decoder Breakdown results - Stacked below */}
+      {decodedData && (
+        <div ref={resultsRef} className="space-y-6 pt-6 border-t border-[var(--ps-border-light)]">
+          {/* Success Banner */}
+          <div className="flex items-center justify-between flex-wrap gap-2 pb-1">
+            <span className="text-[13px] font-semibold text-[var(--ps-gold)] flex items-center gap-1.5">
+              <Sparkles size={13} />
+              {t('vinDecoderSuccess')}
+            </span>
+            <span className="text-[11px] font-mono text-[var(--ps-text-tertiary)] tracking-wider">
+              {vin}
+            </span>
+          </div>
+
+          {/* Check Digit Status Banner */}
+          {checkDigitStatus && (
+            <div 
+              className="p-3 border text-[11.5px] leading-relaxed rounded-none text-center max-w-2xl mx-auto"
+              style={{
+                backgroundColor: checkDigitStatus.type === 'fail' ? 'rgba(239, 68, 68, 0.05)' : 'rgba(246, 190, 0, 0.03)',
+                borderColor: checkDigitStatus.type === 'fail' ? '#ef4444' : 'var(--ps-border)',
+              }}
+            >
+              {checkDigitStatus.type === 'us_pass' && (
+                <span className="text-[var(--ps-text)] font-medium">{t('vinDecoderUSCheckDigitPass')}</span>
+              )}
+              {checkDigitStatus.type === 'eu_pass' && (
+                <span className="text-[var(--ps-text-secondary)]">{t('vinDecoderEUCheckDigitPass')}</span>
+              )}
+              {checkDigitStatus.type === 'fail' && (
+                <span className="text-red-500 font-medium">
+                  {t('vinDecoderCheckDigitFail')
+                    .replace('{expected}', checkDigitStatus.expected || '')
+                    .replace('{got}', checkDigitStatus.got || '')}
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Interactive Character Strip (17-Character Map) */}
+          <div className="overflow-x-auto scrollbar-hide py-3 border-y border-[var(--ps-border-light)] bg-[var(--ps-bg-secondary)]/5">
+            <div className="flex gap-2 min-w-max px-4 justify-center">
+              {blockSegments.map((seg, idx) => {
+                const isHovered = hoveredBlockIndex === seg.fieldIdx;
+                return (
+                  <div
+                    key={idx}
+                    onMouseEnter={() => setHoveredBlockIndex(seg.fieldIdx)}
+                    onMouseLeave={() => setHoveredBlockIndex(null)}
+                    className={`flex flex-col items-center p-2 border transition-all duration-200 cursor-pointer rounded-none ${
+                      isHovered 
+                        ? 'border-[var(--ps-gold)] bg-[var(--ps-gold)]/5 shadow-[0_0_8px_rgba(246,190,0,0.12)]' 
+                        : 'border-[var(--ps-border)] bg-[var(--ps-bg)] hover:border-[var(--ps-text-secondary)]'
+                    }`}
+                  >
+                    <span className={`text-[8px] font-mono tracking-wider font-bold mb-1 ${
+                      isHovered ? 'text-[var(--ps-gold)]' : 'text-[var(--ps-text-tertiary)]'
+                    }`}>
+                      {seg.name}
+                    </span>
+                    <div className="flex gap-0.5">
+                      {seg.range.map((charIdx) => (
+                        <span
+                          key={charIdx}
+                          className={`w-6 h-7 flex items-center justify-center font-mono text-[13px] font-bold border transition-colors duration-150 ${
+                            isHovered 
+                              ? 'border-[var(--ps-gold)] text-[var(--ps-gold)] bg-[var(--ps-bg-secondary)]/10' 
+                              : 'border-[var(--ps-border-light)] text-[var(--ps-text)]'
+                          }`}
+                        >
+                          {vin[charIdx]}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Fields List Grid: 3 columns for desktop, 2 for tablet, 1 for mobile */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {decodedData.map((f, idx) => (
+              <div 
+                key={idx} 
+                onMouseEnter={() => setHoveredBlockIndex(idx)}
+                onMouseLeave={() => setHoveredBlockIndex(null)}
+                className={`vin-card-animate p-4 border transition-all duration-200 flex flex-col justify-between rounded-none cursor-pointer ${
+                  hoveredBlockIndex === idx 
+                    ? 'border-[var(--ps-gold)] bg-[var(--ps-gold)]/5 shadow-[0_0_6px_rgba(246,190,0,0.08)] scale-[1.01]' 
+                    : 'border-[var(--ps-border)] bg-[var(--ps-bg)]/80'
+                }`}
+              >
+                <div className="flex justify-between items-start gap-2 mb-2">
+                  <span className="text-[11px] font-medium tracking-wide text-[var(--ps-text-tertiary)] uppercase">
+                    {f.label}
+                  </span>
+                  <span className="text-[9px] font-mono px-1 border border-[var(--ps-border)] text-[var(--ps-text-tertiary)] shrink-0">
+                    Pos {f.charRange}
+                  </span>
+                </div>
+                <span 
+                  className="text-[13.5px] font-semibold tracking-normal leading-snug" 
+                  style={{ 
+                    color: f.isCustomValue || hoveredBlockIndex === idx ? 'var(--ps-gold)' : 'var(--ps-text)',
+                    fontFamily: f.isCustomValue ? 'monospace' : 'inherit'
+                  }}
+                >
+                  {f.value}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Option Package Disclaimer & Visual Identification Guide */}
       {decodedData && (
-        <div className="pt-4 border-t border-[var(--ps-border)] space-y-4">
+        <div className="pt-6 border-t border-[var(--ps-border)] space-y-4">
           <div className="p-4 border border-[var(--ps-border)] bg-[var(--ps-bg-info)]/40 rounded-none relative">
             <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-[var(--ps-border)] opacity-35" />
             <h4 className="text-[13px] font-semibold text-[var(--ps-text)] mb-1 flex items-center gap-1.5">
