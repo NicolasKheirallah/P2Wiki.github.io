@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
+import { useLocale, type Market } from '@/contexts/LocaleContext';
 
-export type Market = 'uk' | 'se' | 'us';
+export type { Market } from '@/contexts/LocaleContext';
 
 interface MarketInfo {
   id: Market;
@@ -11,49 +12,28 @@ interface MarketInfo {
   rangeLong: string;
 }
 
-export const markets: MarketInfo[] = [
-  { id: 'uk', label: 'marketUk', flag: '\uD83C\uDDEC\uD83C\uDDE7', currency: 'GBP', rangeStandard: '344 mi', rangeLong: '409 mi' },
-  { id: 'se', label: 'marketSe', flag: '\uD83C\uDDF8\uD83C\uDDEA', currency: 'SEK', rangeStandard: '550 km', rangeLong: '655 km' },
-  { id: 'us', label: 'marketUs', flag: '\uD83C\uDDFA\uD83C\uDDF8', currency: 'USD', rangeStandard: '270 mi', rangeLong: '320 mi' },
-];
+const marketData: Record<Market, MarketInfo> = {
+  uk: { id: 'uk', label: 'marketUk', flag: '🇬🇧', currency: 'GBP', rangeStandard: '344 mi', rangeLong: '409 mi' },
+  se: { id: 'se', label: 'marketSe', flag: '🇸🇪', currency: 'SEK', rangeStandard: '550 km', rangeLong: '655 km' },
+  us: { id: 'us', label: 'marketUs', flag: '🇺🇸', currency: 'USD', rangeStandard: '270 mi', rangeLong: '320 mi' },
+};
 
 interface MarketContextValue {
   market: Market;
-  setMarket: (m: Market) => void;
   marketInfo: MarketInfo;
 }
 
 const MarketContext = createContext<MarketContextValue>({
   market: 'uk',
-  setMarket: () => {},
-  marketInfo: markets[0],
+  marketInfo: marketData.uk,
 });
 
-function detectBrowserMarket(): Market {
-  const lang = navigator.language.toLowerCase();
-  if (lang.startsWith('sv')) return 'se';
-  if (lang === 'en-us') return 'us';
-  return 'uk';
-}
-
 export function MarketProvider({ children }: { children: ReactNode }) {
-  const [market, setMarketState] = useState<Market>(() => {
-    const stored = localStorage.getItem('ps-market');
-    if (stored === 'uk' || stored === 'se' || stored === 'us') return stored;
-    const detected = detectBrowserMarket();
-    localStorage.setItem('ps-market', detected);
-    return detected;
-  });
-
-  const setMarket = useCallback((m: Market) => {
-    localStorage.setItem('ps-market', m);
-    setMarketState(m);
-  }, []);
-
-  const marketInfo = markets.find((m) => m.id === market) || markets[0];
+  const { market } = useLocale();
+  const marketInfo = marketData[market] || marketData.uk;
 
   return (
-    <MarketContext.Provider value={{ market, setMarket, marketInfo }}>
+    <MarketContext.Provider value={{ market, marketInfo }}>
       {children}
     </MarketContext.Provider>
   );

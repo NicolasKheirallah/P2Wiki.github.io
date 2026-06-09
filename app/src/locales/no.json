@@ -1002,5 +1002,9 @@
   "vinDecoderPilotChecklist": "Pilot Pack Checklist",
   "vinDecoderPilotChecklistDesc": "Look for: Pixel LED headlights, adaptive cruise radar in lower front grille, and 360° cameras under mirrors/logo.",
   "vinDecoderPerfChecklist": "Performance Pack Checklist",
-  "vinDecoderPerfChecklistDesc": "Look for: Swedish Gold brake calipers, Swedish Gold seatbelts, Ohlins adjustable dampers (gold knobs), and 20\" wheels."
+  "vinDecoderPerfChecklistDesc": "Look for: Swedish Gold brake calipers, Swedish Gold seatbelts, Ohlins adjustable dampers (gold knobs), and 20\" wheels.",
+  "langNorwegian": "Norsk",
+  "langDanish": "Dansk",
+  "langFrench": "Fransk",
+  "langGerman": "Tysk"
 }

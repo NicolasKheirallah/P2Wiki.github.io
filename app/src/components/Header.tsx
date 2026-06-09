@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
 import { Sun, Moon, ChevronDown } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useMarket, markets } from '@/contexts/MarketContext';
 import { useLocale } from '@/contexts/LocaleContext';
 
 export type TabId = 'specs' | 'knownIssues' | 'printing' | 'service' | 'chargingPerf' | 'retrofits';
@@ -35,19 +34,16 @@ function useClickOutside(ref: React.RefObject<HTMLElement | null>, handler: () =
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
-  const { market, setMarket } = useMarket();
-  const { locale, setLocale, t } = useLocale();
+  const { locale, setLocale, t, availableLocales } = useLocale();
   const location = useLocation();
-  const [marketOpen, setMarketOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const marketRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(marketRef, () => setMarketOpen(false));
   useClickOutside(langRef, () => setLangOpen(false));
 
-  const currentMarket = markets.find((m) => m.id === market)!;
   const currentPath = location.pathname;
+
+  const currentLocale = availableLocales.find((l) => l.code === locale) ?? availableLocales[0];
 
   return (
     <header
@@ -107,75 +103,7 @@ export default function Header() {
 
           {/* Controls */}
           <div className="shrink-0 flex items-center gap-2">
-            {/* Market dropdown */}
-            <div ref={marketRef} className="relative">
-              <button
-                onClick={() => setMarketOpen((o) => !o)}
-                className="flex items-center gap-1 px-2.5 py-1.5 text-[13px] rounded-none border transition-colors duration-150"
-                style={{
-                  color: 'var(--ps-text-secondary)',
-                  backgroundColor: marketOpen ? 'var(--ps-pill-bg)' : 'transparent',
-                  borderColor: marketOpen ? 'var(--ps-text)' : 'var(--ps-border)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--ps-text)';
-                  if (!marketOpen) {
-                    e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
-                    e.currentTarget.style.borderColor = 'var(--ps-text-secondary)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--ps-text-secondary)';
-                  if (!marketOpen) {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.borderColor = 'var(--ps-border)';
-                  }
-                }}
-              >
-                <span className="text-[16px] leading-none">{currentMarket.flag}</span>
-                <span className="hidden md:inline">{t(currentMarket.label)}</span>
-                <ChevronDown size={12} className={`transition-transform duration-150 ${marketOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {marketOpen && (
-                <div
-                  className="absolute right-0 top-full mt-2 rounded-none z-[100] min-w-[180px] py-1.5"
-                  style={{
-                    backgroundColor: 'var(--ps-bg-elevated)',
-                    border: '1px solid var(--ps-border)',
-                  }}
-                >
-                  {markets.map((m) => (
-                    <button
-                      key={m.id}
-                      onClick={() => { setMarket(m.id); setMarketOpen(false); }}
-                      className="flex items-center gap-2.5 w-full px-3 py-2 text-[13px] transition-colors"
-                      style={{
-                        backgroundColor: market === m.id ? 'var(--ps-pill-active-bg)' : 'transparent',
-                        color: market === m.id ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
-                      }}
-                      onMouseEnter={(e) => {
-                        if (market !== m.id) {
-                          e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
-                          e.currentTarget.style.color = 'var(--ps-text)';
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (market !== m.id) {
-                          e.currentTarget.style.backgroundColor = 'transparent';
-                          e.currentTarget.style.color = 'var(--ps-text-secondary)';
-                        }
-                      }}
-                    >
-                      <span className="text-[16px]">{m.flag}</span>
-                      <span className="flex-1 text-left">{t(m.label)}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Language dropdown */}
+            {/* Language + Region picker (combined) */}
             <div ref={langRef} className="relative">
               <button
                 onClick={() => setLangOpen((o) => !o)}
@@ -200,42 +128,43 @@ export default function Header() {
                   }
                 }}
               >
-                <span className="text-[11px] font-medium uppercase">{locale}</span>
+                <span className="text-[16px] leading-none">{currentLocale.flag}</span>
+                <span>{t(currentLocale.labelKey)}</span>
                 <ChevronDown size={12} className={`transition-transform duration-150 ${langOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {langOpen && (
                 <div
-                  className="absolute right-0 top-full mt-2 rounded-none z-[100] min-w-[120px] py-1.5"
+                  className="absolute right-0 top-full mt-2 rounded-none z-[100] min-w-[180px] py-1.5"
                   style={{
                     backgroundColor: 'var(--ps-bg-elevated)',
                     border: '1px solid var(--ps-border)',
                   }}
                 >
-                  {(['en', 'sv'] as const).map((l) => (
+                  {availableLocales.map((l) => (
                     <button
-                      key={l}
-                      onClick={() => { setLocale(l); setLangOpen(false); }}
-                      className="flex items-center gap-2 w-full px-3 py-2 text-[13px] transition-colors"
+                      key={l.code}
+                      onClick={() => { setLocale(l.code); setLangOpen(false); }}
+                      className="flex items-center gap-2.5 w-full px-3 py-2 text-[13px] transition-colors"
                       style={{
-                        backgroundColor: locale === l ? 'var(--ps-pill-active-bg)' : 'transparent',
-                        color: locale === l ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
+                        backgroundColor: locale === l.code ? 'var(--ps-pill-active-bg)' : 'transparent',
+                        color: locale === l.code ? 'var(--ps-pill-active-text)' : 'var(--ps-text-secondary)',
                       }}
                       onMouseEnter={(e) => {
-                        if (locale !== l) {
+                        if (locale !== l.code) {
                           e.currentTarget.style.backgroundColor = 'var(--ps-pill-bg)';
                           e.currentTarget.style.color = 'var(--ps-text)';
                         }
                       }}
                       onMouseLeave={(e) => {
-                        if (locale !== l) {
+                        if (locale !== l.code) {
                           e.currentTarget.style.backgroundColor = 'transparent';
                           e.currentTarget.style.color = 'var(--ps-text-secondary)';
                         }
                       }}
                     >
-                      <span className="text-[11px] font-medium uppercase w-5">{l}</span>
-                      <span>{t(l === 'en' ? 'langEnglish' : 'langSwedish')}</span>
+                      <span className="text-[16px]">{l.flag}</span>
+                      <span className="flex-1 text-left">{t(l.labelKey)}</span>
                     </button>
                   ))}
                 </div>

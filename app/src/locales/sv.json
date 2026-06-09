@@ -1002,5 +1002,9 @@
   "vinDecoderPilotChecklist": "Checklista: Pilotpaket",
   "vinDecoderPilotChecklistDesc": "Kontrollera: Pixel LED-strålkastare, adaptiv farthållarradar i nedre frontgrillen och 360°-kameror under speglar/logotyp.",
   "vinDecoderPerfChecklist": "Checklista: Prestandapaket",
-  "vinDecoderPerfChecklistDesc": "Kontrollera: bromsok i Swedish Gold, säkerhetsbälten i Swedish Gold, Öhlins justerbara stötdämpare (guldknappar) och 20\"-fälgar."
+  "vinDecoderPerfChecklistDesc": "Kontrollera: bromsok i Swedish Gold, säkerhetsbälten i Swedish Gold, Öhlins justerbara stötdämpare (guldknappar) och 20\"-fälgar.",
+  "langNorwegian": "Norska",
+  "langDanish": "Danska",
+  "langFrench": "Franska",
+  "langGerman": "Tyska"
 }

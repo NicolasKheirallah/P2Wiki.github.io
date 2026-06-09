@@ -49,11 +49,11 @@ function AppLayout() {
 export default function App() {
   return (
     <ThemeProvider>
-      <MarketProvider>
-        <LocaleProvider>
+      <LocaleProvider>
+        <MarketProvider>
           <AppLayout />
-        </LocaleProvider>
-      </MarketProvider>
+        </MarketProvider>
+      </LocaleProvider>
     </ThemeProvider>
   );
 }
