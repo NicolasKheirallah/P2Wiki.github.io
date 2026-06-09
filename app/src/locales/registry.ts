@@ -30,7 +30,8 @@ export function getLocale(code: string): LocaleDef | undefined {
   return LOCALES.find((l) => l.code === code);
 }
 
-export function isValidLocale(code: string): code is Locale {
+export function isValidLocale(code: string | null | undefined): code is Locale {
+  if (!code) return false;
   return LOCALES.some((l) => l.code === code);
 }
 
