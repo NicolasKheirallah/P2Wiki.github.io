@@ -6,71 +6,124 @@
 
 @layer base {
   :root {
-    /* Polestar Brand Colours — Light (default) */
+    /* Polestar Brand Colours - Light (default), tuned for WCAG contrast */
     --ps-bg: #FFFFFF;
-    --ps-bg-secondary: #F7F7F7;
+    --ps-bg-secondary: #F4F5F5;
     --ps-bg-elevated: #FFFFFF;
-    --ps-bg-info: #ECECE7;
+    --ps-bg-info: #EEF1F2;
 
-    --ps-text: #000000;
-    --ps-text-secondary: #75787B;
-    --ps-text-tertiary: #97999B;
+    --ps-text: #111827;
+    --ps-text-secondary: #4B5563;
+    --ps-text-tertiary: #5F6B76;
 
-    --ps-border: #D9D9D6;
-    --ps-border-light: #ECECE7;
+    --ps-border: #C9CED3;
+    --ps-border-light: #DEE3E7;
 
-    --ps-pill-bg: #ECECE7;
-    --ps-pill-bg-hover: #D9D9D6;
-    --ps-pill-active-bg: #000000;
+    --ps-pill-bg: #E9EDF0;
+    --ps-pill-bg-hover: #D8DEE4;
+    --ps-pill-active-bg: #111827;
     --ps-pill-active-text: #FFFFFF;
 
-    --ps-table-border: #D9D9D6;
-    --ps-table-row: #ECECE7;
-    --ps-table-hover: #ECECE7;
+    --ps-table-border: #C9CED3;
+    --ps-table-row: #F1F4F6;
+    --ps-table-hover: #E7ECEF;
 
-    --ps-standard: #000000;
-    --ps-optional: #75787B;
-    --ps-unavailable: #C8C9C7;
+    --ps-standard: #111827;
+    --ps-optional: #4B5563;
+    --ps-unavailable: #717C86;
 
-    --ps-gold: #F6BE00;
-    --ps-error: #D32F2F;
-    --ps-success: #2E7D32;
+    --ps-gold: #9A6500;
+    --ps-error: #B42318;
+    --ps-success: #1E6B3A;
 
     --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --foreground: 221 39% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 221 39% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 39% 11%;
+    --primary: 221 39% 11%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 17% 94%;
+    --secondary-foreground: 221 39% 11%;
+    --muted: 200 18% 94%;
+    --muted-foreground: 215 15% 32%;
+    --accent: 204 17% 91%;
+    --accent-foreground: 221 39% 11%;
+    --destructive: 4 74% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 13% 81%;
+    --input: 210 13% 81%;
+    --ring: 215 20% 38%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 221 39% 11%;
+    --sidebar-primary: 221 39% 11%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 204 17% 91%;
+    --sidebar-accent-foreground: 221 39% 11%;
+    --sidebar-border: 210 13% 81%;
+    --sidebar-ring: 215 20% 38%;
     --radius: 0.25rem;
   }
 
-  /* Dark mode — Polestar brand grey scale inverted */
+  /* Dark mode - softer blue-grey surfaces with WCAG-conscious contrast */
   .dark {
-    --ps-bg: #000000;
-    --ps-bg-secondary: #53565A;
-    --ps-bg-elevated: #53565A;
-    --ps-bg-info: #53565A;
+    --ps-bg: #111820;
+    --ps-bg-secondary: #1B2530;
+    --ps-bg-elevated: #202B36;
+    --ps-bg-info: #243341;
 
-    --ps-text: #FFFFFF;
-    --ps-text-secondary: #C8C9C7;
-    --ps-text-tertiary: #97999B;
+    --ps-text: #F5F7FA;
+    --ps-text-secondary: #D5DCE3;
+    --ps-text-tertiary: #B7C1CB;
 
-    --ps-border: #53565A;
-    --ps-border-light: #53565A;
+    --ps-border: #40505F;
+    --ps-border-light: #334250;
 
-    --ps-pill-bg: #53565A;
-    --ps-pill-bg-hover: #75787B;
-    --ps-pill-active-bg: #FFFFFF;
-    --ps-pill-active-text: #000000;
+    --ps-pill-bg: #253241;
+    --ps-pill-bg-hover: #344556;
+    --ps-pill-active-bg: #E8EEF4;
+    --ps-pill-active-text: #101720;
 
-    --ps-table-border: #53565A;
-    --ps-table-row: #3A3A3C;
-    --ps-table-hover: #53565A;
+    --ps-table-border: #40505F;
+    --ps-table-row: #18222D;
+    --ps-table-hover: #253241;
 
-    --ps-standard: #FFFFFF;
-    --ps-optional: #C8C9C7;
-    --ps-unavailable: #53565A;
+    --ps-standard: #F5F7FA;
+    --ps-optional: #D5DCE3;
+    --ps-unavailable: #8794A1;
 
-    --ps-gold: #F6BE00;
-    --ps-error: #EF5350;
-    --ps-success: #66BB6A;
+    --ps-gold: #FFD166;
+    --ps-error: #FF8A80;
+    --ps-success: #8FD694;
+
+    --background: 213 31% 10%;
+    --foreground: 210 29% 97%;
+    --card: 211 27% 17%;
+    --card-foreground: 210 29% 97%;
+    --popover: 211 27% 17%;
+    --popover-foreground: 210 29% 97%;
+    --primary: 210 29% 97%;
+    --primary-foreground: 213 33% 9%;
+    --secondary: 212 26% 21%;
+    --secondary-foreground: 210 29% 97%;
+    --muted: 212 26% 21%;
+    --muted-foreground: 210 18% 76%;
+    --accent: 211 25% 27%;
+    --accent-foreground: 210 29% 97%;
+    --destructive: 5 100% 75%;
+    --destructive-foreground: 213 33% 9%;
+    --border: 210 20% 31%;
+    --input: 210 20% 31%;
+    --ring: 208 26% 70%;
+    --sidebar-background: 213 31% 10%;
+    --sidebar-foreground: 210 29% 97%;
+    --sidebar-primary: 210 29% 97%;
+    --sidebar-primary-foreground: 213 33% 9%;
+    --sidebar-accent: 211 25% 27%;
+    --sidebar-accent-foreground: 210 29% 97%;
+    --sidebar-border: 210 20% 31%;
+    --sidebar-ring: 208 26% 70%;
   }
 
   html {
